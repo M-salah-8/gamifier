@@ -2,8 +2,8 @@ part of 'game_watcher_bloc.dart';
 
 @freezed
 class GameWatcherEvent with _$GameWatcherEvent {
-  factory GameWatcherEvent.watchStarted() = _WatchAllStarted;
-  factory GameWatcherEvent.notesReceived(
+  factory GameWatcherEvent.watchGamesStarted() = _WatchGamesStarted;
+  factory GameWatcherEvent.gamesReceived(
     Either<GameFailure, KtList<Game>> failureOrNotes,
-  ) = _NotesReceived;
+  ) = _GamesReceived;
 }

@@ -13,37 +13,38 @@ part 'game_watcher_bloc.freezed.dart';
 part 'game_watcher_event.dart';
 part 'game_watcher_state.dart';
 
+//// request the games from repository then show them:
 @injectable
 class GameWatcherBloc extends Bloc<GameWatcherEvent, GameWatcherState> {
   final IGameRepository _gameRepository;
   StreamSubscription<Either<GameFailure, KtList<Game>>>?
-      _noteStreamSubscription;
+      _gameStreamSubscription;
   GameWatcherBloc(this._gameRepository)
       : super(const GameWatcherState.initial()) {
     on<GameWatcherEvent>((event, emit) async {
       await event.map(
-          // tring to get the notes:
-          watchStarted: (e) async {
+          // tring to get the games:
+          watchGamesStarted: (e) async {
         emit(const GameWatcherState.loadInProgress());
-        await _noteStreamSubscription?.cancel();
-        _noteStreamSubscription = _gameRepository.watch().listen(
-              (failureOrNotes) =>
-                  add(GameWatcherEvent.notesReceived(failureOrNotes)),
+        await _gameStreamSubscription?.cancel();
+        _gameStreamSubscription = _gameRepository.watch().listen(
+              (failureOrGames) =>
+                  add(GameWatcherEvent.gamesReceived(failureOrGames)),
             );
       },
-          // result after watching the note:
-          notesReceived: (e) async {
-        e.failureOrNotes.fold((l) {
+          // result after watching the game:
+          gamesReceived: (e) async {
+        e.failureOrGames.fold((l) {
           emit(GameWatcherState.loadFailure(l));
         }, (r) => emit(GameWatcherState.loadSuccess(r)));
       });
     });
   }
 
-  //closing the stream to avoid memory bleding
+  //closing the stream to avoid memory bleding:
   @override
   Future<void> close() async {
-    await _noteStreamSubscription?.cancel();
+    await _gameStreamSubscription?.cancel();
     return super.close();
   }
 }

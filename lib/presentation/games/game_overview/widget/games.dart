@@ -17,7 +17,7 @@ class Games extends StatelessWidget {
         }, loadInProgress: (_) {
           return Container(color: Colors.white);
         }, loadSuccess: (e) {
-          List<Game> games = e.notes.asList();
+          List<Game> games = e.games.asList();
           return ListView.builder(
               itemCount: games.length,
               itemBuilder: (context, index) {

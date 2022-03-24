@@ -18,13 +18,13 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$GameWatcherEventTearOff {
   const _$GameWatcherEventTearOff();
 
-  _WatchAllStarted watchStarted() {
-    return _WatchAllStarted();
+  _WatchGamesStarted watchGamesStarted() {
+    return _WatchGamesStarted();
   }
 
-  _NotesReceived notesReceived(
+  _GamesReceived gamesReceived(
       Either<GameFailure, KtList<Game>> failureOrNotes) {
-    return _NotesReceived(
+    return _GamesReceived(
       failureOrNotes,
     );
   }
@@ -37,42 +37,42 @@ const $GameWatcherEvent = _$GameWatcherEventTearOff();
 mixin _$GameWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
+    required TResult Function() watchGamesStarted,
     required TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)
-        notesReceived,
+        gamesReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? watchStarted,
+    TResult Function()? watchGamesStarted,
     TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)?
-        notesReceived,
+        gamesReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
+    TResult Function()? watchGamesStarted,
     TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)?
-        notesReceived,
+        gamesReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchAllStarted value) watchStarted,
-    required TResult Function(_NotesReceived value) notesReceived,
+    required TResult Function(_WatchGamesStarted value) watchGamesStarted,
+    required TResult Function(_GamesReceived value) gamesReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_WatchAllStarted value)? watchStarted,
-    TResult Function(_NotesReceived value)? notesReceived,
+    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_GamesReceived value)? gamesReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchAllStarted value)? watchStarted,
-    TResult Function(_NotesReceived value)? notesReceived,
+    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_GamesReceived value)? gamesReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -96,38 +96,38 @@ class _$GameWatcherEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$WatchAllStartedCopyWith<$Res> {
-  factory _$WatchAllStartedCopyWith(
-          _WatchAllStarted value, $Res Function(_WatchAllStarted) then) =
-      __$WatchAllStartedCopyWithImpl<$Res>;
+abstract class _$WatchGamesStartedCopyWith<$Res> {
+  factory _$WatchGamesStartedCopyWith(
+          _WatchGamesStarted value, $Res Function(_WatchGamesStarted) then) =
+      __$WatchGamesStartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$WatchAllStartedCopyWithImpl<$Res>
+class __$WatchGamesStartedCopyWithImpl<$Res>
     extends _$GameWatcherEventCopyWithImpl<$Res>
-    implements _$WatchAllStartedCopyWith<$Res> {
-  __$WatchAllStartedCopyWithImpl(
-      _WatchAllStarted _value, $Res Function(_WatchAllStarted) _then)
-      : super(_value, (v) => _then(v as _WatchAllStarted));
+    implements _$WatchGamesStartedCopyWith<$Res> {
+  __$WatchGamesStartedCopyWithImpl(
+      _WatchGamesStarted _value, $Res Function(_WatchGamesStarted) _then)
+      : super(_value, (v) => _then(v as _WatchGamesStarted));
 
   @override
-  _WatchAllStarted get _value => super._value as _WatchAllStarted;
+  _WatchGamesStarted get _value => super._value as _WatchGamesStarted;
 }
 
 /// @nodoc
 
-class _$_WatchAllStarted implements _WatchAllStarted {
-  _$_WatchAllStarted();
+class _$_WatchGamesStarted implements _WatchGamesStarted {
+  _$_WatchGamesStarted();
 
   @override
   String toString() {
-    return 'GameWatcherEvent.watchStarted()';
+    return 'GameWatcherEvent.watchGamesStarted()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _WatchAllStarted);
+        (other.runtimeType == runtimeType && other is _WatchGamesStarted);
   }
 
   @override
@@ -136,33 +136,33 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
+    required TResult Function() watchGamesStarted,
     required TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)
-        notesReceived,
+        gamesReceived,
   }) {
-    return watchStarted();
+    return watchGamesStarted();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? watchStarted,
+    TResult Function()? watchGamesStarted,
     TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)?
-        notesReceived,
+        gamesReceived,
   }) {
-    return watchStarted?.call();
+    return watchGamesStarted?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
+    TResult Function()? watchGamesStarted,
     TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)?
-        notesReceived,
+        gamesReceived,
     required TResult orElse(),
   }) {
-    if (watchStarted != null) {
-      return watchStarted();
+    if (watchGamesStarted != null) {
+      return watchGamesStarted();
     }
     return orElse();
   }
@@ -170,65 +170,65 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchAllStarted value) watchStarted,
-    required TResult Function(_NotesReceived value) notesReceived,
+    required TResult Function(_WatchGamesStarted value) watchGamesStarted,
+    required TResult Function(_GamesReceived value) gamesReceived,
   }) {
-    return watchStarted(this);
+    return watchGamesStarted(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_WatchAllStarted value)? watchStarted,
-    TResult Function(_NotesReceived value)? notesReceived,
+    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_GamesReceived value)? gamesReceived,
   }) {
-    return watchStarted?.call(this);
+    return watchGamesStarted?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchAllStarted value)? watchStarted,
-    TResult Function(_NotesReceived value)? notesReceived,
+    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_GamesReceived value)? gamesReceived,
     required TResult orElse(),
   }) {
-    if (watchStarted != null) {
-      return watchStarted(this);
+    if (watchGamesStarted != null) {
+      return watchGamesStarted(this);
     }
     return orElse();
   }
 }
 
-abstract class _WatchAllStarted implements GameWatcherEvent {
-  factory _WatchAllStarted() = _$_WatchAllStarted;
+abstract class _WatchGamesStarted implements GameWatcherEvent {
+  factory _WatchGamesStarted() = _$_WatchGamesStarted;
 }
 
 /// @nodoc
-abstract class _$NotesReceivedCopyWith<$Res> {
-  factory _$NotesReceivedCopyWith(
-          _NotesReceived value, $Res Function(_NotesReceived) then) =
-      __$NotesReceivedCopyWithImpl<$Res>;
+abstract class _$GamesReceivedCopyWith<$Res> {
+  factory _$GamesReceivedCopyWith(
+          _GamesReceived value, $Res Function(_GamesReceived) then) =
+      __$GamesReceivedCopyWithImpl<$Res>;
   $Res call({Either<GameFailure, KtList<Game>> failureOrNotes});
 }
 
 /// @nodoc
-class __$NotesReceivedCopyWithImpl<$Res>
+class __$GamesReceivedCopyWithImpl<$Res>
     extends _$GameWatcherEventCopyWithImpl<$Res>
-    implements _$NotesReceivedCopyWith<$Res> {
-  __$NotesReceivedCopyWithImpl(
-      _NotesReceived _value, $Res Function(_NotesReceived) _then)
-      : super(_value, (v) => _then(v as _NotesReceived));
+    implements _$GamesReceivedCopyWith<$Res> {
+  __$GamesReceivedCopyWithImpl(
+      _GamesReceived _value, $Res Function(_GamesReceived) _then)
+      : super(_value, (v) => _then(v as _GamesReceived));
 
   @override
-  _NotesReceived get _value => super._value as _NotesReceived;
+  _GamesReceived get _value => super._value as _GamesReceived;
 
   @override
   $Res call({
     Object? failureOrNotes = freezed,
   }) {
-    return _then(_NotesReceived(
+    return _then(_GamesReceived(
       failureOrNotes == freezed
-          ? _value.failureOrNotes
+          ? _value.failureOrGames
           : failureOrNotes // ignore: cast_nullable_to_non_nullable
               as Either<GameFailure, KtList<Game>>,
     ));
@@ -237,65 +237,65 @@ class __$NotesReceivedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NotesReceived implements _NotesReceived {
-  _$_NotesReceived(this.failureOrNotes);
+class _$_GamesReceived implements _GamesReceived {
+  _$_GamesReceived(this.failureOrGames);
 
   @override
-  final Either<GameFailure, KtList<Game>> failureOrNotes;
+  final Either<GameFailure, KtList<Game>> failureOrGames;
 
   @override
   String toString() {
-    return 'GameWatcherEvent.notesReceived(failureOrNotes: $failureOrNotes)';
+    return 'GameWatcherEvent.gamesReceived(failureOrNotes: $failureOrGames)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _NotesReceived &&
+            other is _GamesReceived &&
             const DeepCollectionEquality()
-                .equals(other.failureOrNotes, failureOrNotes));
+                .equals(other.failureOrGames, failureOrGames));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(failureOrNotes));
+      runtimeType, const DeepCollectionEquality().hash(failureOrGames));
 
   @JsonKey(ignore: true)
   @override
-  _$NotesReceivedCopyWith<_NotesReceived> get copyWith =>
-      __$NotesReceivedCopyWithImpl<_NotesReceived>(this, _$identity);
+  _$GamesReceivedCopyWith<_GamesReceived> get copyWith =>
+      __$GamesReceivedCopyWithImpl<_GamesReceived>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchStarted,
+    required TResult Function() watchGamesStarted,
     required TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)
-        notesReceived,
+        gamesReceived,
   }) {
-    return notesReceived(failureOrNotes);
+    return gamesReceived(failureOrGames);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? watchStarted,
+    TResult Function()? watchGamesStarted,
     TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)?
-        notesReceived,
+        gamesReceived,
   }) {
-    return notesReceived?.call(failureOrNotes);
+    return gamesReceived?.call(failureOrGames);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchStarted,
+    TResult Function()? watchGamesStarted,
     TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)?
-        notesReceived,
+        gamesReceived,
     required TResult orElse(),
   }) {
-    if (notesReceived != null) {
-      return notesReceived(failureOrNotes);
+    if (gamesReceived != null) {
+      return gamesReceived(failureOrGames);
     }
     return orElse();
   }
@@ -303,42 +303,42 @@ class _$_NotesReceived implements _NotesReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_WatchAllStarted value) watchStarted,
-    required TResult Function(_NotesReceived value) notesReceived,
+    required TResult Function(_WatchGamesStarted value) watchGamesStarted,
+    required TResult Function(_GamesReceived value) gamesReceived,
   }) {
-    return notesReceived(this);
+    return gamesReceived(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_WatchAllStarted value)? watchStarted,
-    TResult Function(_NotesReceived value)? notesReceived,
+    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_GamesReceived value)? gamesReceived,
   }) {
-    return notesReceived?.call(this);
+    return gamesReceived?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchAllStarted value)? watchStarted,
-    TResult Function(_NotesReceived value)? notesReceived,
+    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_GamesReceived value)? gamesReceived,
     required TResult orElse(),
   }) {
-    if (notesReceived != null) {
-      return notesReceived(this);
+    if (gamesReceived != null) {
+      return gamesReceived(this);
     }
     return orElse();
   }
 }
 
-abstract class _NotesReceived implements GameWatcherEvent {
-  factory _NotesReceived(Either<GameFailure, KtList<Game>> failureOrNotes) =
-      _$_NotesReceived;
+abstract class _GamesReceived implements GameWatcherEvent {
+  factory _GamesReceived(Either<GameFailure, KtList<Game>> failureOrNotes) =
+      _$_GamesReceived;
 
-  Either<GameFailure, KtList<Game>> get failureOrNotes;
+  Either<GameFailure, KtList<Game>> get failureOrGames;
   @JsonKey(ignore: true)
-  _$NotesReceivedCopyWith<_NotesReceived> get copyWith =>
+  _$GamesReceivedCopyWith<_GamesReceived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -354,15 +354,15 @@ class _$GameWatcherStateTearOff {
     return const _LoadInProgress();
   }
 
-  _LoadSuccess loadSuccess(KtList<Game> notes) {
+  _LoadSuccess loadSuccess(KtList<Game> games) {
     return _LoadSuccess(
-      notes,
+      games,
     );
   }
 
-  _LoadFailure loadFailure(GameFailure noteFailure) {
+  _LoadFailure loadFailure(GameFailure gameFailure) {
     return _LoadFailure(
-      noteFailure,
+      gameFailure,
     );
   }
 }
@@ -376,24 +376,24 @@ mixin _$GameWatcherState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(KtList<Game> notes) loadSuccess,
-    required TResult Function(GameFailure noteFailure) loadFailure,
+    required TResult Function(KtList<Game> games) loadSuccess,
+    required TResult Function(GameFailure gameFailure) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<Game> notes)? loadSuccess,
-    TResult Function(GameFailure noteFailure)? loadFailure,
+    TResult Function(KtList<Game> games)? loadSuccess,
+    TResult Function(GameFailure gameFailure)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<Game> notes)? loadSuccess,
-    TResult Function(GameFailure noteFailure)? loadFailure,
+    TResult Function(KtList<Game> games)? loadSuccess,
+    TResult Function(GameFailure gameFailure)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -481,8 +481,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(KtList<Game> notes) loadSuccess,
-    required TResult Function(GameFailure noteFailure) loadFailure,
+    required TResult Function(KtList<Game> games) loadSuccess,
+    required TResult Function(GameFailure gameFailure) loadFailure,
   }) {
     return initial();
   }
@@ -492,8 +492,8 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<Game> notes)? loadSuccess,
-    TResult Function(GameFailure noteFailure)? loadFailure,
+    TResult Function(KtList<Game> games)? loadSuccess,
+    TResult Function(GameFailure gameFailure)? loadFailure,
   }) {
     return initial?.call();
   }
@@ -503,8 +503,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<Game> notes)? loadSuccess,
-    TResult Function(GameFailure noteFailure)? loadFailure,
+    TResult Function(KtList<Game> games)? loadSuccess,
+    TResult Function(GameFailure gameFailure)? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -598,8 +598,8 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(KtList<Game> notes) loadSuccess,
-    required TResult Function(GameFailure noteFailure) loadFailure,
+    required TResult Function(KtList<Game> games) loadSuccess,
+    required TResult Function(GameFailure gameFailure) loadFailure,
   }) {
     return loadInProgress();
   }
@@ -609,8 +609,8 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<Game> notes)? loadSuccess,
-    TResult Function(GameFailure noteFailure)? loadFailure,
+    TResult Function(KtList<Game> games)? loadSuccess,
+    TResult Function(GameFailure gameFailure)? loadFailure,
   }) {
     return loadInProgress?.call();
   }
@@ -620,8 +620,8 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<Game> notes)? loadSuccess,
-    TResult Function(GameFailure noteFailure)? loadFailure,
+    TResult Function(KtList<Game> games)? loadSuccess,
+    TResult Function(GameFailure gameFailure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -677,7 +677,7 @@ abstract class _$LoadSuccessCopyWith<$Res> {
   factory _$LoadSuccessCopyWith(
           _LoadSuccess value, $Res Function(_LoadSuccess) then) =
       __$LoadSuccessCopyWithImpl<$Res>;
-  $Res call({KtList<Game> notes});
+  $Res call({KtList<Game> games});
 }
 
 /// @nodoc
@@ -693,12 +693,12 @@ class __$LoadSuccessCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? notes = freezed,
+    Object? games = freezed,
   }) {
     return _then(_LoadSuccess(
-      notes == freezed
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
+      games == freezed
+          ? _value.games
+          : games // ignore: cast_nullable_to_non_nullable
               as KtList<Game>,
     ));
   }
@@ -707,14 +707,14 @@ class __$LoadSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadSuccess implements _LoadSuccess {
-  const _$_LoadSuccess(this.notes);
+  const _$_LoadSuccess(this.games);
 
   @override
-  final KtList<Game> notes;
+  final KtList<Game> games;
 
   @override
   String toString() {
-    return 'GameWatcherState.loadSuccess(notes: $notes)';
+    return 'GameWatcherState.loadSuccess(games: $games)';
   }
 
   @override
@@ -722,12 +722,12 @@ class _$_LoadSuccess implements _LoadSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LoadSuccess &&
-            const DeepCollectionEquality().equals(other.notes, notes));
+            const DeepCollectionEquality().equals(other.games, games));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(notes));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(games));
 
   @JsonKey(ignore: true)
   @override
@@ -739,10 +739,10 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(KtList<Game> notes) loadSuccess,
-    required TResult Function(GameFailure noteFailure) loadFailure,
+    required TResult Function(KtList<Game> games) loadSuccess,
+    required TResult Function(GameFailure gameFailure) loadFailure,
   }) {
-    return loadSuccess(notes);
+    return loadSuccess(games);
   }
 
   @override
@@ -750,10 +750,10 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<Game> notes)? loadSuccess,
-    TResult Function(GameFailure noteFailure)? loadFailure,
+    TResult Function(KtList<Game> games)? loadSuccess,
+    TResult Function(GameFailure gameFailure)? loadFailure,
   }) {
-    return loadSuccess?.call(notes);
+    return loadSuccess?.call(games);
   }
 
   @override
@@ -761,12 +761,12 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<Game> notes)? loadSuccess,
-    TResult Function(GameFailure noteFailure)? loadFailure,
+    TResult Function(KtList<Game> games)? loadSuccess,
+    TResult Function(GameFailure gameFailure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
-      return loadSuccess(notes);
+      return loadSuccess(games);
     }
     return orElse();
   }
@@ -810,9 +810,9 @@ class _$_LoadSuccess implements _LoadSuccess {
 }
 
 abstract class _LoadSuccess implements GameWatcherState {
-  const factory _LoadSuccess(KtList<Game> notes) = _$_LoadSuccess;
+  const factory _LoadSuccess(KtList<Game> games) = _$_LoadSuccess;
 
-  KtList<Game> get notes;
+  KtList<Game> get games;
   @JsonKey(ignore: true)
   _$LoadSuccessCopyWith<_LoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -823,9 +823,9 @@ abstract class _$LoadFailureCopyWith<$Res> {
   factory _$LoadFailureCopyWith(
           _LoadFailure value, $Res Function(_LoadFailure) then) =
       __$LoadFailureCopyWithImpl<$Res>;
-  $Res call({GameFailure noteFailure});
+  $Res call({GameFailure gameFailure});
 
-  $GameFailureCopyWith<$Res> get noteFailure;
+  $GameFailureCopyWith<$Res> get gameFailure;
 }
 
 /// @nodoc
@@ -841,20 +841,20 @@ class __$LoadFailureCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? noteFailure = freezed,
+    Object? gameFailure = freezed,
   }) {
     return _then(_LoadFailure(
-      noteFailure == freezed
-          ? _value.noteFailure
-          : noteFailure // ignore: cast_nullable_to_non_nullable
+      gameFailure == freezed
+          ? _value.gameFailure
+          : gameFailure // ignore: cast_nullable_to_non_nullable
               as GameFailure,
     ));
   }
 
   @override
-  $GameFailureCopyWith<$Res> get noteFailure {
-    return $GameFailureCopyWith<$Res>(_value.noteFailure, (value) {
-      return _then(_value.copyWith(noteFailure: value));
+  $GameFailureCopyWith<$Res> get gameFailure {
+    return $GameFailureCopyWith<$Res>(_value.gameFailure, (value) {
+      return _then(_value.copyWith(gameFailure: value));
     });
   }
 }
@@ -862,14 +862,14 @@ class __$LoadFailureCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadFailure implements _LoadFailure {
-  const _$_LoadFailure(this.noteFailure);
+  const _$_LoadFailure(this.gameFailure);
 
   @override
-  final GameFailure noteFailure;
+  final GameFailure gameFailure;
 
   @override
   String toString() {
-    return 'GameWatcherState.loadFailure(noteFailure: $noteFailure)';
+    return 'GameWatcherState.loadFailure(gameFailure: $gameFailure)';
   }
 
   @override
@@ -878,12 +878,12 @@ class _$_LoadFailure implements _LoadFailure {
         (other.runtimeType == runtimeType &&
             other is _LoadFailure &&
             const DeepCollectionEquality()
-                .equals(other.noteFailure, noteFailure));
+                .equals(other.gameFailure, gameFailure));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(noteFailure));
+      runtimeType, const DeepCollectionEquality().hash(gameFailure));
 
   @JsonKey(ignore: true)
   @override
@@ -895,10 +895,10 @@ class _$_LoadFailure implements _LoadFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(KtList<Game> notes) loadSuccess,
-    required TResult Function(GameFailure noteFailure) loadFailure,
+    required TResult Function(KtList<Game> games) loadSuccess,
+    required TResult Function(GameFailure gameFailure) loadFailure,
   }) {
-    return loadFailure(noteFailure);
+    return loadFailure(gameFailure);
   }
 
   @override
@@ -906,10 +906,10 @@ class _$_LoadFailure implements _LoadFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<Game> notes)? loadSuccess,
-    TResult Function(GameFailure noteFailure)? loadFailure,
+    TResult Function(KtList<Game> games)? loadSuccess,
+    TResult Function(GameFailure gameFailure)? loadFailure,
   }) {
-    return loadFailure?.call(noteFailure);
+    return loadFailure?.call(gameFailure);
   }
 
   @override
@@ -917,12 +917,12 @@ class _$_LoadFailure implements _LoadFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<Game> notes)? loadSuccess,
-    TResult Function(GameFailure noteFailure)? loadFailure,
+    TResult Function(KtList<Game> games)? loadSuccess,
+    TResult Function(GameFailure gameFailure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
-      return loadFailure(noteFailure);
+      return loadFailure(gameFailure);
     }
     return orElse();
   }
@@ -966,9 +966,9 @@ class _$_LoadFailure implements _LoadFailure {
 }
 
 abstract class _LoadFailure implements GameWatcherState {
-  const factory _LoadFailure(GameFailure noteFailure) = _$_LoadFailure;
+  const factory _LoadFailure(GameFailure gameFailure) = _$_LoadFailure;
 
-  GameFailure get noteFailure;
+  GameFailure get gameFailure;
   @JsonKey(ignore: true)
   _$LoadFailureCopyWith<_LoadFailure> get copyWith =>
       throw _privateConstructorUsedError;

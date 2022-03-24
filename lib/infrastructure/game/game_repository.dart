@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:gamifier/domain/game/game_failure.dart';
 import 'package:gamifier/domain/game/game.dart';
 import 'package:dartz/dartz.dart';
@@ -32,20 +33,56 @@ class GameRepository implements IGameRepository {
   }
 
   @override
-  Future<Either<GameFailure, Unit>> create(Game note) {
+  Future<Either<GameFailure, Unit>> create(Game game) async {
     // TODO: implement create
-    throw UnimplementedError();
+    try {
+      final userDoc = await _firestore.userDocument();
+      final gameDTO = GameDTO.fromDomain(game);
+      await userDoc.gameCollection.doc(gameDTO.id).set(gameDTO.toJson());
+      return right(unit);
+    } on PlatformException catch (e) {
+      if (e.message!.contains('PERMISSION_DENIED')) {
+        return left(const GameFailure.insufficientPermission());
+      } else {
+        // log.error(e.toString());
+        return left(const GameFailure.unexpected());
+      }
+    }
   }
 
   @override
-  Future<Either<GameFailure, Unit>> delete(Game note) {
+  Future<Either<GameFailure, Unit>> update(Game game) async {
     // TODO: implement delete
-    throw UnimplementedError();
+
+    try {
+      final userDoc = await _firestore.userDocument();
+      final gameDTO = GameDTO.fromDomain(game);
+      await userDoc.gameCollection.doc(gameDTO.id).update(gameDTO.toJson());
+      return right(unit);
+    } on PlatformException catch (e) {
+      if (e.message!.contains('PERMISSION_DENIED')) {
+        return left(const GameFailure.insufficientPermission());
+      } else {
+        return left(const GameFailure.unableToUpdate());
+      }
+    }
   }
 
   @override
-  Future<Either<GameFailure, Unit>> update(Game note) {
+  Future<Either<GameFailure, Unit>> delete(Game game) async {
     // TODO: implement update
-    throw UnimplementedError();
+    // TODO: suitable exciptions
+    try {
+      final userDoc = await _firestore.userDocument();
+      final gameId = game.id.value;
+      await userDoc.gameCollection.doc(gameId).delete();
+      return right(unit);
+    } on PlatformException catch (e) {
+      if (e.message!.contains('PERMISSION_DENIED')) {
+        return left(const GameFailure.insufficientPermission());
+      } else {
+        return left(const GameFailure.unableToUpdate());
+      }
+    }
   }
 }

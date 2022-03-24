@@ -13,7 +13,7 @@ class GameOverviewPage extends StatelessWidget {
       providers: [
         BlocProvider(
             create: (context) =>
-                getIt<GameWatcherBloc>()..add(GameWatcherEvent.watchStarted())),
+                getIt<GameWatcherBloc>()..add(GameWatcherEvent.watchGamesStarted())),
         //TODO provid other blocs: actor
         // BlocProvider(create: (context) => getIt<AuthBloc>()),
         // BlocProvider(create: (context) => getIt<NoteActorBloc>())
