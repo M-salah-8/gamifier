@@ -23,9 +23,9 @@ class _$GameWatcherEventTearOff {
   }
 
   _GamesReceived gamesReceived(
-      Either<GameFailure, KtList<Game>> failureOrNotes) {
+      Either<GameFailure, KtList<Game>> failureOrGames) {
     return _GamesReceived(
-      failureOrNotes,
+      failureOrGames,
     );
   }
 }
@@ -38,21 +38,21 @@ mixin _$GameWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchGamesStarted,
-    required TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)
+    required TResult Function(Either<GameFailure, KtList<Game>> failureOrGames)
         gamesReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? watchGamesStarted,
-    TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)?
+    TResult Function(Either<GameFailure, KtList<Game>> failureOrGames)?
         gamesReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchGamesStarted,
-    TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)?
+    TResult Function(Either<GameFailure, KtList<Game>> failureOrGames)?
         gamesReceived,
     required TResult orElse(),
   }) =>
@@ -137,7 +137,7 @@ class _$_WatchGamesStarted implements _WatchGamesStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchGamesStarted,
-    required TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)
+    required TResult Function(Either<GameFailure, KtList<Game>> failureOrGames)
         gamesReceived,
   }) {
     return watchGamesStarted();
@@ -147,7 +147,7 @@ class _$_WatchGamesStarted implements _WatchGamesStarted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? watchGamesStarted,
-    TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)?
+    TResult Function(Either<GameFailure, KtList<Game>> failureOrGames)?
         gamesReceived,
   }) {
     return watchGamesStarted?.call();
@@ -157,7 +157,7 @@ class _$_WatchGamesStarted implements _WatchGamesStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchGamesStarted,
-    TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)?
+    TResult Function(Either<GameFailure, KtList<Game>> failureOrGames)?
         gamesReceived,
     required TResult orElse(),
   }) {
@@ -208,7 +208,7 @@ abstract class _$GamesReceivedCopyWith<$Res> {
   factory _$GamesReceivedCopyWith(
           _GamesReceived value, $Res Function(_GamesReceived) then) =
       __$GamesReceivedCopyWithImpl<$Res>;
-  $Res call({Either<GameFailure, KtList<Game>> failureOrNotes});
+  $Res call({Either<GameFailure, KtList<Game>> failureOrGames});
 }
 
 /// @nodoc
@@ -224,12 +224,12 @@ class __$GamesReceivedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? failureOrNotes = freezed,
+    Object? failureOrGames = freezed,
   }) {
     return _then(_GamesReceived(
-      failureOrNotes == freezed
+      failureOrGames == freezed
           ? _value.failureOrGames
-          : failureOrNotes // ignore: cast_nullable_to_non_nullable
+          : failureOrGames // ignore: cast_nullable_to_non_nullable
               as Either<GameFailure, KtList<Game>>,
     ));
   }
@@ -245,7 +245,7 @@ class _$_GamesReceived implements _GamesReceived {
 
   @override
   String toString() {
-    return 'GameWatcherEvent.gamesReceived(failureOrNotes: $failureOrGames)';
+    return 'GameWatcherEvent.gamesReceived(failureOrGames: $failureOrGames)';
   }
 
   @override
@@ -270,7 +270,7 @@ class _$_GamesReceived implements _GamesReceived {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchGamesStarted,
-    required TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)
+    required TResult Function(Either<GameFailure, KtList<Game>> failureOrGames)
         gamesReceived,
   }) {
     return gamesReceived(failureOrGames);
@@ -280,7 +280,7 @@ class _$_GamesReceived implements _GamesReceived {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? watchGamesStarted,
-    TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)?
+    TResult Function(Either<GameFailure, KtList<Game>> failureOrGames)?
         gamesReceived,
   }) {
     return gamesReceived?.call(failureOrGames);
@@ -290,7 +290,7 @@ class _$_GamesReceived implements _GamesReceived {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchGamesStarted,
-    TResult Function(Either<GameFailure, KtList<Game>> failureOrNotes)?
+    TResult Function(Either<GameFailure, KtList<Game>> failureOrGames)?
         gamesReceived,
     required TResult orElse(),
   }) {
@@ -333,7 +333,7 @@ class _$_GamesReceived implements _GamesReceived {
 }
 
 abstract class _GamesReceived implements GameWatcherEvent {
-  factory _GamesReceived(Either<GameFailure, KtList<Game>> failureOrNotes) =
+  factory _GamesReceived(Either<GameFailure, KtList<Game>> failureOrGames) =
       _$_GamesReceived;
 
   Either<GameFailure, KtList<Game>> get failureOrGames;

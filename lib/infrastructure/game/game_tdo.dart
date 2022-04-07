@@ -13,11 +13,13 @@ abstract class GameDTO implements _$GameDTO {
   const GameDTO._();
   const factory GameDTO(
       {required String id,
+      required int level,
       required String name,
       required List<GameTodoDTO> gameTodos}) = _GameDTO;
 
   factory GameDTO.fromDomain(Game game) => GameDTO(
       id: game.id.value,
+      level: game.level,
       name: game.name,
       gameTodos: game.gameTodos
           .map((gameTodo) => GameTodoDTO.fromDomain(gameTodo))
@@ -25,6 +27,7 @@ abstract class GameDTO implements _$GameDTO {
   Game toDomain() {
     return Game(
         id: UniqueId.fromUniqueString(id),
+        level: 0,
         name: name,
         gameTodos: gameTodos
             .map((gameTodosDTO) => gameTodosDTO.toDomain())
@@ -37,28 +40,6 @@ abstract class GameDTO implements _$GameDTO {
   factory GameDTO.fromFirestore(DocumentSnapshot doc) {
     Map<String, dynamic> docMap = doc.data() as Map<String, dynamic>;
     docMap['id'] = doc.id;
-    // addAll(<String, dynamic>{'id': '3424234234'})
-    // as Map<String, dynamic>;
-    print(docMap);
-    Map<String, dynamic> mp = {
-      'gameTodos': [
-        {
-          "todoName": "do this",
-          'times': 2,
-          'id': '6789',
-          'done': false,
-          'points': 10
-        }
-      ],
-      'name': 'coding',
-      'id': '1234567'
-    };
-
-    // print('======================${GameDTO.fromJson()}');
-    // GameDTO notdto = GameDTO.fromJson(docMap).copyWith(id: doc.id);
-    // Game not = notdto.toDomain();
-    // print(
-    // '===========================================${GameDTO.fromJson(docMap).copyWith(id: doc.id)}');
     return GameDTO.fromJson(docMap);
   }
 }

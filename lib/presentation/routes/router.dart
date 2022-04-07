@@ -14,8 +14,6 @@ import 'package:gamifier/presentation/splash/splash_page.dart';
     AutoRoute(page: SignInPage),
     AutoRoute(page: GameOverviewPage),
     AutoRoute(page: GameDetailPage),
-
-    // AutoRoute(page: NoteFormPage, fullscreenDialog: true),
   ],
 )
 class $AppRouter {}

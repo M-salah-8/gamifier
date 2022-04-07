@@ -96,7 +96,7 @@ class GameOverviewRoute extends _i6.PageRouteInfo<void> {
 /// generated route for
 /// [_i5.GameDetailPage]
 class GameDetailRoute extends _i6.PageRouteInfo<GameDetailRouteArgs> {
-  GameDetailRoute({_i7.Key? key, required _i8.Game game})
+  GameDetailRoute({_i7.Key? key, required _i8.Game? game})
       : super(GameDetailRoute.name,
             path: '/game-detail-page',
             args: GameDetailRouteArgs(key: key, game: game));
@@ -109,7 +109,7 @@ class GameDetailRouteArgs {
 
   final _i7.Key? key;
 
-  final _i8.Game game;
+  final _i8.Game? game;
 
   @override
   String toString() {

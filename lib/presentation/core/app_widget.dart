@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gamifier/application/game/game_actor/game_actor_bloc.dart';
+import 'package:gamifier/application/game/game_detail/game_detail_bloc.dart';
 import 'package:gamifier/injection.dart';
 import 'package:gamifier/presentation/routes/router.gr.dart';
 
@@ -11,15 +13,33 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          getIt<AuthBloc>()..add(AuthEvent.authCheckedRequist()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              getIt<AuthBloc>()..add(AuthEvent.authCheckedRequist()),
+        ),
+        BlocProvider(
+          create: (context) => getIt<GameDetailBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<GameActorBloc>(),
+        ),
+      ],
       child: MaterialApp.router(
-        theme: ThemeData.light().copyWith(
-          primaryColor: Colors.green[300],
-          appBarTheme: AppBarTheme(color: Colors.green[300], elevation: 0),
+        theme: ThemeData.dark().copyWith(
+          primaryColor: const Color.fromARGB(255, 92, 219, 98),
+          // appBarTheme:
+          //     AppBarTheme(color: const Color.fromARGB(255, 2, 153, 10), elevation: 0),
           floatingActionButtonTheme: FloatingActionButtonThemeData(
             backgroundColor: Colors.green[300],
+          ),
+          cardTheme: CardTheme(
+            color: const Color.fromARGB(255, 100, 12, 116),
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(color: Colors.white70, width: 1),
+              borderRadius: BorderRadius.circular(30),
+            ),
           ),
           inputDecorationTheme: InputDecorationTheme(
             border: OutlineInputBorder(

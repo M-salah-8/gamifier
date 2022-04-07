@@ -8,8 +8,9 @@ part 'game.freezed.dart';
 class Game with _$Game {
   const factory Game(
       {required UniqueId id,
+      required int level,
       required String name,
       required KtList<GameTodo> gameTodos}) = _Game;
   factory Game.empty() =>
-      Game(id: UniqueId(), name: '', gameTodos: emptyList());
+      Game(id: UniqueId(), level: 0, name: '', gameTodos: emptyList());
 }

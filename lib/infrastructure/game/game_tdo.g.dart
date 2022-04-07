@@ -8,6 +8,7 @@ part of 'game_tdo.dart';
 
 _$_GameDTO _$$_GameDTOFromJson(Map<String, dynamic> json) => _$_GameDTO(
       id: json['id'] as String,
+      level: json['level'] as int,
       name: json['name'] as String,
       gameTodos: (json['gameTodos'] as List<dynamic>)
           .map((e) => GameTodoDTO.fromJson(e as Map<String, dynamic>))
@@ -17,6 +18,7 @@ _$_GameDTO _$$_GameDTOFromJson(Map<String, dynamic> json) => _$_GameDTO(
 Map<String, dynamic> _$$_GameDTOToJson(_$_GameDTO instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'level': instance.level,
       'name': instance.name,
       'gameTodos': instance.gameTodos.map((e) => e.toJson()).toList(),
     };

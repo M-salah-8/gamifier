@@ -12,11 +12,13 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import 'application/auth/auth_bloc.dart' as _i11;
 import 'application/auth/sign_in_form/sign_in_or_up_form_bloc.dart' as _i10;
-import 'application/game/game_watcher/game_watcher_bloc.dart' as _i12;
+import 'application/game/game_actor/game_actor_bloc.dart' as _i12;
+import 'application/game/game_detail/game_detail_bloc.dart' as _i13;
+import 'application/game/game_watcher/game_watcher_bloc.dart' as _i14;
 import 'domain/auth/i_auth_facade.dart' as _i6;
 import 'domain/game/i_game_repository.dart' as _i8;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i7;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i13;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i15;
 import 'infrastructure/game/game_repository.dart'
     as _i9; // ignore_for_file: unnecessary_lambdas
 
@@ -39,9 +41,13 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i10.SignInOrUpFormBloc>(
       () => _i10.SignInOrUpFormBloc(get<_i6.IAuthFacade>()));
   gh.factory<_i11.AuthBloc>(() => _i11.AuthBloc(get<_i6.IAuthFacade>()));
-  gh.factory<_i12.GameWatcherBloc>(
-      () => _i12.GameWatcherBloc(get<_i8.IGameRepository>()));
+  gh.factory<_i12.GameActorBloc>(
+      () => _i12.GameActorBloc(get<_i8.IGameRepository>()));
+  gh.factory<_i13.GameDetailBloc>(
+      () => _i13.GameDetailBloc(get<_i8.IGameRepository>()));
+  gh.factory<_i14.GameWatcherBloc>(
+      () => _i14.GameWatcherBloc(get<_i8.IGameRepository>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i13.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i15.FirebaseInjectableModule {}

@@ -24,10 +24,12 @@ class _$GameDTOTearOff {
 
   _GameDTO call(
       {required String id,
+      required int level,
       required String name,
       required List<GameTodoDTO> gameTodos}) {
     return _GameDTO(
       id: id,
+      level: level,
       name: name,
       gameTodos: gameTodos,
     );
@@ -44,6 +46,7 @@ const $GameDTO = _$GameDTOTearOff();
 /// @nodoc
 mixin _$GameDTO {
   String get id => throw _privateConstructorUsedError;
+  int get level => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<GameTodoDTO> get gameTodos => throw _privateConstructorUsedError;
 
@@ -56,7 +59,7 @@ mixin _$GameDTO {
 abstract class $GameDTOCopyWith<$Res> {
   factory $GameDTOCopyWith(GameDTO value, $Res Function(GameDTO) then) =
       _$GameDTOCopyWithImpl<$Res>;
-  $Res call({String id, String name, List<GameTodoDTO> gameTodos});
+  $Res call({String id, int level, String name, List<GameTodoDTO> gameTodos});
 }
 
 /// @nodoc
@@ -70,6 +73,7 @@ class _$GameDTOCopyWithImpl<$Res> implements $GameDTOCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? level = freezed,
     Object? name = freezed,
     Object? gameTodos = freezed,
   }) {
@@ -78,6 +82,10 @@ class _$GameDTOCopyWithImpl<$Res> implements $GameDTOCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      level: level == freezed
+          ? _value.level
+          : level // ignore: cast_nullable_to_non_nullable
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -95,7 +103,7 @@ abstract class _$GameDTOCopyWith<$Res> implements $GameDTOCopyWith<$Res> {
   factory _$GameDTOCopyWith(_GameDTO value, $Res Function(_GameDTO) then) =
       __$GameDTOCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, List<GameTodoDTO> gameTodos});
+  $Res call({String id, int level, String name, List<GameTodoDTO> gameTodos});
 }
 
 /// @nodoc
@@ -110,6 +118,7 @@ class __$GameDTOCopyWithImpl<$Res> extends _$GameDTOCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? level = freezed,
     Object? name = freezed,
     Object? gameTodos = freezed,
   }) {
@@ -118,6 +127,10 @@ class __$GameDTOCopyWithImpl<$Res> extends _$GameDTOCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      level: level == freezed
+          ? _value.level
+          : level // ignore: cast_nullable_to_non_nullable
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -134,7 +147,10 @@ class __$GameDTOCopyWithImpl<$Res> extends _$GameDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GameDTO extends _GameDTO {
   const _$_GameDTO(
-      {required this.id, required this.name, required this.gameTodos})
+      {required this.id,
+      required this.level,
+      required this.name,
+      required this.gameTodos})
       : super._();
 
   factory _$_GameDTO.fromJson(Map<String, dynamic> json) =>
@@ -143,13 +159,15 @@ class _$_GameDTO extends _GameDTO {
   @override
   final String id;
   @override
+  final int level;
+  @override
   final String name;
   @override
   final List<GameTodoDTO> gameTodos;
 
   @override
   String toString() {
-    return 'GameDTO(id: $id, name: $name, gameTodos: $gameTodos)';
+    return 'GameDTO(id: $id, level: $level, name: $name, gameTodos: $gameTodos)';
   }
 
   @override
@@ -158,6 +176,7 @@ class _$_GameDTO extends _GameDTO {
         (other.runtimeType == runtimeType &&
             other is _GameDTO &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.level, level) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.gameTodos, gameTodos));
   }
@@ -166,6 +185,7 @@ class _$_GameDTO extends _GameDTO {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(level),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(gameTodos));
 
@@ -183,6 +203,7 @@ class _$_GameDTO extends _GameDTO {
 abstract class _GameDTO extends GameDTO {
   const factory _GameDTO(
       {required String id,
+      required int level,
       required String name,
       required List<GameTodoDTO> gameTodos}) = _$_GameDTO;
   const _GameDTO._() : super._();
@@ -191,6 +212,8 @@ abstract class _GameDTO extends GameDTO {
 
   @override
   String get id;
+  @override
+  int get level;
   @override
   String get name;
   @override
