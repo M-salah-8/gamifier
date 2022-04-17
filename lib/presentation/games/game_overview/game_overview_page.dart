@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gamifier/application/game/game_watcher/game_watcher_bloc.dart';
-import 'package:gamifier/injection.dart';
 import 'package:gamifier/presentation/games/game_overview/widget/games.dart';
 
 class GameOverviewPage extends StatelessWidget {
@@ -9,16 +8,8 @@ class GameOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-            create: (context) =>
-                getIt<GameWatcherBloc>()..add(GameWatcherEvent.watchGamesStarted())),
-        //TODO provid other blocs: actor
-        // BlocProvider(create: (context) => getIt<AuthBloc>()),
-        // BlocProvider(create: (context) => getIt<NoteActorBloc>())
-      ],
-      child: Scaffold(body: Games()),
-    );
+    BlocProvider.of<GameWatcherBloc>(context)
+        .add(GameWatcherEvent.watchGamesStarted());
+    return const Games();
   }
 }

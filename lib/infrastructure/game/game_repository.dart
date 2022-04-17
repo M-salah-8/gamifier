@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:gamifier/domain/game/game_failure.dart';
 import 'package:gamifier/domain/game/game.dart';
 import 'package:dartz/dartz.dart';
+import 'package:gamifier/domain/game/game_keys.dart';
 import 'package:gamifier/domain/game/i_game_repository.dart';
-import 'package:gamifier/infrastructure/core/firestore_helpers.dart';
+import 'package:gamifier/domain/user/gamifier_user.dart';
+import 'package:gamifier/infrastructure/gamifier_user/gamifier_user_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
@@ -17,13 +21,19 @@ class GameRepository implements IGameRepository {
   GameRepository(this._firestore);
 
   @override
-  Stream<Either<GameFailure, KtList<Game>>> watch() async* {
-    final userDoc = await _firestore.userDocument();
-    final notesStream = userDoc.gameCollection.snapshots().map((snapShot) =>
-        right<GameFailure, KtList<Game>>(snapShot.docs
-            .map((doc) => GameDTO.fromFirestore(doc).toDomain())
+  Stream<Either<GameFailure, KtList<GameKey>>> watchGames(
+      GamifierUser currentUser) async* {
+    final docId = GamifierUserTDO.fromDomain(currentUser).id;
+    // read user
+    final userDoc =
+        _firestore.collection('users').doc(docId).collection('user_games_list');
+    // final userDoc = await _firestore.userDocument();
+    // to get games real time
+    final gamesStream = userDoc.snapshots().map((snapShot) =>
+        right<GameFailure, KtList<GameKey>>(snapShot.docs
+            .map((doc) => GameKeyTDO.fromFirestore(doc).toDomain())
             .toImmutableList()));
-    yield* notesStream.onErrorReturnWith((e, stackTrace) {
+    yield* gamesStream.onErrorReturnWith((e, stackTrace) {
       if (e is FirebaseException && e.message!.contains('PERMISSION_DENIED')) {
         return left(const GameFailure.insufficientPermission());
       } else {
@@ -33,18 +43,50 @@ class GameRepository implements IGameRepository {
   }
 
   @override
-  Future<Either<GameFailure, Unit>> create(Game game) async {
+  Future<Either<GameFailure, Unit>> create(
+      Game game, GamifierUser currentUser) async {
     // TODO: implement create
     try {
-      final userDoc = await _firestore.userDocument();
-      final gameDTO = GameDTO.fromDomain(game);
-      await userDoc.gameCollection.doc(gameDTO.id).set(gameDTO.toJson());
+      // setting the admin as the current user
+      final admin = GamifierUserTDO.fromDomain(currentUser).id;
+      final gameDTO = GameDTO.fromDomain(game).copyWith(admin: admin);
+      // creating a new game doc with the id from new game
+      await _firestore
+          .collection('games')
+          .doc(gameDTO.id)
+          .set(gameDTO.toJson());
+      // #### adding new game key to the creater
+
+      // TODO better way?
+      // final userGamesListRef =
+      await _firestore
+          .collection('users')
+          .doc(admin)
+          .collection('user_games_list')
+          .doc(gameDTO.id)
+          .set(GameKeyTDO(gameId: gameDTO.id, gameName: gameDTO.name).toJson());
+      // get old games list and add the new game
+      // final userGamesList = await userGamesListRef.get();
+      // final userKeys =
+      //     UserGamesListTDO.fromJson(userGamesList.data()!).gamekeys;
+      // userKeys.add();
+      // // update with the new list
+      // await userGamesListRef
+      //     .update(UserGamesListTDO(userId: admin, gamekeys: userKeys).toJson());
+
+      // #### add admen as new user(player) to the game to set his scores
+      final gameUser = _firestore.collection('games_users').doc();
+      await gameUser.set(UserScoreTDO(
+              gameId: gameDTO.id,
+              gamifierUserId: admin,
+              level: 0,
+              gameTodos: gameDTO.gameTodos)
+          .toJson());
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
         return left(const GameFailure.insufficientPermission());
       } else {
-        // log.error(e.toString());
         return left(const GameFailure.unexpected());
       }
     }
@@ -55,9 +97,11 @@ class GameRepository implements IGameRepository {
     // TODO: implement delete
 
     try {
-      final userDoc = await _firestore.userDocument();
       final gameDTO = GameDTO.fromDomain(game);
-      await userDoc.gameCollection.doc(gameDTO.id).update(gameDTO.toJson());
+      await _firestore
+          .collection('games')
+          .doc(gameDTO.id)
+          .update(gameDTO.toJson());
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
@@ -73,9 +117,9 @@ class GameRepository implements IGameRepository {
     // TODO: implement update
     // TODO: suitable exciptions
     try {
-      final userDoc = await _firestore.userDocument();
+      final userDoc = _firestore.collection('games_users').doc();
       final gameId = game.id.value;
-      await userDoc.gameCollection.doc(gameId).delete();
+      // await userDoc.get(gameId).delete();
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {

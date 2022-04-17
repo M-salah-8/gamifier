@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gamifier/domain/auth/auth_failure.dart';
-import 'package:gamifier/domain/auth/gamifier_user.dart';
 import 'package:gamifier/domain/auth/i_auth_facade.dart';
 import 'package:gamifier/domain/auth/value_objects.dart';
-import 'package:gamifier/domain/core/value_objects.dart';
+import 'package:gamifier/domain/user/gamifier_user.dart';
+import 'package:gamifier/infrastructure/gamifier_user/gamifier_user_dto.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
@@ -65,6 +66,26 @@ class FirebaseAuthFacade implements IAuthFacade {
         accessToken: googleAuthentication.accessToken,
       );
       await _firebaseAuth.signInWithCredential(authCredential);
+      Query;
+      final query = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: googleUser.email)
+          .limit(1) // limit search to 1 to minimuize reading
+          .get();
+      // if size is 0 that means the user is new
+      // create new GamifierUser
+      if (query.size == 0) {
+        final userId = _firebaseAuth.currentUser!.uid;
+        final docRef =
+            FirebaseFirestore.instance.collection('users').doc(userId);
+        final userModelTDO = GamifierUserTDO(
+          id: userId,
+          name: googleUser.displayName!,
+          email: googleUser.email,
+        );
+        await docRef.set(userModelTDO.toJson());
+      }
+
       return right(unit);
     } on FirebaseAuthException catch (_) {
       return left(const AuthFailure.serverError());
@@ -72,24 +93,25 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Option<gamifierUser> getSignInUser() {
-    if (_firebaseAuth.currentUser?.uid == null) {
-      return none();
-    }
-    return some(gamifierUser(
-        UniqueId.fromUniqueString(_firebaseAuth.currentUser!.uid)));
-  }
-
-  @override
   Future<void> signOut() =>
       Future.wait([_googleSignIn.signOut(), _firebaseAuth.signOut()]);
 
   @override
-  Option<gamifierUser> getSignedInUser() {
-    if (_firebaseAuth.currentUser?.uid == null) {
+  Future<Option<GamifierUser>> getSignedInUser() async {
+    final userId = _firebaseAuth.currentUser?.uid;
+    if (userId == null) {
       return none();
     }
-    return some(gamifierUser(
-        UniqueId.fromUniqueString(_firebaseAuth.currentUser!.uid)));
+    final senderquary = await FirebaseFirestore.instance
+        .collection('users')
+        .limit(1) // limit search to 1 to minimuize reading
+        .where('id', isEqualTo: userId)
+        .get();
+    // get the user and transform it to domain
+    final currentUser = senderquary.docs
+        .map((e) => GamifierUserTDO.fromJson(e.data()))
+        .toList()[0]
+        .toDomain();
+    return some(currentUser);
   }
 }

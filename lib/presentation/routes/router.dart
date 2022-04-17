@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:gamifier/presentation/friends/friends_page.dart';
 import 'package:gamifier/presentation/games/game_details/game_detail_page.dart';
 import 'package:gamifier/presentation/games/game_overview/game_overview_page.dart';
 import 'package:gamifier/presentation/sign_in/Sign_in_page.dart';
@@ -14,6 +15,7 @@ import 'package:gamifier/presentation/splash/splash_page.dart';
     AutoRoute(page: SignInPage),
     AutoRoute(page: GameOverviewPage),
     AutoRoute(page: GameDetailPage),
+    AutoRoute(page: FriendsPage),
   ],
 )
 class $AppRouter {}

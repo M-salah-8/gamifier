@@ -302,8 +302,10 @@ class _$AuthStateTearOff {
     return const Initial();
   }
 
-  Authenticated authenticated() {
-    return const Authenticated();
+  Authenticated authenticated(GamifierUserPrimitive currentUser) {
+    return Authenticated(
+      currentUser,
+    );
   }
 
   UnAuthenticated unAuthenticated() {
@@ -319,21 +321,21 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authenticated,
+    required TResult Function(GamifierUserPrimitive currentUser) authenticated,
     required TResult Function() unAuthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authenticated,
+    TResult Function(GamifierUserPrimitive currentUser)? authenticated,
     TResult Function()? unAuthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authenticated,
+    TResult Function(GamifierUserPrimitive currentUser)? authenticated,
     TResult Function()? unAuthenticated,
     required TResult orElse(),
   }) =>
@@ -416,7 +418,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authenticated,
+    required TResult Function(GamifierUserPrimitive currentUser) authenticated,
     required TResult Function() unAuthenticated,
   }) {
     return initial();
@@ -426,7 +428,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authenticated,
+    TResult Function(GamifierUserPrimitive currentUser)? authenticated,
     TResult Function()? unAuthenticated,
   }) {
     return initial?.call();
@@ -436,7 +438,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authenticated,
+    TResult Function(GamifierUserPrimitive currentUser)? authenticated,
     TResult Function()? unAuthenticated,
     required TResult orElse(),
   }) {
@@ -490,6 +492,9 @@ abstract class $AuthenticatedCopyWith<$Res> {
   factory $AuthenticatedCopyWith(
           Authenticated value, $Res Function(Authenticated) then) =
       _$AuthenticatedCopyWithImpl<$Res>;
+  $Res call({GamifierUserPrimitive currentUser});
+
+  $GamifierUserPrimitiveCopyWith<$Res> get currentUser;
 }
 
 /// @nodoc
@@ -501,57 +506,88 @@ class _$AuthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
   @override
   Authenticated get _value => super._value as Authenticated;
+
+  @override
+  $Res call({
+    Object? currentUser = freezed,
+  }) {
+    return _then(Authenticated(
+      currentUser == freezed
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as GamifierUserPrimitive,
+    ));
+  }
+
+  @override
+  $GamifierUserPrimitiveCopyWith<$Res> get currentUser {
+    return $GamifierUserPrimitiveCopyWith<$Res>(_value.currentUser, (value) {
+      return _then(_value.copyWith(currentUser: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$Authenticated implements Authenticated {
-  const _$Authenticated();
+  const _$Authenticated(this.currentUser);
+
+  @override
+  final GamifierUserPrimitive currentUser;
 
   @override
   String toString() {
-    return 'AuthState.authenticated()';
+    return 'AuthState.authenticated(currentUser: $currentUser)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Authenticated);
+        (other.runtimeType == runtimeType &&
+            other is Authenticated &&
+            const DeepCollectionEquality()
+                .equals(other.currentUser, currentUser));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(currentUser));
+
+  @JsonKey(ignore: true)
+  @override
+  $AuthenticatedCopyWith<Authenticated> get copyWith =>
+      _$AuthenticatedCopyWithImpl<Authenticated>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authenticated,
+    required TResult Function(GamifierUserPrimitive currentUser) authenticated,
     required TResult Function() unAuthenticated,
   }) {
-    return authenticated();
+    return authenticated(currentUser);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authenticated,
+    TResult Function(GamifierUserPrimitive currentUser)? authenticated,
     TResult Function()? unAuthenticated,
   }) {
-    return authenticated?.call();
+    return authenticated?.call(currentUser);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authenticated,
+    TResult Function(GamifierUserPrimitive currentUser)? authenticated,
     TResult Function()? unAuthenticated,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
-      return authenticated();
+      return authenticated(currentUser);
     }
     return orElse();
   }
@@ -592,7 +628,13 @@ class _$Authenticated implements Authenticated {
 }
 
 abstract class Authenticated implements AuthState {
-  const factory Authenticated() = _$Authenticated;
+  const factory Authenticated(GamifierUserPrimitive currentUser) =
+      _$Authenticated;
+
+  GamifierUserPrimitive get currentUser;
+  @JsonKey(ignore: true)
+  $AuthenticatedCopyWith<Authenticated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -636,7 +678,7 @@ class _$UnAuthenticated implements UnAuthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authenticated,
+    required TResult Function(GamifierUserPrimitive currentUser) authenticated,
     required TResult Function() unAuthenticated,
   }) {
     return unAuthenticated();
@@ -646,7 +688,7 @@ class _$UnAuthenticated implements UnAuthenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authenticated,
+    TResult Function(GamifierUserPrimitive currentUser)? authenticated,
     TResult Function()? unAuthenticated,
   }) {
     return unAuthenticated?.call();
@@ -656,7 +698,7 @@ class _$UnAuthenticated implements UnAuthenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authenticated,
+    TResult Function(GamifierUserPrimitive currentUser)? authenticated,
     TResult Function()? unAuthenticated,
     required TResult orElse(),
   }) {

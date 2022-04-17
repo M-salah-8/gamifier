@@ -13,33 +13,35 @@ class SignUpForm extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
-        return Form(
-          autovalidateMode: AutovalidateMode.always,
-          child: ListView(
-            children: [
-              TextFormField(
-                onChanged: (value) {
-                  BlocProvider.of<SignInOrUpFormBloc>(context)
-                      .add(SignInOrUpFormEvent.emailChanged(value));
-                },
-                decoration: const InputDecoration(hintText: 'Email'),
-                validator: (email) => validateEmailAddress(email),
-              ),
-              TextFormField(
-                onChanged: (value) =>
+        return Center(
+          child: Form(
+            autovalidateMode: AutovalidateMode.always,
+            child: ListView(
+              children: [
+                TextFormField(
+                  onChanged: (value) {
                     BlocProvider.of<SignInOrUpFormBloc>(context)
-                        .add(SignInOrUpFormEvent.passwordChanged(value)),
-                decoration: const InputDecoration(hintText: 'Password'),
-                validator: (password) => validatePassword(password),
-              ),
-              TextButton(
-                  onPressed: () {
-                    BlocProvider.of<SignInOrUpFormBloc>(context).add(
-                        SignInOrUpFormEvent
-                            .registerWithEmailAndPasswordPressed());
+                        .add(SignInOrUpFormEvent.emailChanged(value));
                   },
-                  child: const Text('Sign up'))
-            ],
+                  decoration: const InputDecoration(hintText: 'Email'),
+                  validator: (email) => validateEmailAddress(email),
+                ),
+                TextFormField(
+                  onChanged: (value) =>
+                      BlocProvider.of<SignInOrUpFormBloc>(context)
+                          .add(SignInOrUpFormEvent.passwordChanged(value)),
+                  decoration: const InputDecoration(hintText: 'Password'),
+                  validator: (password) => validatePassword(password),
+                ),
+                TextButton(
+                    onPressed: () {
+                      BlocProvider.of<SignInOrUpFormBloc>(context).add(
+                          SignInOrUpFormEvent
+                              .registerWithEmailAndPasswordPressed());
+                    },
+                    child: const Text('Sign up'))
+              ],
+            ),
           ),
         );
       },
