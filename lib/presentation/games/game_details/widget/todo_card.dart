@@ -17,8 +17,9 @@ class TodoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO remove inkWell if not needed
+    final size = MediaQuery.of(context).size;
     return Card(
-      margin: const EdgeInsets.all(20),
+      // margin:  EdgeInsets.symmetric(horizontal: size.width *.01),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30),
         child: Row(
@@ -42,7 +43,7 @@ class TodoCard extends StatelessWidget {
                       children: [
                         Text(todo.times.toString()),
                         const SizedBox(
-                          width: 20,
+                          width: 2,
                         ),
                         const Text(
                           "x",
@@ -52,7 +53,7 @@ class TodoCard extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(
-                          width: 20,
+                          width: 2,
                         ),
                         Text(todo.points.toString()),
                       ],

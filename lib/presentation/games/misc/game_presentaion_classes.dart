@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gamifier/domain/core/value_objects.dart';
 import 'package:gamifier/domain/game/game.dart';
+import 'package:gamifier/domain/game/game_details.dart';
 import 'package:gamifier/domain/game/game_keys.dart';
 import 'package:gamifier/domain/game/game_todo.dart';
 import 'package:gamifier/domain/game/user_games_list.dart';
@@ -15,6 +16,7 @@ abstract class GamePrimitive implements _$GamePrimitive {
   const factory GamePrimitive(
       {required String id,
       required String admin,
+      required List<String> usersId,
       required String name,
       required int noOfUsers,
       required List<GameTodoPrimitive> gameTodos}) = _GamePrimitive;
@@ -22,6 +24,7 @@ abstract class GamePrimitive implements _$GamePrimitive {
   factory GamePrimitive.empty() => GamePrimitive(
       id: '',
       admin: '',
+      usersId: <String>[],
       noOfUsers: 1,
       name: '',
       gameTodos: List<GameTodoPrimitive>.empty());
@@ -29,6 +32,7 @@ abstract class GamePrimitive implements _$GamePrimitive {
   factory GamePrimitive.fromDomain(Game game) => GamePrimitive(
       id: game.id.value,
       admin: game.admin.value,
+      usersId: game.usersId.map((e) => e.value).asList(),
       name: game.name,
       noOfUsers: game.noOfUsers,
       gameTodos: game.gameTodos
@@ -39,6 +43,8 @@ abstract class GamePrimitive implements _$GamePrimitive {
     return Game(
         id: UniqueId.fromUniqueString(id),
         admin: UniqueId.fromUniqueString(id),
+        usersId:
+            usersId.map((e) => UniqueId.fromUniqueString(e)).toImmutableList(),
         name: name,
         noOfUsers: noOfUsers,
         gameTodos: gameTodos
@@ -83,12 +89,14 @@ abstract class UserScorePrimitive implements _$UserScorePrimitive {
   const factory UserScorePrimitive(
       {required String gameId,
       required String gamifierUserId,
+      required String userName,
       required int level,
       required List<GameTodoPrimitive> gameTodos}) = _UserScorePrimitive;
 
   factory UserScorePrimitive.fromDomain(UserScore score) => UserScorePrimitive(
       gameId: score.gameId.value,
       gamifierUserId: score.gamifierUserId.value,
+      userName: score.userName,
       level: score.level,
       gameTodos: score.gameTodos
           .map((gameTodo) => GameTodoPrimitive.fromDomain(gameTodo))
@@ -98,6 +106,7 @@ abstract class UserScorePrimitive implements _$UserScorePrimitive {
     return UserScore(
         gameId: UniqueId.fromUniqueString(gameId),
         gamifierUserId: UniqueId.fromUniqueString(gamifierUserId),
+        userName: userName,
         level: level,
         gameTodos: gameTodos
             .map((gameTodosDTO) => gameTodosDTO.toDomain())
@@ -135,4 +144,27 @@ abstract class GameKeyPrimitive implements _$GameKeyPrimitive {
 
   GameKey toDomain() =>
       GameKey(gameId: UniqueId.fromUniqueString(gameId), gameName: gameName);
+}
+
+@freezed
+abstract class GameDetailsPrimitive with _$GameDetailsPrimitive {
+  const GameDetailsPrimitive._();
+  const factory GameDetailsPrimitive(
+      {required GamePrimitive game,
+      required List<UserScorePrimitive> usersScores}) = _GameDetailsPrimitive;
+
+  factory GameDetailsPrimitive.fromDomain(GameDetails details) =>
+      GameDetailsPrimitive(
+          game: GamePrimitive.fromDomain(details.game),
+          usersScores: details.usersScores
+              .map((e) => UserScorePrimitive.fromDomain(e))
+              .asList());
+
+  GameDetails toDomain() {
+    return GameDetails(
+        game: game.toDomain(),
+        usersScores: usersScores
+            .map((userScore) => userScore.toDomain())
+            .toImmutableList());
+  }
 }

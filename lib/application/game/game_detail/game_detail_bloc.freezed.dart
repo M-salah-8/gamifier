@@ -885,12 +885,14 @@ class _$GameDetailStateTearOff {
 
   _GameDetailState call(
       {required GamePrimitive game,
+      required GamifierUserPrimitive currentUser,
       required bool showErrorMessages,
       required bool isEditing,
       required bool isSaving,
       required Option<Either<GameFailure, Unit>> saveFailureOrSuccessOption}) {
     return _GameDetailState(
       game: game,
+      currentUser: currentUser,
       showErrorMessages: showErrorMessages,
       isEditing: isEditing,
       isSaving: isSaving,
@@ -905,6 +907,7 @@ const $GameDetailState = _$GameDetailStateTearOff();
 /// @nodoc
 mixin _$GameDetailState {
   GamePrimitive get game => throw _privateConstructorUsedError;
+  GamifierUserPrimitive get currentUser => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
   bool get isSaving => throw _privateConstructorUsedError;
@@ -923,12 +926,14 @@ abstract class $GameDetailStateCopyWith<$Res> {
       _$GameDetailStateCopyWithImpl<$Res>;
   $Res call(
       {GamePrimitive game,
+      GamifierUserPrimitive currentUser,
       bool showErrorMessages,
       bool isEditing,
       bool isSaving,
       Option<Either<GameFailure, Unit>> saveFailureOrSuccessOption});
 
   $GamePrimitiveCopyWith<$Res> get game;
+  $GamifierUserPrimitiveCopyWith<$Res> get currentUser;
 }
 
 /// @nodoc
@@ -943,6 +948,7 @@ class _$GameDetailStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? game = freezed,
+    Object? currentUser = freezed,
     Object? showErrorMessages = freezed,
     Object? isEditing = freezed,
     Object? isSaving = freezed,
@@ -953,6 +959,10 @@ class _$GameDetailStateCopyWithImpl<$Res>
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
               as GamePrimitive,
+      currentUser: currentUser == freezed
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as GamifierUserPrimitive,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -978,6 +988,13 @@ class _$GameDetailStateCopyWithImpl<$Res>
       return _then(_value.copyWith(game: value));
     });
   }
+
+  @override
+  $GamifierUserPrimitiveCopyWith<$Res> get currentUser {
+    return $GamifierUserPrimitiveCopyWith<$Res>(_value.currentUser, (value) {
+      return _then(_value.copyWith(currentUser: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -989,6 +1006,7 @@ abstract class _$GameDetailStateCopyWith<$Res>
   @override
   $Res call(
       {GamePrimitive game,
+      GamifierUserPrimitive currentUser,
       bool showErrorMessages,
       bool isEditing,
       bool isSaving,
@@ -996,6 +1014,8 @@ abstract class _$GameDetailStateCopyWith<$Res>
 
   @override
   $GamePrimitiveCopyWith<$Res> get game;
+  @override
+  $GamifierUserPrimitiveCopyWith<$Res> get currentUser;
 }
 
 /// @nodoc
@@ -1012,6 +1032,7 @@ class __$GameDetailStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? game = freezed,
+    Object? currentUser = freezed,
     Object? showErrorMessages = freezed,
     Object? isEditing = freezed,
     Object? isSaving = freezed,
@@ -1022,6 +1043,10 @@ class __$GameDetailStateCopyWithImpl<$Res>
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
               as GamePrimitive,
+      currentUser: currentUser == freezed
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as GamifierUserPrimitive,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -1047,6 +1072,7 @@ class __$GameDetailStateCopyWithImpl<$Res>
 class _$_GameDetailState implements _GameDetailState {
   const _$_GameDetailState(
       {required this.game,
+      required this.currentUser,
       required this.showErrorMessages,
       required this.isEditing,
       required this.isSaving,
@@ -1054,6 +1080,8 @@ class _$_GameDetailState implements _GameDetailState {
 
   @override
   final GamePrimitive game;
+  @override
+  final GamifierUserPrimitive currentUser;
   @override
   final bool showErrorMessages;
   @override
@@ -1065,7 +1093,7 @@ class _$_GameDetailState implements _GameDetailState {
 
   @override
   String toString() {
-    return 'GameDetailState(game: $game, showErrorMessages: $showErrorMessages, isEditing: $isEditing, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'GameDetailState(game: $game, currentUser: $currentUser, showErrorMessages: $showErrorMessages, isEditing: $isEditing, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
@@ -1074,6 +1102,8 @@ class _$_GameDetailState implements _GameDetailState {
         (other.runtimeType == runtimeType &&
             other is _GameDetailState &&
             const DeepCollectionEquality().equals(other.game, game) &&
+            const DeepCollectionEquality()
+                .equals(other.currentUser, currentUser) &&
             const DeepCollectionEquality()
                 .equals(other.showErrorMessages, showErrorMessages) &&
             const DeepCollectionEquality().equals(other.isEditing, isEditing) &&
@@ -1086,6 +1116,7 @@ class _$_GameDetailState implements _GameDetailState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(game),
+      const DeepCollectionEquality().hash(currentUser),
       const DeepCollectionEquality().hash(showErrorMessages),
       const DeepCollectionEquality().hash(isEditing),
       const DeepCollectionEquality().hash(isSaving),
@@ -1100,6 +1131,7 @@ class _$_GameDetailState implements _GameDetailState {
 abstract class _GameDetailState implements GameDetailState {
   const factory _GameDetailState(
       {required GamePrimitive game,
+      required GamifierUserPrimitive currentUser,
       required bool showErrorMessages,
       required bool isEditing,
       required bool isSaving,
@@ -1108,6 +1140,8 @@ abstract class _GameDetailState implements GameDetailState {
 
   @override
   GamePrimitive get game;
+  @override
+  GamifierUserPrimitive get currentUser;
   @override
   bool get showErrorMessages;
   @override

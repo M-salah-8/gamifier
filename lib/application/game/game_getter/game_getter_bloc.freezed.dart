@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'friend_watcher_bloc.dart';
+part of 'game_getter_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,181 +15,176 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$FriendWatcherEventTearOff {
-  const _$FriendWatcherEventTearOff();
+class _$GameGetterEventTearOff {
+  const _$GameGetterEventTearOff();
 
-  _CurrentUser currentUser(GamifierUserPrimitive currentUser) {
-    return _CurrentUser(
-      currentUser,
+  _getGame getGame(String gameId) {
+    return _getGame(
+      gameId,
     );
-  }
-
-  _WatchGamesStarted watchGamesStarted() {
-    return _WatchGamesStarted();
   }
 }
 
 /// @nodoc
-const $FriendWatcherEvent = _$FriendWatcherEventTearOff();
+const $GameGetterEvent = _$GameGetterEventTearOff();
 
 /// @nodoc
-mixin _$FriendWatcherEvent {
+mixin _$GameGetterEvent {
+  String get gameId => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GamifierUserPrimitive currentUser) currentUser,
-    required TResult Function() watchGamesStarted,
+    required TResult Function(String gameId) getGame,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
-    TResult Function()? watchGamesStarted,
+    TResult Function(String gameId)? getGame,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
-    TResult Function()? watchGamesStarted,
+    TResult Function(String gameId)? getGame,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CurrentUser value) currentUser,
-    required TResult Function(_WatchGamesStarted value) watchGamesStarted,
+    required TResult Function(_getGame value) getGame,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_CurrentUser value)? currentUser,
-    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_getGame value)? getGame,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CurrentUser value)? currentUser,
-    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_getGame value)? getGame,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $GameGetterEventCopyWith<GameGetterEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FriendWatcherEventCopyWith<$Res> {
-  factory $FriendWatcherEventCopyWith(
-          FriendWatcherEvent value, $Res Function(FriendWatcherEvent) then) =
-      _$FriendWatcherEventCopyWithImpl<$Res>;
+abstract class $GameGetterEventCopyWith<$Res> {
+  factory $GameGetterEventCopyWith(
+          GameGetterEvent value, $Res Function(GameGetterEvent) then) =
+      _$GameGetterEventCopyWithImpl<$Res>;
+  $Res call({String gameId});
 }
 
 /// @nodoc
-class _$FriendWatcherEventCopyWithImpl<$Res>
-    implements $FriendWatcherEventCopyWith<$Res> {
-  _$FriendWatcherEventCopyWithImpl(this._value, this._then);
+class _$GameGetterEventCopyWithImpl<$Res>
+    implements $GameGetterEventCopyWith<$Res> {
+  _$GameGetterEventCopyWithImpl(this._value, this._then);
 
-  final FriendWatcherEvent _value;
+  final GameGetterEvent _value;
   // ignore: unused_field
-  final $Res Function(FriendWatcherEvent) _then;
-}
-
-/// @nodoc
-abstract class _$CurrentUserCopyWith<$Res> {
-  factory _$CurrentUserCopyWith(
-          _CurrentUser value, $Res Function(_CurrentUser) then) =
-      __$CurrentUserCopyWithImpl<$Res>;
-  $Res call({GamifierUserPrimitive currentUser});
-
-  $GamifierUserPrimitiveCopyWith<$Res> get currentUser;
-}
-
-/// @nodoc
-class __$CurrentUserCopyWithImpl<$Res>
-    extends _$FriendWatcherEventCopyWithImpl<$Res>
-    implements _$CurrentUserCopyWith<$Res> {
-  __$CurrentUserCopyWithImpl(
-      _CurrentUser _value, $Res Function(_CurrentUser) _then)
-      : super(_value, (v) => _then(v as _CurrentUser));
-
-  @override
-  _CurrentUser get _value => super._value as _CurrentUser;
+  final $Res Function(GameGetterEvent) _then;
 
   @override
   $Res call({
-    Object? currentUser = freezed,
+    Object? gameId = freezed,
   }) {
-    return _then(_CurrentUser(
-      currentUser == freezed
-          ? _value.currentUser
-          : currentUser // ignore: cast_nullable_to_non_nullable
-              as GamifierUserPrimitive,
+    return _then(_value.copyWith(
+      gameId: gameId == freezed
+          ? _value.gameId
+          : gameId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
+}
+
+/// @nodoc
+abstract class _$getGameCopyWith<$Res>
+    implements $GameGetterEventCopyWith<$Res> {
+  factory _$getGameCopyWith(_getGame value, $Res Function(_getGame) then) =
+      __$getGameCopyWithImpl<$Res>;
+  @override
+  $Res call({String gameId});
+}
+
+/// @nodoc
+class __$getGameCopyWithImpl<$Res> extends _$GameGetterEventCopyWithImpl<$Res>
+    implements _$getGameCopyWith<$Res> {
+  __$getGameCopyWithImpl(_getGame _value, $Res Function(_getGame) _then)
+      : super(_value, (v) => _then(v as _getGame));
 
   @override
-  $GamifierUserPrimitiveCopyWith<$Res> get currentUser {
-    return $GamifierUserPrimitiveCopyWith<$Res>(_value.currentUser, (value) {
-      return _then(_value.copyWith(currentUser: value));
-    });
+  _getGame get _value => super._value as _getGame;
+
+  @override
+  $Res call({
+    Object? gameId = freezed,
+  }) {
+    return _then(_getGame(
+      gameId == freezed
+          ? _value.gameId
+          : gameId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
 /// @nodoc
 
-class _$_CurrentUser implements _CurrentUser {
-  _$_CurrentUser(this.currentUser);
+class _$_getGame implements _getGame {
+  _$_getGame(this.gameId);
 
   @override
-  final GamifierUserPrimitive currentUser;
+  final String gameId;
 
   @override
   String toString() {
-    return 'FriendWatcherEvent.currentUser(currentUser: $currentUser)';
+    return 'GameGetterEvent.getGame(gameId: $gameId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CurrentUser &&
-            const DeepCollectionEquality()
-                .equals(other.currentUser, currentUser));
+            other is _getGame &&
+            const DeepCollectionEquality().equals(other.gameId, gameId));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(currentUser));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(gameId));
 
   @JsonKey(ignore: true)
   @override
-  _$CurrentUserCopyWith<_CurrentUser> get copyWith =>
-      __$CurrentUserCopyWithImpl<_CurrentUser>(this, _$identity);
+  _$getGameCopyWith<_getGame> get copyWith =>
+      __$getGameCopyWithImpl<_getGame>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GamifierUserPrimitive currentUser) currentUser,
-    required TResult Function() watchGamesStarted,
+    required TResult Function(String gameId) getGame,
   }) {
-    return currentUser(this.currentUser);
+    return getGame(gameId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
-    TResult Function()? watchGamesStarted,
+    TResult Function(String gameId)? getGame,
   }) {
-    return currentUser?.call(this.currentUser);
+    return getGame?.call(gameId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
-    TResult Function()? watchGamesStarted,
+    TResult Function(String gameId)? getGame,
     required TResult orElse(),
   }) {
-    if (currentUser != null) {
-      return currentUser(this.currentUser);
+    if (getGame != null) {
+      return getGame(gameId);
     }
     return orElse();
   }
@@ -197,152 +192,46 @@ class _$_CurrentUser implements _CurrentUser {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CurrentUser value) currentUser,
-    required TResult Function(_WatchGamesStarted value) watchGamesStarted,
+    required TResult Function(_getGame value) getGame,
   }) {
-    return currentUser(this);
+    return getGame(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_CurrentUser value)? currentUser,
-    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_getGame value)? getGame,
   }) {
-    return currentUser?.call(this);
+    return getGame?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CurrentUser value)? currentUser,
-    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_getGame value)? getGame,
     required TResult orElse(),
   }) {
-    if (currentUser != null) {
-      return currentUser(this);
+    if (getGame != null) {
+      return getGame(this);
     }
     return orElse();
   }
 }
 
-abstract class _CurrentUser implements FriendWatcherEvent {
-  factory _CurrentUser(GamifierUserPrimitive currentUser) = _$_CurrentUser;
+abstract class _getGame implements GameGetterEvent {
+  factory _getGame(String gameId) = _$_getGame;
 
-  GamifierUserPrimitive get currentUser;
+  @override
+  String get gameId;
+  @override
   @JsonKey(ignore: true)
-  _$CurrentUserCopyWith<_CurrentUser> get copyWith =>
+  _$getGameCopyWith<_getGame> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$WatchGamesStartedCopyWith<$Res> {
-  factory _$WatchGamesStartedCopyWith(
-          _WatchGamesStarted value, $Res Function(_WatchGamesStarted) then) =
-      __$WatchGamesStartedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$WatchGamesStartedCopyWithImpl<$Res>
-    extends _$FriendWatcherEventCopyWithImpl<$Res>
-    implements _$WatchGamesStartedCopyWith<$Res> {
-  __$WatchGamesStartedCopyWithImpl(
-      _WatchGamesStarted _value, $Res Function(_WatchGamesStarted) _then)
-      : super(_value, (v) => _then(v as _WatchGamesStarted));
-
-  @override
-  _WatchGamesStarted get _value => super._value as _WatchGamesStarted;
-}
-
-/// @nodoc
-
-class _$_WatchGamesStarted implements _WatchGamesStarted {
-  _$_WatchGamesStarted();
-
-  @override
-  String toString() {
-    return 'FriendWatcherEvent.watchGamesStarted()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _WatchGamesStarted);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(GamifierUserPrimitive currentUser) currentUser,
-    required TResult Function() watchGamesStarted,
-  }) {
-    return watchGamesStarted();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
-    TResult Function()? watchGamesStarted,
-  }) {
-    return watchGamesStarted?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
-    TResult Function()? watchGamesStarted,
-    required TResult orElse(),
-  }) {
-    if (watchGamesStarted != null) {
-      return watchGamesStarted();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CurrentUser value) currentUser,
-    required TResult Function(_WatchGamesStarted value) watchGamesStarted,
-  }) {
-    return watchGamesStarted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_CurrentUser value)? currentUser,
-    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
-  }) {
-    return watchGamesStarted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CurrentUser value)? currentUser,
-    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
-    required TResult orElse(),
-  }) {
-    if (watchGamesStarted != null) {
-      return watchGamesStarted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _WatchGamesStarted implements FriendWatcherEvent {
-  factory _WatchGamesStarted() = _$_WatchGamesStarted;
-}
-
-/// @nodoc
-class _$FriendWatcherStateTearOff {
-  const _$FriendWatcherStateTearOff();
+class _$GameGetterStateTearOff {
+  const _$GameGetterStateTearOff();
 
   _Initial initial() {
     return const _Initial();
@@ -352,37 +241,37 @@ class _$FriendWatcherStateTearOff {
     return const _LoadInProgress();
   }
 
-  _LoadSuccess loadSuccess(List<GamifierUserPrimitive> friends) {
+  _LoadSuccess loadSuccess(GameDetailsPrimitive gameDetails) {
     return _LoadSuccess(
-      friends,
+      gameDetails,
     );
   }
 }
 
 /// @nodoc
-const $FriendWatcherState = _$FriendWatcherStateTearOff();
+const $GameGetterState = _$GameGetterStateTearOff();
 
 /// @nodoc
-mixin _$FriendWatcherState {
+mixin _$GameGetterState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(List<GamifierUserPrimitive> friends) loadSuccess,
+    required TResult Function(GameDetailsPrimitive gameDetails) loadSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<GamifierUserPrimitive> friends)? loadSuccess,
+    TResult Function(GameDetailsPrimitive gameDetails)? loadSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<GamifierUserPrimitive> friends)? loadSuccess,
+    TResult Function(GameDetailsPrimitive gameDetails)? loadSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -411,20 +300,20 @@ mixin _$FriendWatcherState {
 }
 
 /// @nodoc
-abstract class $FriendWatcherStateCopyWith<$Res> {
-  factory $FriendWatcherStateCopyWith(
-          FriendWatcherState value, $Res Function(FriendWatcherState) then) =
-      _$FriendWatcherStateCopyWithImpl<$Res>;
+abstract class $GameGetterStateCopyWith<$Res> {
+  factory $GameGetterStateCopyWith(
+          GameGetterState value, $Res Function(GameGetterState) then) =
+      _$GameGetterStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FriendWatcherStateCopyWithImpl<$Res>
-    implements $FriendWatcherStateCopyWith<$Res> {
-  _$FriendWatcherStateCopyWithImpl(this._value, this._then);
+class _$GameGetterStateCopyWithImpl<$Res>
+    implements $GameGetterStateCopyWith<$Res> {
+  _$GameGetterStateCopyWithImpl(this._value, this._then);
 
-  final FriendWatcherState _value;
+  final GameGetterState _value;
   // ignore: unused_field
-  final $Res Function(FriendWatcherState) _then;
+  final $Res Function(GameGetterState) _then;
 }
 
 /// @nodoc
@@ -434,8 +323,7 @@ abstract class _$InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res>
-    extends _$FriendWatcherStateCopyWithImpl<$Res>
+class __$InitialCopyWithImpl<$Res> extends _$GameGetterStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
       : super(_value, (v) => _then(v as _Initial));
@@ -451,7 +339,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'FriendWatcherState.initial()';
+    return 'GameGetterState.initial()';
   }
 
   @override
@@ -468,7 +356,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(List<GamifierUserPrimitive> friends) loadSuccess,
+    required TResult Function(GameDetailsPrimitive gameDetails) loadSuccess,
   }) {
     return initial();
   }
@@ -478,7 +366,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<GamifierUserPrimitive> friends)? loadSuccess,
+    TResult Function(GameDetailsPrimitive gameDetails)? loadSuccess,
   }) {
     return initial?.call();
   }
@@ -488,7 +376,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<GamifierUserPrimitive> friends)? loadSuccess,
+    TResult Function(GameDetailsPrimitive gameDetails)? loadSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -532,7 +420,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements FriendWatcherState {
+abstract class _Initial implements GameGetterState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -545,7 +433,7 @@ abstract class _$LoadInProgressCopyWith<$Res> {
 
 /// @nodoc
 class __$LoadInProgressCopyWithImpl<$Res>
-    extends _$FriendWatcherStateCopyWithImpl<$Res>
+    extends _$GameGetterStateCopyWithImpl<$Res>
     implements _$LoadInProgressCopyWith<$Res> {
   __$LoadInProgressCopyWithImpl(
       _LoadInProgress _value, $Res Function(_LoadInProgress) _then)
@@ -562,7 +450,7 @@ class _$_LoadInProgress implements _LoadInProgress {
 
   @override
   String toString() {
-    return 'FriendWatcherState.loadInProgress()';
+    return 'GameGetterState.loadInProgress()';
   }
 
   @override
@@ -579,7 +467,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(List<GamifierUserPrimitive> friends) loadSuccess,
+    required TResult Function(GameDetailsPrimitive gameDetails) loadSuccess,
   }) {
     return loadInProgress();
   }
@@ -589,7 +477,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<GamifierUserPrimitive> friends)? loadSuccess,
+    TResult Function(GameDetailsPrimitive gameDetails)? loadSuccess,
   }) {
     return loadInProgress?.call();
   }
@@ -599,7 +487,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<GamifierUserPrimitive> friends)? loadSuccess,
+    TResult Function(GameDetailsPrimitive gameDetails)? loadSuccess,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -643,7 +531,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   }
 }
 
-abstract class _LoadInProgress implements FriendWatcherState {
+abstract class _LoadInProgress implements GameGetterState {
   const factory _LoadInProgress() = _$_LoadInProgress;
 }
 
@@ -652,12 +540,14 @@ abstract class _$LoadSuccessCopyWith<$Res> {
   factory _$LoadSuccessCopyWith(
           _LoadSuccess value, $Res Function(_LoadSuccess) then) =
       __$LoadSuccessCopyWithImpl<$Res>;
-  $Res call({List<GamifierUserPrimitive> friends});
+  $Res call({GameDetailsPrimitive gameDetails});
+
+  $GameDetailsPrimitiveCopyWith<$Res> get gameDetails;
 }
 
 /// @nodoc
 class __$LoadSuccessCopyWithImpl<$Res>
-    extends _$FriendWatcherStateCopyWithImpl<$Res>
+    extends _$GameGetterStateCopyWithImpl<$Res>
     implements _$LoadSuccessCopyWith<$Res> {
   __$LoadSuccessCopyWithImpl(
       _LoadSuccess _value, $Res Function(_LoadSuccess) _then)
@@ -668,28 +558,35 @@ class __$LoadSuccessCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? friends = freezed,
+    Object? gameDetails = freezed,
   }) {
     return _then(_LoadSuccess(
-      friends == freezed
-          ? _value.friends
-          : friends // ignore: cast_nullable_to_non_nullable
-              as List<GamifierUserPrimitive>,
+      gameDetails == freezed
+          ? _value.gameDetails
+          : gameDetails // ignore: cast_nullable_to_non_nullable
+              as GameDetailsPrimitive,
     ));
+  }
+
+  @override
+  $GameDetailsPrimitiveCopyWith<$Res> get gameDetails {
+    return $GameDetailsPrimitiveCopyWith<$Res>(_value.gameDetails, (value) {
+      return _then(_value.copyWith(gameDetails: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_LoadSuccess implements _LoadSuccess {
-  const _$_LoadSuccess(this.friends);
+  const _$_LoadSuccess(this.gameDetails);
 
   @override
-  final List<GamifierUserPrimitive> friends;
+  final GameDetailsPrimitive gameDetails;
 
   @override
   String toString() {
-    return 'FriendWatcherState.loadSuccess(friends: $friends)';
+    return 'GameGetterState.loadSuccess(gameDetails: $gameDetails)';
   }
 
   @override
@@ -697,12 +594,13 @@ class _$_LoadSuccess implements _LoadSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LoadSuccess &&
-            const DeepCollectionEquality().equals(other.friends, friends));
+            const DeepCollectionEquality()
+                .equals(other.gameDetails, gameDetails));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(friends));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(gameDetails));
 
   @JsonKey(ignore: true)
   @override
@@ -714,9 +612,9 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(List<GamifierUserPrimitive> friends) loadSuccess,
+    required TResult Function(GameDetailsPrimitive gameDetails) loadSuccess,
   }) {
-    return loadSuccess(friends);
+    return loadSuccess(gameDetails);
   }
 
   @override
@@ -724,9 +622,9 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<GamifierUserPrimitive> friends)? loadSuccess,
+    TResult Function(GameDetailsPrimitive gameDetails)? loadSuccess,
   }) {
-    return loadSuccess?.call(friends);
+    return loadSuccess?.call(gameDetails);
   }
 
   @override
@@ -734,11 +632,11 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(List<GamifierUserPrimitive> friends)? loadSuccess,
+    TResult Function(GameDetailsPrimitive gameDetails)? loadSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
-      return loadSuccess(friends);
+      return loadSuccess(gameDetails);
     }
     return orElse();
   }
@@ -778,11 +676,10 @@ class _$_LoadSuccess implements _LoadSuccess {
   }
 }
 
-abstract class _LoadSuccess implements FriendWatcherState {
-  const factory _LoadSuccess(List<GamifierUserPrimitive> friends) =
-      _$_LoadSuccess;
+abstract class _LoadSuccess implements GameGetterState {
+  const factory _LoadSuccess(GameDetailsPrimitive gameDetails) = _$_LoadSuccess;
 
-  List<GamifierUserPrimitive> get friends;
+  GameDetailsPrimitive get gameDetails;
   @JsonKey(ignore: true)
   _$LoadSuccessCopyWith<_LoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;

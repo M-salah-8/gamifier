@@ -23,7 +23,7 @@ class FriendWatcherBloc extends Bloc<FriendWatcherEvent, FriendWatcherState> {
         final friendsDomain =
             await _friendRequestRepository.getFriends(currentUser.toDomain());
         final friends = friendsDomain
-            .map((e) => FriendRequestPrimitive.fromDomain(e))
+            .map((e) => GamifierUserPrimitive.fromDomain(e))
             .toList();
         emit(FriendWatcherState.loadSuccess((friends)));
       });

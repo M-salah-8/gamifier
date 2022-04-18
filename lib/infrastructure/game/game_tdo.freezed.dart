@@ -25,12 +25,14 @@ class _$GameDTOTearOff {
   _GameDTO call(
       {required String id,
       required String admin,
+      required List<String> usersId,
       required String name,
       required int noOfUsers,
       required List<GameTodoTDO> gameTodos}) {
     return _GameDTO(
       id: id,
       admin: admin,
+      usersId: usersId,
       name: name,
       noOfUsers: noOfUsers,
       gameTodos: gameTodos,
@@ -49,6 +51,7 @@ const $GameDTO = _$GameDTOTearOff();
 mixin _$GameDTO {
   String get id => throw _privateConstructorUsedError;
   String get admin => throw _privateConstructorUsedError;
+  List<String> get usersId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get noOfUsers => throw _privateConstructorUsedError;
   List<GameTodoTDO> get gameTodos => throw _privateConstructorUsedError;
@@ -65,6 +68,7 @@ abstract class $GameDTOCopyWith<$Res> {
   $Res call(
       {String id,
       String admin,
+      List<String> usersId,
       String name,
       int noOfUsers,
       List<GameTodoTDO> gameTodos});
@@ -82,6 +86,7 @@ class _$GameDTOCopyWithImpl<$Res> implements $GameDTOCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? admin = freezed,
+    Object? usersId = freezed,
     Object? name = freezed,
     Object? noOfUsers = freezed,
     Object? gameTodos = freezed,
@@ -95,6 +100,10 @@ class _$GameDTOCopyWithImpl<$Res> implements $GameDTOCopyWith<$Res> {
           ? _value.admin
           : admin // ignore: cast_nullable_to_non_nullable
               as String,
+      usersId: usersId == freezed
+          ? _value.usersId
+          : usersId // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -119,6 +128,7 @@ abstract class _$GameDTOCopyWith<$Res> implements $GameDTOCopyWith<$Res> {
   $Res call(
       {String id,
       String admin,
+      List<String> usersId,
       String name,
       int noOfUsers,
       List<GameTodoTDO> gameTodos});
@@ -137,6 +147,7 @@ class __$GameDTOCopyWithImpl<$Res> extends _$GameDTOCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? admin = freezed,
+    Object? usersId = freezed,
     Object? name = freezed,
     Object? noOfUsers = freezed,
     Object? gameTodos = freezed,
@@ -150,6 +161,10 @@ class __$GameDTOCopyWithImpl<$Res> extends _$GameDTOCopyWithImpl<$Res>
           ? _value.admin
           : admin // ignore: cast_nullable_to_non_nullable
               as String,
+      usersId: usersId == freezed
+          ? _value.usersId
+          : usersId // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -172,6 +187,7 @@ class _$_GameDTO extends _GameDTO {
   const _$_GameDTO(
       {required this.id,
       required this.admin,
+      required this.usersId,
       required this.name,
       required this.noOfUsers,
       required this.gameTodos})
@@ -185,6 +201,8 @@ class _$_GameDTO extends _GameDTO {
   @override
   final String admin;
   @override
+  final List<String> usersId;
+  @override
   final String name;
   @override
   final int noOfUsers;
@@ -193,7 +211,7 @@ class _$_GameDTO extends _GameDTO {
 
   @override
   String toString() {
-    return 'GameDTO(id: $id, admin: $admin, name: $name, noOfUsers: $noOfUsers, gameTodos: $gameTodos)';
+    return 'GameDTO(id: $id, admin: $admin, usersId: $usersId, name: $name, noOfUsers: $noOfUsers, gameTodos: $gameTodos)';
   }
 
   @override
@@ -203,6 +221,7 @@ class _$_GameDTO extends _GameDTO {
             other is _GameDTO &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.admin, admin) &&
+            const DeepCollectionEquality().equals(other.usersId, usersId) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.noOfUsers, noOfUsers) &&
             const DeepCollectionEquality().equals(other.gameTodos, gameTodos));
@@ -213,6 +232,7 @@ class _$_GameDTO extends _GameDTO {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(admin),
+      const DeepCollectionEquality().hash(usersId),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(noOfUsers),
       const DeepCollectionEquality().hash(gameTodos));
@@ -232,6 +252,7 @@ abstract class _GameDTO extends GameDTO {
   const factory _GameDTO(
       {required String id,
       required String admin,
+      required List<String> usersId,
       required String name,
       required int noOfUsers,
       required List<GameTodoTDO> gameTodos}) = _$_GameDTO;
@@ -243,6 +264,8 @@ abstract class _GameDTO extends GameDTO {
   String get id;
   @override
   String get admin;
+  @override
+  List<String> get usersId;
   @override
   String get name;
   @override
@@ -503,11 +526,13 @@ class _$UserScoreTDOTearOff {
   _UserScoreTDO call(
       {required String gameId,
       required String gamifierUserId,
+      required String userName,
       required int level,
       required List<GameTodoTDO> gameTodos}) {
     return _UserScoreTDO(
       gameId: gameId,
       gamifierUserId: gamifierUserId,
+      userName: userName,
       level: level,
       gameTodos: gameTodos,
     );
@@ -525,6 +550,7 @@ const $UserScoreTDO = _$UserScoreTDOTearOff();
 mixin _$UserScoreTDO {
   String get gameId => throw _privateConstructorUsedError;
   String get gamifierUserId => throw _privateConstructorUsedError;
+  String get userName => throw _privateConstructorUsedError;
   int get level => throw _privateConstructorUsedError;
   List<GameTodoTDO> get gameTodos => throw _privateConstructorUsedError;
 
@@ -542,6 +568,7 @@ abstract class $UserScoreTDOCopyWith<$Res> {
   $Res call(
       {String gameId,
       String gamifierUserId,
+      String userName,
       int level,
       List<GameTodoTDO> gameTodos});
 }
@@ -558,6 +585,7 @@ class _$UserScoreTDOCopyWithImpl<$Res> implements $UserScoreTDOCopyWith<$Res> {
   $Res call({
     Object? gameId = freezed,
     Object? gamifierUserId = freezed,
+    Object? userName = freezed,
     Object? level = freezed,
     Object? gameTodos = freezed,
   }) {
@@ -569,6 +597,10 @@ class _$UserScoreTDOCopyWithImpl<$Res> implements $UserScoreTDOCopyWith<$Res> {
       gamifierUserId: gamifierUserId == freezed
           ? _value.gamifierUserId
           : gamifierUserId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String,
       level: level == freezed
           ? _value.level
@@ -592,6 +624,7 @@ abstract class _$UserScoreTDOCopyWith<$Res>
   $Res call(
       {String gameId,
       String gamifierUserId,
+      String userName,
       int level,
       List<GameTodoTDO> gameTodos});
 }
@@ -610,6 +643,7 @@ class __$UserScoreTDOCopyWithImpl<$Res> extends _$UserScoreTDOCopyWithImpl<$Res>
   $Res call({
     Object? gameId = freezed,
     Object? gamifierUserId = freezed,
+    Object? userName = freezed,
     Object? level = freezed,
     Object? gameTodos = freezed,
   }) {
@@ -621,6 +655,10 @@ class __$UserScoreTDOCopyWithImpl<$Res> extends _$UserScoreTDOCopyWithImpl<$Res>
       gamifierUserId: gamifierUserId == freezed
           ? _value.gamifierUserId
           : gamifierUserId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String,
       level: level == freezed
           ? _value.level
@@ -640,6 +678,7 @@ class _$_UserScoreTDO extends _UserScoreTDO {
   const _$_UserScoreTDO(
       {required this.gameId,
       required this.gamifierUserId,
+      required this.userName,
       required this.level,
       required this.gameTodos})
       : super._();
@@ -652,13 +691,15 @@ class _$_UserScoreTDO extends _UserScoreTDO {
   @override
   final String gamifierUserId;
   @override
+  final String userName;
+  @override
   final int level;
   @override
   final List<GameTodoTDO> gameTodos;
 
   @override
   String toString() {
-    return 'UserScoreTDO(gameId: $gameId, gamifierUserId: $gamifierUserId, level: $level, gameTodos: $gameTodos)';
+    return 'UserScoreTDO(gameId: $gameId, gamifierUserId: $gamifierUserId, userName: $userName, level: $level, gameTodos: $gameTodos)';
   }
 
   @override
@@ -669,6 +710,7 @@ class _$_UserScoreTDO extends _UserScoreTDO {
             const DeepCollectionEquality().equals(other.gameId, gameId) &&
             const DeepCollectionEquality()
                 .equals(other.gamifierUserId, gamifierUserId) &&
+            const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality().equals(other.level, level) &&
             const DeepCollectionEquality().equals(other.gameTodos, gameTodos));
   }
@@ -678,6 +720,7 @@ class _$_UserScoreTDO extends _UserScoreTDO {
       runtimeType,
       const DeepCollectionEquality().hash(gameId),
       const DeepCollectionEquality().hash(gamifierUserId),
+      const DeepCollectionEquality().hash(userName),
       const DeepCollectionEquality().hash(level),
       const DeepCollectionEquality().hash(gameTodos));
 
@@ -696,6 +739,7 @@ abstract class _UserScoreTDO extends UserScoreTDO {
   const factory _UserScoreTDO(
       {required String gameId,
       required String gamifierUserId,
+      required String userName,
       required int level,
       required List<GameTodoTDO> gameTodos}) = _$_UserScoreTDO;
   const _UserScoreTDO._() : super._();
@@ -708,12 +752,200 @@ abstract class _UserScoreTDO extends UserScoreTDO {
   @override
   String get gamifierUserId;
   @override
+  String get userName;
+  @override
   int get level;
   @override
   List<GameTodoTDO> get gameTodos;
   @override
   @JsonKey(ignore: true)
   _$UserScoreTDOCopyWith<_UserScoreTDO> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+GameDetailsTDO _$GameDetailsTDOFromJson(Map<String, dynamic> json) {
+  return _GameDetailsTDO.fromJson(json);
+}
+
+/// @nodoc
+class _$GameDetailsTDOTearOff {
+  const _$GameDetailsTDOTearOff();
+
+  _GameDetailsTDO call(
+      {required GameDTO game, required List<UserScoreTDO> usersScores}) {
+    return _GameDetailsTDO(
+      game: game,
+      usersScores: usersScores,
+    );
+  }
+
+  GameDetailsTDO fromJson(Map<String, Object?> json) {
+    return GameDetailsTDO.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $GameDetailsTDO = _$GameDetailsTDOTearOff();
+
+/// @nodoc
+mixin _$GameDetailsTDO {
+  GameDTO get game => throw _privateConstructorUsedError;
+  List<UserScoreTDO> get usersScores => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GameDetailsTDOCopyWith<GameDetailsTDO> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GameDetailsTDOCopyWith<$Res> {
+  factory $GameDetailsTDOCopyWith(
+          GameDetailsTDO value, $Res Function(GameDetailsTDO) then) =
+      _$GameDetailsTDOCopyWithImpl<$Res>;
+  $Res call({GameDTO game, List<UserScoreTDO> usersScores});
+
+  $GameDTOCopyWith<$Res> get game;
+}
+
+/// @nodoc
+class _$GameDetailsTDOCopyWithImpl<$Res>
+    implements $GameDetailsTDOCopyWith<$Res> {
+  _$GameDetailsTDOCopyWithImpl(this._value, this._then);
+
+  final GameDetailsTDO _value;
+  // ignore: unused_field
+  final $Res Function(GameDetailsTDO) _then;
+
+  @override
+  $Res call({
+    Object? game = freezed,
+    Object? usersScores = freezed,
+  }) {
+    return _then(_value.copyWith(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as GameDTO,
+      usersScores: usersScores == freezed
+          ? _value.usersScores
+          : usersScores // ignore: cast_nullable_to_non_nullable
+              as List<UserScoreTDO>,
+    ));
+  }
+
+  @override
+  $GameDTOCopyWith<$Res> get game {
+    return $GameDTOCopyWith<$Res>(_value.game, (value) {
+      return _then(_value.copyWith(game: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$GameDetailsTDOCopyWith<$Res>
+    implements $GameDetailsTDOCopyWith<$Res> {
+  factory _$GameDetailsTDOCopyWith(
+          _GameDetailsTDO value, $Res Function(_GameDetailsTDO) then) =
+      __$GameDetailsTDOCopyWithImpl<$Res>;
+  @override
+  $Res call({GameDTO game, List<UserScoreTDO> usersScores});
+
+  @override
+  $GameDTOCopyWith<$Res> get game;
+}
+
+/// @nodoc
+class __$GameDetailsTDOCopyWithImpl<$Res>
+    extends _$GameDetailsTDOCopyWithImpl<$Res>
+    implements _$GameDetailsTDOCopyWith<$Res> {
+  __$GameDetailsTDOCopyWithImpl(
+      _GameDetailsTDO _value, $Res Function(_GameDetailsTDO) _then)
+      : super(_value, (v) => _then(v as _GameDetailsTDO));
+
+  @override
+  _GameDetailsTDO get _value => super._value as _GameDetailsTDO;
+
+  @override
+  $Res call({
+    Object? game = freezed,
+    Object? usersScores = freezed,
+  }) {
+    return _then(_GameDetailsTDO(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as GameDTO,
+      usersScores: usersScores == freezed
+          ? _value.usersScores
+          : usersScores // ignore: cast_nullable_to_non_nullable
+              as List<UserScoreTDO>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_GameDetailsTDO extends _GameDetailsTDO {
+  const _$_GameDetailsTDO({required this.game, required this.usersScores})
+      : super._();
+
+  factory _$_GameDetailsTDO.fromJson(Map<String, dynamic> json) =>
+      _$$_GameDetailsTDOFromJson(json);
+
+  @override
+  final GameDTO game;
+  @override
+  final List<UserScoreTDO> usersScores;
+
+  @override
+  String toString() {
+    return 'GameDetailsTDO(game: $game, usersScores: $usersScores)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _GameDetailsTDO &&
+            const DeepCollectionEquality().equals(other.game, game) &&
+            const DeepCollectionEquality()
+                .equals(other.usersScores, usersScores));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(game),
+      const DeepCollectionEquality().hash(usersScores));
+
+  @JsonKey(ignore: true)
+  @override
+  _$GameDetailsTDOCopyWith<_GameDetailsTDO> get copyWith =>
+      __$GameDetailsTDOCopyWithImpl<_GameDetailsTDO>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GameDetailsTDOToJson(this);
+  }
+}
+
+abstract class _GameDetailsTDO extends GameDetailsTDO {
+  const factory _GameDetailsTDO(
+      {required GameDTO game,
+      required List<UserScoreTDO> usersScores}) = _$_GameDetailsTDO;
+  const _GameDetailsTDO._() : super._();
+
+  factory _GameDetailsTDO.fromJson(Map<String, dynamic> json) =
+      _$_GameDetailsTDO.fromJson;
+
+  @override
+  GameDTO get game;
+  @override
+  List<UserScoreTDO> get usersScores;
+  @override
+  @JsonKey(ignore: true)
+  _$GameDetailsTDOCopyWith<_GameDetailsTDO> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

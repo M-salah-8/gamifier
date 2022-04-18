@@ -4,6 +4,7 @@ part of 'game_detail_bloc.dart';
 class GameDetailState with _$GameDetailState {
   const factory GameDetailState({
     required GamePrimitive game,
+    required GamifierUserPrimitive currentUser,
     required bool showErrorMessages,
     required bool isEditing,
     required bool isSaving,
@@ -11,6 +12,7 @@ class GameDetailState with _$GameDetailState {
   }) = _GameDetailState;
   factory GameDetailState.initial() => GameDetailState(
         game: GamePrimitive.fromDomain(Game.empty()),
+        currentUser: GamifierUserPrimitive.empty(),
         showErrorMessages: false,
         isEditing: false,
         isSaving: false,

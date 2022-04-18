@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gamifier/domain/core/value_objects.dart';
 import 'package:gamifier/domain/game/game.dart';
+import 'package:gamifier/domain/game/game_details.dart';
 import 'package:gamifier/domain/game/game_keys.dart';
 import 'package:gamifier/domain/game/game_todo.dart';
 import 'package:gamifier/domain/game/user_games_list.dart';
@@ -17,6 +18,7 @@ abstract class GameDTO implements _$GameDTO {
   const factory GameDTO(
       {required String id,
       required String admin,
+      required List<String> usersId,
       required String name,
       required int noOfUsers,
       required List<GameTodoTDO> gameTodos}) = _GameDTO;
@@ -24,6 +26,7 @@ abstract class GameDTO implements _$GameDTO {
   factory GameDTO.fromDomain(Game game) => GameDTO(
       id: game.id.value,
       admin: game.admin.value,
+      usersId: game.usersId.map((e) => e.value).asList(),
       name: game.name,
       noOfUsers: game.noOfUsers,
       gameTodos: game.gameTodos
@@ -34,6 +37,8 @@ abstract class GameDTO implements _$GameDTO {
     return Game(
         id: UniqueId.fromUniqueString(id),
         admin: UniqueId.fromUniqueString(id),
+        usersId:
+            usersId.map((e) => UniqueId.fromUniqueString(e)).toImmutableList(),
         name: name,
         noOfUsers: noOfUsers,
         gameTodos: gameTodos
@@ -89,12 +94,14 @@ abstract class UserScoreTDO implements _$UserScoreTDO {
   const factory UserScoreTDO(
       {required String gameId,
       required String gamifierUserId,
+      required String userName,
       required int level,
       required List<GameTodoTDO> gameTodos}) = _UserScoreTDO;
 
   factory UserScoreTDO.fromDomain(UserScore score) => UserScoreTDO(
       gameId: score.gameId.value,
       gamifierUserId: score.gamifierUserId.value,
+      userName: score.userName,
       level: score.level,
       gameTodos: score.gameTodos
           .map((gameTodo) => GameTodoTDO.fromDomain(gameTodo))
@@ -104,6 +111,7 @@ abstract class UserScoreTDO implements _$UserScoreTDO {
     return UserScore(
         gameId: UniqueId.fromUniqueString(gameId),
         gamifierUserId: UniqueId.fromUniqueString(gamifierUserId),
+        userName: userName,
         level: level,
         gameTodos: gameTodos
             .map((gameTodosDTO) => gameTodosDTO.toDomain())
@@ -112,6 +120,41 @@ abstract class UserScoreTDO implements _$UserScoreTDO {
 
   factory UserScoreTDO.fromJson(Map<String, dynamic> json) =>
       _$UserScoreTDOFromJson(json);
+
+  factory UserScoreTDO.fromFirestore(doc) {
+    Map<String, dynamic> docMap = doc.data() as Map<String, dynamic>;
+    return UserScoreTDO.fromJson(docMap);
+  }
+}
+
+// TODO delete
+@freezed
+abstract class GameDetailsTDO with _$GameDetailsTDO {
+  const GameDetailsTDO._();
+  const factory GameDetailsTDO(
+      {required GameDTO game,
+      required List<UserScoreTDO> usersScores}) = _GameDetailsTDO;
+
+  factory GameDetailsTDO.fromDomain(GameDetails details) => GameDetailsTDO(
+      game: GameDTO.fromDomain(details.game),
+      usersScores:
+          details.usersScores.map((e) => UserScoreTDO.fromDomain(e)).asList());
+
+  GameDetails toDomain() {
+    return GameDetails(
+        game: game.toDomain(),
+        usersScores: usersScores
+            .map((userScore) => userScore.toDomain())
+            .toImmutableList());
+  }
+
+  factory GameDetailsTDO.fromJson(Map<String, dynamic> json) =>
+      _$GameDetailsTDOFromJson(json);
+
+  // factory UserGamesListTDO.fromFirestore(doc) {
+  //   Map<String, dynamic> docMap = doc as Map<String, dynamic>;
+  //   return UserGamesListTDO.fromJson(docMap);
+  // }
 }
 
 // TODO delete if not used

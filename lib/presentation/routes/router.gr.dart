@@ -47,11 +47,15 @@ class AppRouter extends _i7.RootStackRouter {
       final args = routeData.argsAs<GameDetailRouteArgs>();
       return _i7.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i5.GameDetailPage(key: args.key, game: args.game));
+          child: _i5.GameDetailPage(
+              key: args.key, game: args.game, scores: args.scores));
     },
     FriendsRoute.name: (routeData) {
+      final args = routeData.argsAs<FriendsRouteArgs>();
       return _i7.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i6.FriendsPage());
+          routeData: routeData,
+          child: _i6.FriendsPage(
+              key: args.key, addfriend: args.addfriend, game: args.game));
     }
   };
 
@@ -102,31 +106,54 @@ class GameOverviewRoute extends _i7.PageRouteInfo<void> {
 /// generated route for
 /// [_i5.GameDetailPage]
 class GameDetailRoute extends _i7.PageRouteInfo<GameDetailRouteArgs> {
-  GameDetailRoute({_i8.Key? key, required _i9.GamePrimitive? game})
+  GameDetailRoute(
+      {_i8.Key? key,
+      required _i9.GamePrimitive? game,
+      List<_i9.UserScorePrimitive>? scores})
       : super(GameDetailRoute.name,
             path: '/game-detail-page',
-            args: GameDetailRouteArgs(key: key, game: game));
+            args: GameDetailRouteArgs(key: key, game: game, scores: scores));
 
   static const String name = 'GameDetailRoute';
 }
 
 class GameDetailRouteArgs {
-  const GameDetailRouteArgs({this.key, required this.game});
+  const GameDetailRouteArgs({this.key, required this.game, this.scores});
 
   final _i8.Key? key;
 
   final _i9.GamePrimitive? game;
 
+  final List<_i9.UserScorePrimitive>? scores;
+
   @override
   String toString() {
-    return 'GameDetailRouteArgs{key: $key, game: $game}';
+    return 'GameDetailRouteArgs{key: $key, game: $game, scores: $scores}';
   }
 }
 
 /// generated route for
 /// [_i6.FriendsPage]
-class FriendsRoute extends _i7.PageRouteInfo<void> {
-  const FriendsRoute() : super(FriendsRoute.name, path: '/friends-page');
+class FriendsRoute extends _i7.PageRouteInfo<FriendsRouteArgs> {
+  FriendsRoute({_i8.Key? key, required bool addfriend, _i9.GamePrimitive? game})
+      : super(FriendsRoute.name,
+            path: '/friends-page',
+            args: FriendsRouteArgs(key: key, addfriend: addfriend, game: game));
 
   static const String name = 'FriendsRoute';
+}
+
+class FriendsRouteArgs {
+  const FriendsRouteArgs({this.key, required this.addfriend, this.game});
+
+  final _i8.Key? key;
+
+  final bool addfriend;
+
+  final _i9.GamePrimitive? game;
+
+  @override
+  String toString() {
+    return 'FriendsRouteArgs{key: $key, addfriend: $addfriend, game: $game}';
+  }
 }

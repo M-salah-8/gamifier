@@ -9,6 +9,8 @@ part of 'game_tdo.dart';
 _$_GameDTO _$$_GameDTOFromJson(Map<String, dynamic> json) => _$_GameDTO(
       id: json['id'] as String,
       admin: json['admin'] as String,
+      usersId:
+          (json['usersId'] as List<dynamic>).map((e) => e as String).toList(),
       name: json['name'] as String,
       noOfUsers: json['noOfUsers'] as int,
       gameTodos: (json['gameTodos'] as List<dynamic>)
@@ -20,6 +22,7 @@ Map<String, dynamic> _$$_GameDTOToJson(_$_GameDTO instance) =>
     <String, dynamic>{
       'id': instance.id,
       'admin': instance.admin,
+      'usersId': instance.usersId,
       'name': instance.name,
       'noOfUsers': instance.noOfUsers,
       'gameTodos': instance.gameTodos.map((e) => e.toJson()).toList(),
@@ -47,6 +50,7 @@ _$_UserScoreTDO _$$_UserScoreTDOFromJson(Map<String, dynamic> json) =>
     _$_UserScoreTDO(
       gameId: json['gameId'] as String,
       gamifierUserId: json['gamifierUserId'] as String,
+      userName: json['userName'] as String,
       level: json['level'] as int,
       gameTodos: (json['gameTodos'] as List<dynamic>)
           .map((e) => GameTodoTDO.fromJson(e as Map<String, dynamic>))
@@ -57,8 +61,23 @@ Map<String, dynamic> _$$_UserScoreTDOToJson(_$_UserScoreTDO instance) =>
     <String, dynamic>{
       'gameId': instance.gameId,
       'gamifierUserId': instance.gamifierUserId,
+      'userName': instance.userName,
       'level': instance.level,
       'gameTodos': instance.gameTodos.map((e) => e.toJson()).toList(),
+    };
+
+_$_GameDetailsTDO _$$_GameDetailsTDOFromJson(Map<String, dynamic> json) =>
+    _$_GameDetailsTDO(
+      game: GameDTO.fromJson(json['game'] as Map<String, dynamic>),
+      usersScores: (json['usersScores'] as List<dynamic>)
+          .map((e) => UserScoreTDO.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$_GameDetailsTDOToJson(_$_GameDetailsTDO instance) =>
+    <String, dynamic>{
+      'game': instance.game.toJson(),
+      'usersScores': instance.usersScores.map((e) => e.toJson()).toList(),
     };
 
 _$_UserGamesListTDO _$$_UserGamesListTDOFromJson(Map<String, dynamic> json) =>

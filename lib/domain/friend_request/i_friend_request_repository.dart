@@ -6,7 +6,7 @@ import 'friend_request.dart';
 abstract class IFriendRequestRepository {
   sendRequest(GamifierUser currentUser, GamifierUser receiver);
   Future<List<FriendRequest>> getRequest(GamifierUser currentUser);
-  Future<List<FriendRequest>> getFriends(GamifierUser currentUser);
+  Future<List<GamifierUser>> getFriends(GamifierUser currentUser);
   cancellRequest(String requestid);
   acceptRequest(String requestid);
   Future<Either<String, GamifierUser>> getUsersByEmail(String email);

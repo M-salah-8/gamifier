@@ -21,11 +21,13 @@ class _$UserScoreTearOff {
   _UserScore call(
       {required UniqueId gameId,
       required UniqueId gamifierUserId,
+      required String userName,
       required int level,
       required KtList<GameTodo> gameTodos}) {
     return _UserScore(
       gameId: gameId,
       gamifierUserId: gamifierUserId,
+      userName: userName,
       level: level,
       gameTodos: gameTodos,
     );
@@ -39,6 +41,7 @@ const $UserScore = _$UserScoreTearOff();
 mixin _$UserScore {
   UniqueId get gameId => throw _privateConstructorUsedError;
   UniqueId get gamifierUserId => throw _privateConstructorUsedError;
+  String get userName => throw _privateConstructorUsedError;
   int get level => throw _privateConstructorUsedError;
   KtList<GameTodo> get gameTodos => throw _privateConstructorUsedError;
 
@@ -54,6 +57,7 @@ abstract class $UserScoreCopyWith<$Res> {
   $Res call(
       {UniqueId gameId,
       UniqueId gamifierUserId,
+      String userName,
       int level,
       KtList<GameTodo> gameTodos});
 }
@@ -70,6 +74,7 @@ class _$UserScoreCopyWithImpl<$Res> implements $UserScoreCopyWith<$Res> {
   $Res call({
     Object? gameId = freezed,
     Object? gamifierUserId = freezed,
+    Object? userName = freezed,
     Object? level = freezed,
     Object? gameTodos = freezed,
   }) {
@@ -82,6 +87,10 @@ class _$UserScoreCopyWithImpl<$Res> implements $UserScoreCopyWith<$Res> {
           ? _value.gamifierUserId
           : gamifierUserId // ignore: cast_nullable_to_non_nullable
               as UniqueId,
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
       level: level == freezed
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
@@ -103,6 +112,7 @@ abstract class _$UserScoreCopyWith<$Res> implements $UserScoreCopyWith<$Res> {
   $Res call(
       {UniqueId gameId,
       UniqueId gamifierUserId,
+      String userName,
       int level,
       KtList<GameTodo> gameTodos});
 }
@@ -120,6 +130,7 @@ class __$UserScoreCopyWithImpl<$Res> extends _$UserScoreCopyWithImpl<$Res>
   $Res call({
     Object? gameId = freezed,
     Object? gamifierUserId = freezed,
+    Object? userName = freezed,
     Object? level = freezed,
     Object? gameTodos = freezed,
   }) {
@@ -132,6 +143,10 @@ class __$UserScoreCopyWithImpl<$Res> extends _$UserScoreCopyWithImpl<$Res>
           ? _value.gamifierUserId
           : gamifierUserId // ignore: cast_nullable_to_non_nullable
               as UniqueId,
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
       level: level == freezed
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
@@ -150,6 +165,7 @@ class _$_UserScore implements _UserScore {
   const _$_UserScore(
       {required this.gameId,
       required this.gamifierUserId,
+      required this.userName,
       required this.level,
       required this.gameTodos});
 
@@ -158,13 +174,15 @@ class _$_UserScore implements _UserScore {
   @override
   final UniqueId gamifierUserId;
   @override
+  final String userName;
+  @override
   final int level;
   @override
   final KtList<GameTodo> gameTodos;
 
   @override
   String toString() {
-    return 'UserScore(gameId: $gameId, gamifierUserId: $gamifierUserId, level: $level, gameTodos: $gameTodos)';
+    return 'UserScore(gameId: $gameId, gamifierUserId: $gamifierUserId, userName: $userName, level: $level, gameTodos: $gameTodos)';
   }
 
   @override
@@ -175,6 +193,7 @@ class _$_UserScore implements _UserScore {
             const DeepCollectionEquality().equals(other.gameId, gameId) &&
             const DeepCollectionEquality()
                 .equals(other.gamifierUserId, gamifierUserId) &&
+            const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality().equals(other.level, level) &&
             const DeepCollectionEquality().equals(other.gameTodos, gameTodos));
   }
@@ -184,6 +203,7 @@ class _$_UserScore implements _UserScore {
       runtimeType,
       const DeepCollectionEquality().hash(gameId),
       const DeepCollectionEquality().hash(gamifierUserId),
+      const DeepCollectionEquality().hash(userName),
       const DeepCollectionEquality().hash(level),
       const DeepCollectionEquality().hash(gameTodos));
 
@@ -197,6 +217,7 @@ abstract class _UserScore implements UserScore {
   const factory _UserScore(
       {required UniqueId gameId,
       required UniqueId gamifierUserId,
+      required String userName,
       required int level,
       required KtList<GameTodo> gameTodos}) = _$_UserScore;
 
@@ -204,6 +225,8 @@ abstract class _UserScore implements UserScore {
   UniqueId get gameId;
   @override
   UniqueId get gamifierUserId;
+  @override
+  String get userName;
   @override
   int get level;
   @override

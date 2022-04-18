@@ -26,11 +26,10 @@ class GameDetailBloc extends Bloc<GameDetailEvent, GameDetailState> {
         },
         initialized: (e) {
           e.game == null
-              ? emit(GameDetailState.initial())
+              ? emit(
+                  GameDetailState.initial().copyWith(currentUser: currentUser))
               : emit(state.copyWith(
-                  game: e.game!,
-                  isEditing: true,
-                ));
+                  game: e.game!, isEditing: true, currentUser: currentUser));
         },
         nameChanged: (e) {
           emit(state.copyWith(

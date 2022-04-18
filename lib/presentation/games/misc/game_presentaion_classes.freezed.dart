@@ -21,12 +21,14 @@ class _$GamePrimitiveTearOff {
   _GamePrimitive call(
       {required String id,
       required String admin,
+      required List<String> usersId,
       required String name,
       required int noOfUsers,
       required List<GameTodoPrimitive> gameTodos}) {
     return _GamePrimitive(
       id: id,
       admin: admin,
+      usersId: usersId,
       name: name,
       noOfUsers: noOfUsers,
       gameTodos: gameTodos,
@@ -41,6 +43,7 @@ const $GamePrimitive = _$GamePrimitiveTearOff();
 mixin _$GamePrimitive {
   String get id => throw _privateConstructorUsedError;
   String get admin => throw _privateConstructorUsedError;
+  List<String> get usersId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get noOfUsers => throw _privateConstructorUsedError;
   List<GameTodoPrimitive> get gameTodos => throw _privateConstructorUsedError;
@@ -58,6 +61,7 @@ abstract class $GamePrimitiveCopyWith<$Res> {
   $Res call(
       {String id,
       String admin,
+      List<String> usersId,
       String name,
       int noOfUsers,
       List<GameTodoPrimitive> gameTodos});
@@ -76,6 +80,7 @@ class _$GamePrimitiveCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? admin = freezed,
+    Object? usersId = freezed,
     Object? name = freezed,
     Object? noOfUsers = freezed,
     Object? gameTodos = freezed,
@@ -89,6 +94,10 @@ class _$GamePrimitiveCopyWithImpl<$Res>
           ? _value.admin
           : admin // ignore: cast_nullable_to_non_nullable
               as String,
+      usersId: usersId == freezed
+          ? _value.usersId
+          : usersId // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -115,6 +124,7 @@ abstract class _$GamePrimitiveCopyWith<$Res>
   $Res call(
       {String id,
       String admin,
+      List<String> usersId,
       String name,
       int noOfUsers,
       List<GameTodoPrimitive> gameTodos});
@@ -135,6 +145,7 @@ class __$GamePrimitiveCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? admin = freezed,
+    Object? usersId = freezed,
     Object? name = freezed,
     Object? noOfUsers = freezed,
     Object? gameTodos = freezed,
@@ -148,6 +159,10 @@ class __$GamePrimitiveCopyWithImpl<$Res>
           ? _value.admin
           : admin // ignore: cast_nullable_to_non_nullable
               as String,
+      usersId: usersId == freezed
+          ? _value.usersId
+          : usersId // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -170,6 +185,7 @@ class _$_GamePrimitive extends _GamePrimitive {
   const _$_GamePrimitive(
       {required this.id,
       required this.admin,
+      required this.usersId,
       required this.name,
       required this.noOfUsers,
       required this.gameTodos})
@@ -180,6 +196,8 @@ class _$_GamePrimitive extends _GamePrimitive {
   @override
   final String admin;
   @override
+  final List<String> usersId;
+  @override
   final String name;
   @override
   final int noOfUsers;
@@ -188,7 +206,7 @@ class _$_GamePrimitive extends _GamePrimitive {
 
   @override
   String toString() {
-    return 'GamePrimitive(id: $id, admin: $admin, name: $name, noOfUsers: $noOfUsers, gameTodos: $gameTodos)';
+    return 'GamePrimitive(id: $id, admin: $admin, usersId: $usersId, name: $name, noOfUsers: $noOfUsers, gameTodos: $gameTodos)';
   }
 
   @override
@@ -198,6 +216,7 @@ class _$_GamePrimitive extends _GamePrimitive {
             other is _GamePrimitive &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.admin, admin) &&
+            const DeepCollectionEquality().equals(other.usersId, usersId) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.noOfUsers, noOfUsers) &&
             const DeepCollectionEquality().equals(other.gameTodos, gameTodos));
@@ -208,6 +227,7 @@ class _$_GamePrimitive extends _GamePrimitive {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(admin),
+      const DeepCollectionEquality().hash(usersId),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(noOfUsers),
       const DeepCollectionEquality().hash(gameTodos));
@@ -222,6 +242,7 @@ abstract class _GamePrimitive extends GamePrimitive {
   const factory _GamePrimitive(
       {required String id,
       required String admin,
+      required List<String> usersId,
       required String name,
       required int noOfUsers,
       required List<GameTodoPrimitive> gameTodos}) = _$_GamePrimitive;
@@ -231,6 +252,8 @@ abstract class _GamePrimitive extends GamePrimitive {
   String get id;
   @override
   String get admin;
+  @override
+  List<String> get usersId;
   @override
   String get name;
   @override
@@ -469,11 +492,13 @@ class _$UserScorePrimitiveTearOff {
   _UserScorePrimitive call(
       {required String gameId,
       required String gamifierUserId,
+      required String userName,
       required int level,
       required List<GameTodoPrimitive> gameTodos}) {
     return _UserScorePrimitive(
       gameId: gameId,
       gamifierUserId: gamifierUserId,
+      userName: userName,
       level: level,
       gameTodos: gameTodos,
     );
@@ -487,6 +512,7 @@ const $UserScorePrimitive = _$UserScorePrimitiveTearOff();
 mixin _$UserScorePrimitive {
   String get gameId => throw _privateConstructorUsedError;
   String get gamifierUserId => throw _privateConstructorUsedError;
+  String get userName => throw _privateConstructorUsedError;
   int get level => throw _privateConstructorUsedError;
   List<GameTodoPrimitive> get gameTodos => throw _privateConstructorUsedError;
 
@@ -503,6 +529,7 @@ abstract class $UserScorePrimitiveCopyWith<$Res> {
   $Res call(
       {String gameId,
       String gamifierUserId,
+      String userName,
       int level,
       List<GameTodoPrimitive> gameTodos});
 }
@@ -520,6 +547,7 @@ class _$UserScorePrimitiveCopyWithImpl<$Res>
   $Res call({
     Object? gameId = freezed,
     Object? gamifierUserId = freezed,
+    Object? userName = freezed,
     Object? level = freezed,
     Object? gameTodos = freezed,
   }) {
@@ -531,6 +559,10 @@ class _$UserScorePrimitiveCopyWithImpl<$Res>
       gamifierUserId: gamifierUserId == freezed
           ? _value.gamifierUserId
           : gamifierUserId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String,
       level: level == freezed
           ? _value.level
@@ -554,6 +586,7 @@ abstract class _$UserScorePrimitiveCopyWith<$Res>
   $Res call(
       {String gameId,
       String gamifierUserId,
+      String userName,
       int level,
       List<GameTodoPrimitive> gameTodos});
 }
@@ -573,6 +606,7 @@ class __$UserScorePrimitiveCopyWithImpl<$Res>
   $Res call({
     Object? gameId = freezed,
     Object? gamifierUserId = freezed,
+    Object? userName = freezed,
     Object? level = freezed,
     Object? gameTodos = freezed,
   }) {
@@ -584,6 +618,10 @@ class __$UserScorePrimitiveCopyWithImpl<$Res>
       gamifierUserId: gamifierUserId == freezed
           ? _value.gamifierUserId
           : gamifierUserId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String,
       level: level == freezed
           ? _value.level
@@ -603,6 +641,7 @@ class _$_UserScorePrimitive extends _UserScorePrimitive {
   const _$_UserScorePrimitive(
       {required this.gameId,
       required this.gamifierUserId,
+      required this.userName,
       required this.level,
       required this.gameTodos})
       : super._();
@@ -612,13 +651,15 @@ class _$_UserScorePrimitive extends _UserScorePrimitive {
   @override
   final String gamifierUserId;
   @override
+  final String userName;
+  @override
   final int level;
   @override
   final List<GameTodoPrimitive> gameTodos;
 
   @override
   String toString() {
-    return 'UserScorePrimitive(gameId: $gameId, gamifierUserId: $gamifierUserId, level: $level, gameTodos: $gameTodos)';
+    return 'UserScorePrimitive(gameId: $gameId, gamifierUserId: $gamifierUserId, userName: $userName, level: $level, gameTodos: $gameTodos)';
   }
 
   @override
@@ -629,6 +670,7 @@ class _$_UserScorePrimitive extends _UserScorePrimitive {
             const DeepCollectionEquality().equals(other.gameId, gameId) &&
             const DeepCollectionEquality()
                 .equals(other.gamifierUserId, gamifierUserId) &&
+            const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality().equals(other.level, level) &&
             const DeepCollectionEquality().equals(other.gameTodos, gameTodos));
   }
@@ -638,6 +680,7 @@ class _$_UserScorePrimitive extends _UserScorePrimitive {
       runtimeType,
       const DeepCollectionEquality().hash(gameId),
       const DeepCollectionEquality().hash(gamifierUserId),
+      const DeepCollectionEquality().hash(userName),
       const DeepCollectionEquality().hash(level),
       const DeepCollectionEquality().hash(gameTodos));
 
@@ -651,6 +694,7 @@ abstract class _UserScorePrimitive extends UserScorePrimitive {
   const factory _UserScorePrimitive(
       {required String gameId,
       required String gamifierUserId,
+      required String userName,
       required int level,
       required List<GameTodoPrimitive> gameTodos}) = _$_UserScorePrimitive;
   const _UserScorePrimitive._() : super._();
@@ -659,6 +703,8 @@ abstract class _UserScorePrimitive extends UserScorePrimitive {
   String get gameId;
   @override
   String get gamifierUserId;
+  @override
+  String get userName;
   @override
   int get level;
   @override
@@ -972,5 +1018,174 @@ abstract class _GameKeyPrimitive extends GameKeyPrimitive {
   @override
   @JsonKey(ignore: true)
   _$GameKeyPrimitiveCopyWith<_GameKeyPrimitive> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$GameDetailsPrimitiveTearOff {
+  const _$GameDetailsPrimitiveTearOff();
+
+  _GameDetailsPrimitive call(
+      {required GamePrimitive game,
+      required List<UserScorePrimitive> usersScores}) {
+    return _GameDetailsPrimitive(
+      game: game,
+      usersScores: usersScores,
+    );
+  }
+}
+
+/// @nodoc
+const $GameDetailsPrimitive = _$GameDetailsPrimitiveTearOff();
+
+/// @nodoc
+mixin _$GameDetailsPrimitive {
+  GamePrimitive get game => throw _privateConstructorUsedError;
+  List<UserScorePrimitive> get usersScores =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $GameDetailsPrimitiveCopyWith<GameDetailsPrimitive> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GameDetailsPrimitiveCopyWith<$Res> {
+  factory $GameDetailsPrimitiveCopyWith(GameDetailsPrimitive value,
+          $Res Function(GameDetailsPrimitive) then) =
+      _$GameDetailsPrimitiveCopyWithImpl<$Res>;
+  $Res call({GamePrimitive game, List<UserScorePrimitive> usersScores});
+
+  $GamePrimitiveCopyWith<$Res> get game;
+}
+
+/// @nodoc
+class _$GameDetailsPrimitiveCopyWithImpl<$Res>
+    implements $GameDetailsPrimitiveCopyWith<$Res> {
+  _$GameDetailsPrimitiveCopyWithImpl(this._value, this._then);
+
+  final GameDetailsPrimitive _value;
+  // ignore: unused_field
+  final $Res Function(GameDetailsPrimitive) _then;
+
+  @override
+  $Res call({
+    Object? game = freezed,
+    Object? usersScores = freezed,
+  }) {
+    return _then(_value.copyWith(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as GamePrimitive,
+      usersScores: usersScores == freezed
+          ? _value.usersScores
+          : usersScores // ignore: cast_nullable_to_non_nullable
+              as List<UserScorePrimitive>,
+    ));
+  }
+
+  @override
+  $GamePrimitiveCopyWith<$Res> get game {
+    return $GamePrimitiveCopyWith<$Res>(_value.game, (value) {
+      return _then(_value.copyWith(game: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$GameDetailsPrimitiveCopyWith<$Res>
+    implements $GameDetailsPrimitiveCopyWith<$Res> {
+  factory _$GameDetailsPrimitiveCopyWith(_GameDetailsPrimitive value,
+          $Res Function(_GameDetailsPrimitive) then) =
+      __$GameDetailsPrimitiveCopyWithImpl<$Res>;
+  @override
+  $Res call({GamePrimitive game, List<UserScorePrimitive> usersScores});
+
+  @override
+  $GamePrimitiveCopyWith<$Res> get game;
+}
+
+/// @nodoc
+class __$GameDetailsPrimitiveCopyWithImpl<$Res>
+    extends _$GameDetailsPrimitiveCopyWithImpl<$Res>
+    implements _$GameDetailsPrimitiveCopyWith<$Res> {
+  __$GameDetailsPrimitiveCopyWithImpl(
+      _GameDetailsPrimitive _value, $Res Function(_GameDetailsPrimitive) _then)
+      : super(_value, (v) => _then(v as _GameDetailsPrimitive));
+
+  @override
+  _GameDetailsPrimitive get _value => super._value as _GameDetailsPrimitive;
+
+  @override
+  $Res call({
+    Object? game = freezed,
+    Object? usersScores = freezed,
+  }) {
+    return _then(_GameDetailsPrimitive(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as GamePrimitive,
+      usersScores: usersScores == freezed
+          ? _value.usersScores
+          : usersScores // ignore: cast_nullable_to_non_nullable
+              as List<UserScorePrimitive>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GameDetailsPrimitive extends _GameDetailsPrimitive {
+  const _$_GameDetailsPrimitive({required this.game, required this.usersScores})
+      : super._();
+
+  @override
+  final GamePrimitive game;
+  @override
+  final List<UserScorePrimitive> usersScores;
+
+  @override
+  String toString() {
+    return 'GameDetailsPrimitive(game: $game, usersScores: $usersScores)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _GameDetailsPrimitive &&
+            const DeepCollectionEquality().equals(other.game, game) &&
+            const DeepCollectionEquality()
+                .equals(other.usersScores, usersScores));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(game),
+      const DeepCollectionEquality().hash(usersScores));
+
+  @JsonKey(ignore: true)
+  @override
+  _$GameDetailsPrimitiveCopyWith<_GameDetailsPrimitive> get copyWith =>
+      __$GameDetailsPrimitiveCopyWithImpl<_GameDetailsPrimitive>(
+          this, _$identity);
+}
+
+abstract class _GameDetailsPrimitive extends GameDetailsPrimitive {
+  const factory _GameDetailsPrimitive(
+      {required GamePrimitive game,
+      required List<UserScorePrimitive> usersScores}) = _$_GameDetailsPrimitive;
+  const _GameDetailsPrimitive._() : super._();
+
+  @override
+  GamePrimitive get game;
+  @override
+  List<UserScorePrimitive> get usersScores;
+  @override
+  @JsonKey(ignore: true)
+  _$GameDetailsPrimitiveCopyWith<_GameDetailsPrimitive> get copyWith =>
       throw _privateConstructorUsedError;
 }

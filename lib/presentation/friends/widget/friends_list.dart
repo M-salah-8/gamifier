@@ -4,10 +4,15 @@ import 'package:gamifier/application/friends/friend_request/friend_search/friend
 import 'package:gamifier/application/friends/friend_watcher/friend_watcher_bloc.dart';
 import 'package:gamifier/presentation/friends/widget/friend_card.dart';
 import 'package:gamifier/presentation/friends/widget/user_dialog.dart';
+import 'package:gamifier/presentation/games/misc/game_presentaion_classes.dart';
 
 class FriendsList extends StatelessWidget {
+  final bool addFriend;
+  final GamePrimitive? game;
   const FriendsList({
     Key? key,
+    required this.addFriend,
+    this.game,
   }) : super(key: key);
 
   @override
@@ -52,7 +57,11 @@ class FriendsList extends StatelessWidget {
             itemBuilder: (context, index) {
               return e.friends.isEmpty
                   ? const Center(child: Text('empty'))
-                  : FriendCard(name: e.friends[index].sender.name);
+                  : FriendCard(
+                      friend: e.friends[index],
+                      addFriend: addFriend,
+                      game: game,
+                    );
             },
           );
         });

@@ -5,7 +5,9 @@ import 'package:gamifier/application/friends/friend_request/friend_search/friend
 import 'package:gamifier/application/friends/friend_request_watcher/friend_request_watcher_bloc.dart';
 import 'package:gamifier/application/friends/friend_watcher/friend_watcher_bloc.dart';
 import 'package:gamifier/application/game/game_actor/game_actor_bloc.dart';
+import 'package:gamifier/application/game/game_adding_friend/game_adding_friend_bloc.dart';
 import 'package:gamifier/application/game/game_detail/game_detail_bloc.dart';
+import 'package:gamifier/application/game/game_getter/game_getter_bloc.dart';
 import 'package:gamifier/application/game/game_watcher/game_watcher_bloc.dart';
 import 'package:gamifier/injection.dart';
 import 'package:gamifier/presentation/core/colors.dart';
@@ -44,6 +46,8 @@ class AppWidget extends StatelessWidget {
           create: (context) => getIt<FriendRequestWatcherBloc>(),
         ),
         BlocProvider(create: (context) => getIt<GameWatcherBloc>()),
+        BlocProvider(create: (context) => getIt<GameGetterBloc>()),
+        BlocProvider(create: (context) => getIt<GameAddingFriendBloc>()),
       ],
       child: MaterialApp.router(
         theme: ThemeData.light().copyWith(
@@ -78,6 +82,7 @@ class AppWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
             )),
             floatingActionButtonTheme: FloatingActionButtonThemeData(
+              extendedTextStyle: TextStyle(color: primary),
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               elevation: 0,
               shape: RoundedRectangleBorder(

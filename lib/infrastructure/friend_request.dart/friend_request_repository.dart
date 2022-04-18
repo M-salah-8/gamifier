@@ -54,26 +54,60 @@ class FriendRequestRepository implements IFriendRequestRepository {
   }
 
   @override
-  Future<List<FriendRequest>> getFriends(GamifierUser currentUser) async {
+  Future<List<GamifierUser>> getFriends(GamifierUser currentUser) async {
     final user = GamifierUserTDO.fromDomain(currentUser).toJson();
     // TODO ask about using 2 where() and .get()
+    // TODO fix
+    // for now search 2 times
     // get friends from friend requests collection in fire store
-    final requestQuery = await _firestore
+    final requestWhenReceverQuery = await _firestore
         .collection('friend_request')
         .where('requestStatus', isEqualTo: 'accepted')
         .where('receiver', isEqualTo: user)
         .get();
+    final requestWhenSenderQuery = await _firestore
+        .collection('friend_request')
+        .where('requestStatus', isEqualTo: 'accepted')
+        .where('sender', isEqualTo: user)
+        .get();
     // if the no friends were found
-    if (requestQuery.size == 0) {
-      return List<FriendRequest>.empty();
+    if (requestWhenSenderQuery.size == 0 && requestWhenReceverQuery.size == 0) {
+      return List<GamifierUser>.empty();
     }
-    // if friends were found get and transform to domain
-    final acceptedRequestListTDO = requestQuery.docs
+
+    if (requestWhenSenderQuery.size == 0) {
+      final acceptedRequestListTDO = requestWhenReceverQuery.docs
+          .map((e) => FriendRequestTDO.fromFirestore(e))
+          .toList();
+      final acceptedRequestList =
+          acceptedRequestListTDO.map((e) => e.toDomain()).toList();
+      return acceptedRequestList.map((e) => e.receiver).toList();
+    }
+
+    if (requestWhenReceverQuery.size == 0) {
+      final acceptedRequestListTDO = requestWhenSenderQuery.docs
+          .map((e) => FriendRequestTDO.fromFirestore(e))
+          .toList();
+      final acceptedRequestList =
+          acceptedRequestListTDO.map((e) => e.toDomain()).toList();
+      return acceptedRequestList.map((e) => e.receiver).toList();
+    }
+
+    final acceptedRequestListTDO = requestWhenSenderQuery.docs
         .map((e) => FriendRequestTDO.fromFirestore(e))
         .toList();
     final acceptedRequestList =
         acceptedRequestListTDO.map((e) => e.toDomain()).toList();
-    return acceptedRequestList;
+    final list1 = acceptedRequestList.map((e) => e.receiver).toList();
+
+    final acceptedRequestList2TDO = requestWhenReceverQuery.docs
+        .map((e) => FriendRequestTDO.fromFirestore(e))
+        .toList();
+    final acceptedRequestList2 =
+        acceptedRequestList2TDO.map((e) => e.toDomain()).toList();
+    final list2 = acceptedRequestList2.map((e) => e.receiver).toList();
+    list2.addAll(list1);
+    return list2;
   }
 
   @override

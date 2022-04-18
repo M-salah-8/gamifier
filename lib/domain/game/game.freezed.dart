@@ -22,12 +22,14 @@ class _$GameTearOff {
       {required UniqueId id,
       required UniqueId admin,
       required String name,
+      required KtList<UniqueId> usersId,
       required int noOfUsers,
       required KtList<GameTodo> gameTodos}) {
     return _Game(
       id: id,
       admin: admin,
       name: name,
+      usersId: usersId,
       noOfUsers: noOfUsers,
       gameTodos: gameTodos,
     );
@@ -42,6 +44,7 @@ mixin _$Game {
   UniqueId get id => throw _privateConstructorUsedError;
   UniqueId get admin => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  KtList<UniqueId> get usersId => throw _privateConstructorUsedError;
   int get noOfUsers => throw _privateConstructorUsedError;
   KtList<GameTodo> get gameTodos => throw _privateConstructorUsedError;
 
@@ -57,6 +60,7 @@ abstract class $GameCopyWith<$Res> {
       {UniqueId id,
       UniqueId admin,
       String name,
+      KtList<UniqueId> usersId,
       int noOfUsers,
       KtList<GameTodo> gameTodos});
 }
@@ -74,6 +78,7 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
     Object? id = freezed,
     Object? admin = freezed,
     Object? name = freezed,
+    Object? usersId = freezed,
     Object? noOfUsers = freezed,
     Object? gameTodos = freezed,
   }) {
@@ -90,6 +95,10 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      usersId: usersId == freezed
+          ? _value.usersId
+          : usersId // ignore: cast_nullable_to_non_nullable
+              as KtList<UniqueId>,
       noOfUsers: noOfUsers == freezed
           ? _value.noOfUsers
           : noOfUsers // ignore: cast_nullable_to_non_nullable
@@ -111,6 +120,7 @@ abstract class _$GameCopyWith<$Res> implements $GameCopyWith<$Res> {
       {UniqueId id,
       UniqueId admin,
       String name,
+      KtList<UniqueId> usersId,
       int noOfUsers,
       KtList<GameTodo> gameTodos});
 }
@@ -129,6 +139,7 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
     Object? id = freezed,
     Object? admin = freezed,
     Object? name = freezed,
+    Object? usersId = freezed,
     Object? noOfUsers = freezed,
     Object? gameTodos = freezed,
   }) {
@@ -145,6 +156,10 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      usersId: usersId == freezed
+          ? _value.usersId
+          : usersId // ignore: cast_nullable_to_non_nullable
+              as KtList<UniqueId>,
       noOfUsers: noOfUsers == freezed
           ? _value.noOfUsers
           : noOfUsers // ignore: cast_nullable_to_non_nullable
@@ -164,6 +179,7 @@ class _$_Game implements _Game {
       {required this.id,
       required this.admin,
       required this.name,
+      required this.usersId,
       required this.noOfUsers,
       required this.gameTodos});
 
@@ -174,13 +190,15 @@ class _$_Game implements _Game {
   @override
   final String name;
   @override
+  final KtList<UniqueId> usersId;
+  @override
   final int noOfUsers;
   @override
   final KtList<GameTodo> gameTodos;
 
   @override
   String toString() {
-    return 'Game(id: $id, admin: $admin, name: $name, noOfUsers: $noOfUsers, gameTodos: $gameTodos)';
+    return 'Game(id: $id, admin: $admin, name: $name, usersId: $usersId, noOfUsers: $noOfUsers, gameTodos: $gameTodos)';
   }
 
   @override
@@ -191,6 +209,7 @@ class _$_Game implements _Game {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.admin, admin) &&
             const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.usersId, usersId) &&
             const DeepCollectionEquality().equals(other.noOfUsers, noOfUsers) &&
             const DeepCollectionEquality().equals(other.gameTodos, gameTodos));
   }
@@ -201,6 +220,7 @@ class _$_Game implements _Game {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(admin),
       const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(usersId),
       const DeepCollectionEquality().hash(noOfUsers),
       const DeepCollectionEquality().hash(gameTodos));
 
@@ -215,6 +235,7 @@ abstract class _Game implements Game {
       {required UniqueId id,
       required UniqueId admin,
       required String name,
+      required KtList<UniqueId> usersId,
       required int noOfUsers,
       required KtList<GameTodo> gameTodos}) = _$_Game;
 
@@ -224,6 +245,8 @@ abstract class _Game implements Game {
   UniqueId get admin;
   @override
   String get name;
+  @override
+  KtList<UniqueId> get usersId;
   @override
   int get noOfUsers;
   @override

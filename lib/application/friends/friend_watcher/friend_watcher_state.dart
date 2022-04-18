@@ -5,7 +5,7 @@ class FriendWatcherState with _$FriendWatcherState {
   const factory FriendWatcherState.initial() = _Initial;
   const factory FriendWatcherState.loadInProgress() = _LoadInProgress;
   const factory FriendWatcherState.loadSuccess(
-      List<FriendRequestPrimitive> friends) = _LoadSuccess;
+      List<GamifierUserPrimitive> friends) = _LoadSuccess;
   // const factory FriendWatcherState.loadFailure(String gameFailure) =
   //     _LoadFailure;
 }

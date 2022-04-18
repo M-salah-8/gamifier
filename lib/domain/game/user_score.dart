@@ -10,6 +10,7 @@ class UserScore with _$UserScore {
   const factory UserScore(
       {required UniqueId gameId,
       required UniqueId gamifierUserId,
+      required String userName,
       required int level,
       required KtList<GameTodo> gameTodos}) = _UserScore;
 }

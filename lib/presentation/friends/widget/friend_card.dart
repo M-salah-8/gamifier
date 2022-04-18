@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gamifier/application/game/game_adding_friend/game_adding_friend_bloc.dart';
+import 'package:gamifier/presentation/friends/misc/friends_presentation_class.dart';
+import 'package:gamifier/presentation/games/misc/game_presentaion_classes.dart';
 
 class FriendCard extends StatelessWidget {
-  final String name;
+  final GamifierUserPrimitive friend;
+  final GamePrimitive? game;
+  final bool addFriend;
   const FriendCard({
     Key? key,
-    required this.name,
+    required this.friend,
+    required this.addFriend,
+    this.game,
   }) : super(key: key);
 
   @override
@@ -20,9 +28,17 @@ class FriendCard extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           margin: const EdgeInsets.all(8),
           child: Center(
-              child:
-                  Text(name, style: Theme.of(context).textTheme.bodyMedium))),
-      onTap: () {},
+              child: Text(friend.name,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium))),
+      onTap: addFriend
+          ? () {
+              game == null
+                  ? Error()
+                  : BlocProvider.of<GameAddingFriendBloc>(context)
+                      .add(GameAddingFriendEvent.addFriend(game!, friend));
+            }
+          : () {},
       onLongPress: () {},
     );
   }

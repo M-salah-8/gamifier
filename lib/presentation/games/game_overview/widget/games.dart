@@ -35,14 +35,17 @@ class Games extends StatelessWidget {
                   onTap: () {
                     BlocProvider.of<FriendWatcherBloc>(context)
                         .add(FriendWatcherEvent.watchGamesStarted());
-                    context.router.popAndPush(const FriendsRoute());
+                    context.router.popAndPush(FriendsRoute(addfriend: false));
                   },
                 ),
               ),
               PopupMenuItem(
                 child: ListTile(
                   title: const Text('friend request'),
-                  onTap: _showRequestDialog,
+                  onTap: () {
+                    context.router.pop();
+                    _showRequestDialog();
+                  },
                 ),
               ),
             ];

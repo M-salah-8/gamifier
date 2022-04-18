@@ -11,12 +11,14 @@ class Game with _$Game {
       {required UniqueId id,
       required UniqueId admin,
       required String name,
+      required KtList<UniqueId> usersId,
       required int noOfUsers,
       required KtList<GameTodo> gameTodos}) = _Game;
   factory Game.empty() => Game(
       id: UniqueId(),
       // provided from bloc to repository when creating the game
       admin: UniqueId.fromUniqueString('admin'),
+      usersId: emptyList<UniqueId>(),
       noOfUsers: 1,
       name: '',
       gameTodos: const KtList<GameTodo>.empty());

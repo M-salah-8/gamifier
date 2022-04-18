@@ -19,13 +19,16 @@ import 'application/friends/friend_request_watcher/friend_request_watcher_bloc.d
     as _i15;
 import 'application/friends/friend_watcher/friend_watcher_bloc.dart' as _i17;
 import 'application/game/game_actor/game_actor_bloc.dart' as _i18;
-import 'application/game/game_detail/game_detail_bloc.dart' as _i19;
-import 'application/game/game_watcher/game_watcher_bloc.dart' as _i20;
+import 'application/game/game_adding_friend/game_adding_friend_bloc.dart'
+    as _i19;
+import 'application/game/game_detail/game_detail_bloc.dart' as _i20;
+import 'application/game/game_getter/game_getter_bloc.dart' as _i21;
+import 'application/game/game_watcher/game_watcher_bloc.dart' as _i22;
 import 'domain/auth/i_auth_facade.dart' as _i6;
 import 'domain/friend_request/i_friend_request_repository.dart' as _i8;
 import 'domain/game/i_game_repository.dart' as _i10;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i7;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i21;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i23;
 import 'infrastructure/friend_request.dart/friend_request_repository.dart'
     as _i9;
 import 'infrastructure/game/game_repository.dart'
@@ -62,11 +65,15 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i17.FriendWatcherBloc(get<_i8.IFriendRequestRepository>()));
   gh.factory<_i18.GameActorBloc>(
       () => _i18.GameActorBloc(get<_i10.IGameRepository>()));
-  gh.factory<_i19.GameDetailBloc>(
-      () => _i19.GameDetailBloc(get<_i10.IGameRepository>()));
-  gh.factory<_i20.GameWatcherBloc>(
-      () => _i20.GameWatcherBloc(get<_i10.IGameRepository>()));
+  gh.factory<_i19.GameAddingFriendBloc>(
+      () => _i19.GameAddingFriendBloc(get<_i10.IGameRepository>()));
+  gh.factory<_i20.GameDetailBloc>(
+      () => _i20.GameDetailBloc(get<_i10.IGameRepository>()));
+  gh.factory<_i21.GameGetterBloc>(
+      () => _i21.GameGetterBloc(get<_i10.IGameRepository>()));
+  gh.factory<_i22.GameWatcherBloc>(
+      () => _i22.GameWatcherBloc(get<_i10.IGameRepository>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i21.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i23.FirebaseInjectableModule {}

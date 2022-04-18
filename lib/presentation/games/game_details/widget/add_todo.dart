@@ -16,8 +16,8 @@ class AddTodo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Card(
-      margin: const EdgeInsets.all(20),
       child: IconButton(
           onPressed: () {
             // add an element to detail bloc list:
