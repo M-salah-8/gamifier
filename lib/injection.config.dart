@@ -10,17 +10,29 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i5;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'application/auth/auth_bloc.dart' as _i11;
-import 'application/auth/sign_in_form/sign_in_or_up_form_bloc.dart' as _i10;
-import 'application/game/game_actor/game_actor_bloc.dart' as _i12;
-import 'application/game/game_detail/game_detail_bloc.dart' as _i13;
-import 'application/game/game_watcher/game_watcher_bloc.dart' as _i14;
+import 'application/auth/auth_bloc.dart' as _i13;
+import 'application/auth/sign_in_form/sign_in_or_up_form_bloc.dart' as _i12;
+import 'application/friends/friend_request/friend_request_bloc.dart' as _i14;
+import 'application/friends/friend_request/friend_search/friend_search_bloc.dart'
+    as _i16;
+import 'application/friends/friend_request_watcher/friend_request_watcher_bloc.dart'
+    as _i15;
+import 'application/friends/friend_watcher/friend_watcher_bloc.dart' as _i17;
+import 'application/game/game_actor/game_actor_bloc.dart' as _i18;
+import 'application/game/game_adding_friend/game_adding_friend_bloc.dart'
+    as _i19;
+import 'application/game/game_detail/game_detail_bloc.dart' as _i20;
+import 'application/game/game_getter/game_getter_bloc.dart' as _i21;
+import 'application/game/game_watcher/game_watcher_bloc.dart' as _i22;
 import 'domain/auth/i_auth_facade.dart' as _i6;
-import 'domain/game/i_game_repository.dart' as _i8;
+import 'domain/friend_request/i_friend_request_repository.dart' as _i8;
+import 'domain/game/i_game_repository.dart' as _i10;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i7;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i15;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i23;
+import 'infrastructure/friend_request.dart/friend_request_repository.dart'
+    as _i9;
 import 'infrastructure/game/game_repository.dart'
-    as _i9; // ignore_for_file: unnecessary_lambdas
+    as _i11; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -36,18 +48,32 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => firebaseInjectableModule.googleSignIn);
   gh.lazySingleton<_i6.IAuthFacade>(() =>
       _i7.FirebaseAuthFacade(get<_i3.FirebaseAuth>(), get<_i5.GoogleSignIn>()));
-  gh.lazySingleton<_i8.IGameRepository>(
-      () => _i9.GameRepository(get<_i4.FirebaseFirestore>()));
-  gh.factory<_i10.SignInOrUpFormBloc>(
-      () => _i10.SignInOrUpFormBloc(get<_i6.IAuthFacade>()));
-  gh.factory<_i11.AuthBloc>(() => _i11.AuthBloc(get<_i6.IAuthFacade>()));
-  gh.factory<_i12.GameActorBloc>(
-      () => _i12.GameActorBloc(get<_i8.IGameRepository>()));
-  gh.factory<_i13.GameDetailBloc>(
-      () => _i13.GameDetailBloc(get<_i8.IGameRepository>()));
-  gh.factory<_i14.GameWatcherBloc>(
-      () => _i14.GameWatcherBloc(get<_i8.IGameRepository>()));
+  gh.lazySingleton<_i8.IFriendRequestRepository>(
+      () => _i9.FriendRequestRepository(get<_i4.FirebaseFirestore>()));
+  gh.lazySingleton<_i10.IGameRepository>(
+      () => _i11.GameRepository(get<_i4.FirebaseFirestore>()));
+  gh.factory<_i12.SignInOrUpFormBloc>(
+      () => _i12.SignInOrUpFormBloc(get<_i6.IAuthFacade>()));
+  gh.factory<_i13.AuthBloc>(() => _i13.AuthBloc(get<_i6.IAuthFacade>()));
+  gh.factory<_i14.FriendRequestBloc>(
+      () => _i14.FriendRequestBloc(get<_i8.IFriendRequestRepository>()));
+  gh.factory<_i15.FriendRequestWatcherBloc>(
+      () => _i15.FriendRequestWatcherBloc(get<_i8.IFriendRequestRepository>()));
+  gh.factory<_i16.FriendSearchBloc>(
+      () => _i16.FriendSearchBloc(get<_i8.IFriendRequestRepository>()));
+  gh.factory<_i17.FriendWatcherBloc>(
+      () => _i17.FriendWatcherBloc(get<_i8.IFriendRequestRepository>()));
+  gh.factory<_i18.GameActorBloc>(
+      () => _i18.GameActorBloc(get<_i10.IGameRepository>()));
+  gh.factory<_i19.GameAddingFriendBloc>(
+      () => _i19.GameAddingFriendBloc(get<_i10.IGameRepository>()));
+  gh.factory<_i20.GameDetailBloc>(
+      () => _i20.GameDetailBloc(get<_i10.IGameRepository>()));
+  gh.factory<_i21.GameGetterBloc>(
+      () => _i21.GameGetterBloc(get<_i10.IGameRepository>()));
+  gh.factory<_i22.GameWatcherBloc>(
+      () => _i22.GameWatcherBloc(get<_i10.IGameRepository>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i15.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i23.FirebaseInjectableModule {}

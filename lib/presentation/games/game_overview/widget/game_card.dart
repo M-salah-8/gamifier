@@ -2,30 +2,44 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gamifier/application/game/game_actor/game_actor_bloc.dart';
+import 'package:gamifier/application/game/game_detail/game_detail_bloc.dart';
+import 'package:gamifier/application/game/game_getter/game_getter_bloc.dart';
 import 'package:gamifier/domain/game/game.dart';
+import 'package:gamifier/presentation/games/misc/game_presentaion_classes.dart';
 import 'package:gamifier/presentation/routes/router.gr.dart';
 
 class GameCard extends StatelessWidget {
-  final Game game;
+  final GameKeyPrimitive game;
   const GameCard({Key? key, required this.game}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Card(
-          child: Center(
-              child: Text(
-        game.name,
-        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              letterSpacing: 1.5,
-            ),
-      ))),
-      onTap: () {
-        context.router.push(GameDetailRoute(game: game));
+    return BlocListener<GameGetterBloc, GameGetterState>(
+      listener: (context, state) {
+        state.map(
+            initial: (e) {},
+            loadInProgress: (e) {},
+            loadSuccess: (e) {
+              BlocProvider.of<GameDetailBloc>(context)
+                  .add(GameDetailEvent.initialized(e.gameDetails.game));
+              context.router.push(GameDetailRoute(
+                  game: e.gameDetails.game, scores: e.gameDetails.usersScores));
+            });
       },
-      onLongPress: () {
-        _deleteDialog(context, BlocProvider.of<GameActorBloc>(context), game);
-      },
+      child: InkWell(
+        child: Card(
+            margin: const EdgeInsets.all(20),
+            child: Center(
+                child: Text(game.gameName,
+                    style: Theme.of(context).textTheme.bodyMedium))),
+        onTap: () {
+          BlocProvider.of<GameGetterBloc>(context)
+              .add(GameGetterEvent.getGame(game.gameId));
+        },
+        onLongPress: () {
+          // _deleteDialog(context, BlocProvider.of<GameActorBloc>(context), game);
+        },
+      ),
     );
   }
 }

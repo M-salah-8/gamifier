@@ -18,7 +18,13 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$GameDetailEventTearOff {
   const _$GameDetailEventTearOff();
 
-  _Initialized initialized(Game? game) {
+  _CurrentUser currentUser(GamifierUserPrimitive currentUser) {
+    return _CurrentUser(
+      currentUser,
+    );
+  }
+
+  _Initialized initialized(GamePrimitive? game) {
     return _Initialized(
       game,
     );
@@ -27,12 +33,6 @@ class _$GameDetailEventTearOff {
   _NameChanged nameChanged(String gameName) {
     return _NameChanged(
       gameName,
-    );
-  }
-
-  _LevelInceased levelInceased(int points) {
-    return _LevelInceased(
-      points,
     );
   }
 
@@ -54,27 +54,27 @@ const $GameDetailEvent = _$GameDetailEventTearOff();
 mixin _$GameDetailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Game? game) initialized,
+    required TResult Function(GamifierUserPrimitive currentUser) currentUser,
+    required TResult Function(GamePrimitive? game) initialized,
     required TResult Function(String gameName) nameChanged,
-    required TResult Function(int points) levelInceased,
     required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
     required TResult Function() saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Game? game)? initialized,
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
-    TResult Function(int points)? levelInceased,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Game? game)? initialized,
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
-    TResult Function(int points)? levelInceased,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
     required TResult orElse(),
@@ -82,27 +82,27 @@ mixin _$GameDetailEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_LevelInceased value) levelInceased,
     required TResult Function(_GameTodosChanged value) gameTodosChanged,
     required TResult Function(_Saved value) saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_LevelInceased value)? levelInceased,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_LevelInceased value)? levelInceased,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
@@ -128,13 +128,175 @@ class _$GameDetailEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+abstract class _$CurrentUserCopyWith<$Res> {
+  factory _$CurrentUserCopyWith(
+          _CurrentUser value, $Res Function(_CurrentUser) then) =
+      __$CurrentUserCopyWithImpl<$Res>;
+  $Res call({GamifierUserPrimitive currentUser});
+
+  $GamifierUserPrimitiveCopyWith<$Res> get currentUser;
+}
+
+/// @nodoc
+class __$CurrentUserCopyWithImpl<$Res>
+    extends _$GameDetailEventCopyWithImpl<$Res>
+    implements _$CurrentUserCopyWith<$Res> {
+  __$CurrentUserCopyWithImpl(
+      _CurrentUser _value, $Res Function(_CurrentUser) _then)
+      : super(_value, (v) => _then(v as _CurrentUser));
+
+  @override
+  _CurrentUser get _value => super._value as _CurrentUser;
+
+  @override
+  $Res call({
+    Object? currentUser = freezed,
+  }) {
+    return _then(_CurrentUser(
+      currentUser == freezed
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as GamifierUserPrimitive,
+    ));
+  }
+
+  @override
+  $GamifierUserPrimitiveCopyWith<$Res> get currentUser {
+    return $GamifierUserPrimitiveCopyWith<$Res>(_value.currentUser, (value) {
+      return _then(_value.copyWith(currentUser: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_CurrentUser implements _CurrentUser {
+  _$_CurrentUser(this.currentUser);
+
+  @override
+  final GamifierUserPrimitive currentUser;
+
+  @override
+  String toString() {
+    return 'GameDetailEvent.currentUser(currentUser: $currentUser)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _CurrentUser &&
+            const DeepCollectionEquality()
+                .equals(other.currentUser, currentUser));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(currentUser));
+
+  @JsonKey(ignore: true)
+  @override
+  _$CurrentUserCopyWith<_CurrentUser> get copyWith =>
+      __$CurrentUserCopyWithImpl<_CurrentUser>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GamifierUserPrimitive currentUser) currentUser,
+    required TResult Function(GamePrimitive? game) initialized,
+    required TResult Function(String gameName) nameChanged,
+    required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
+    required TResult Function() saved,
+  }) {
+    return currentUser(this.currentUser);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
+    TResult Function(String gameName)? nameChanged,
+    TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
+    TResult Function()? saved,
+  }) {
+    return currentUser?.call(this.currentUser);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
+    TResult Function(String gameName)? nameChanged,
+    TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
+    TResult Function()? saved,
+    required TResult orElse(),
+  }) {
+    if (currentUser != null) {
+      return currentUser(this.currentUser);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentUser value) currentUser,
+    required TResult Function(_Initialized value) initialized,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_GameTodosChanged value) gameTodosChanged,
+    required TResult Function(_Saved value) saved,
+  }) {
+    return currentUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
+    TResult Function(_Initialized value)? initialized,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_GameTodosChanged value)? gameTodosChanged,
+    TResult Function(_Saved value)? saved,
+  }) {
+    return currentUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
+    TResult Function(_Initialized value)? initialized,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_GameTodosChanged value)? gameTodosChanged,
+    TResult Function(_Saved value)? saved,
+    required TResult orElse(),
+  }) {
+    if (currentUser != null) {
+      return currentUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CurrentUser implements GameDetailEvent {
+  factory _CurrentUser(GamifierUserPrimitive currentUser) = _$_CurrentUser;
+
+  GamifierUserPrimitive get currentUser;
+  @JsonKey(ignore: true)
+  _$CurrentUserCopyWith<_CurrentUser> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$InitializedCopyWith<$Res> {
   factory _$InitializedCopyWith(
           _Initialized value, $Res Function(_Initialized) then) =
       __$InitializedCopyWithImpl<$Res>;
-  $Res call({Game? game});
+  $Res call({GamePrimitive? game});
 
-  $GameCopyWith<$Res>? get game;
+  $GamePrimitiveCopyWith<$Res>? get game;
 }
 
 /// @nodoc
@@ -156,17 +318,17 @@ class __$InitializedCopyWithImpl<$Res>
       game == freezed
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
-              as Game?,
+              as GamePrimitive?,
     ));
   }
 
   @override
-  $GameCopyWith<$Res>? get game {
+  $GamePrimitiveCopyWith<$Res>? get game {
     if (_value.game == null) {
       return null;
     }
 
-    return $GameCopyWith<$Res>(_value.game!, (value) {
+    return $GamePrimitiveCopyWith<$Res>(_value.game!, (value) {
       return _then(_value.copyWith(game: value));
     });
   }
@@ -178,7 +340,7 @@ class _$_Initialized implements _Initialized {
   const _$_Initialized(this.game);
 
   @override
-  final Game? game;
+  final GamePrimitive? game;
 
   @override
   String toString() {
@@ -205,9 +367,9 @@ class _$_Initialized implements _Initialized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Game? game) initialized,
+    required TResult Function(GamifierUserPrimitive currentUser) currentUser,
+    required TResult Function(GamePrimitive? game) initialized,
     required TResult Function(String gameName) nameChanged,
-    required TResult Function(int points) levelInceased,
     required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
     required TResult Function() saved,
   }) {
@@ -217,9 +379,9 @@ class _$_Initialized implements _Initialized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Game? game)? initialized,
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
-    TResult Function(int points)? levelInceased,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
   }) {
@@ -229,9 +391,9 @@ class _$_Initialized implements _Initialized {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Game? game)? initialized,
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
-    TResult Function(int points)? levelInceased,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
     required TResult orElse(),
@@ -245,9 +407,9 @@ class _$_Initialized implements _Initialized {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_LevelInceased value) levelInceased,
     required TResult Function(_GameTodosChanged value) gameTodosChanged,
     required TResult Function(_Saved value) saved,
   }) {
@@ -257,9 +419,9 @@ class _$_Initialized implements _Initialized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_LevelInceased value)? levelInceased,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
   }) {
@@ -269,9 +431,9 @@ class _$_Initialized implements _Initialized {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_LevelInceased value)? levelInceased,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
@@ -284,9 +446,9 @@ class _$_Initialized implements _Initialized {
 }
 
 abstract class _Initialized implements GameDetailEvent {
-  const factory _Initialized(Game? game) = _$_Initialized;
+  const factory _Initialized(GamePrimitive? game) = _$_Initialized;
 
-  Game? get game;
+  GamePrimitive? get game;
   @JsonKey(ignore: true)
   _$InitializedCopyWith<_Initialized> get copyWith =>
       throw _privateConstructorUsedError;
@@ -357,9 +519,9 @@ class _$_NameChanged implements _NameChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Game? game) initialized,
+    required TResult Function(GamifierUserPrimitive currentUser) currentUser,
+    required TResult Function(GamePrimitive? game) initialized,
     required TResult Function(String gameName) nameChanged,
-    required TResult Function(int points) levelInceased,
     required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
     required TResult Function() saved,
   }) {
@@ -369,9 +531,9 @@ class _$_NameChanged implements _NameChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Game? game)? initialized,
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
-    TResult Function(int points)? levelInceased,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
   }) {
@@ -381,9 +543,9 @@ class _$_NameChanged implements _NameChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Game? game)? initialized,
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
-    TResult Function(int points)? levelInceased,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
     required TResult orElse(),
@@ -397,9 +559,9 @@ class _$_NameChanged implements _NameChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_LevelInceased value) levelInceased,
     required TResult Function(_GameTodosChanged value) gameTodosChanged,
     required TResult Function(_Saved value) saved,
   }) {
@@ -409,9 +571,9 @@ class _$_NameChanged implements _NameChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_LevelInceased value)? levelInceased,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
   }) {
@@ -421,9 +583,9 @@ class _$_NameChanged implements _NameChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_LevelInceased value)? levelInceased,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
@@ -441,158 +603,6 @@ abstract class _NameChanged implements GameDetailEvent {
   String get gameName;
   @JsonKey(ignore: true)
   _$NameChangedCopyWith<_NameChanged> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$LevelInceasedCopyWith<$Res> {
-  factory _$LevelInceasedCopyWith(
-          _LevelInceased value, $Res Function(_LevelInceased) then) =
-      __$LevelInceasedCopyWithImpl<$Res>;
-  $Res call({int points});
-}
-
-/// @nodoc
-class __$LevelInceasedCopyWithImpl<$Res>
-    extends _$GameDetailEventCopyWithImpl<$Res>
-    implements _$LevelInceasedCopyWith<$Res> {
-  __$LevelInceasedCopyWithImpl(
-      _LevelInceased _value, $Res Function(_LevelInceased) _then)
-      : super(_value, (v) => _then(v as _LevelInceased));
-
-  @override
-  _LevelInceased get _value => super._value as _LevelInceased;
-
-  @override
-  $Res call({
-    Object? points = freezed,
-  }) {
-    return _then(_LevelInceased(
-      points == freezed
-          ? _value.points
-          : points // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_LevelInceased implements _LevelInceased {
-  const _$_LevelInceased(this.points);
-
-  @override
-  final int points;
-
-  @override
-  String toString() {
-    return 'GameDetailEvent.levelInceased(points: $points)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _LevelInceased &&
-            const DeepCollectionEquality().equals(other.points, points));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(points));
-
-  @JsonKey(ignore: true)
-  @override
-  _$LevelInceasedCopyWith<_LevelInceased> get copyWith =>
-      __$LevelInceasedCopyWithImpl<_LevelInceased>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Game? game) initialized,
-    required TResult Function(String gameName) nameChanged,
-    required TResult Function(int points) levelInceased,
-    required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
-    required TResult Function() saved,
-  }) {
-    return levelInceased(points);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Game? game)? initialized,
-    TResult Function(String gameName)? nameChanged,
-    TResult Function(int points)? levelInceased,
-    TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
-    TResult Function()? saved,
-  }) {
-    return levelInceased?.call(points);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Game? game)? initialized,
-    TResult Function(String gameName)? nameChanged,
-    TResult Function(int points)? levelInceased,
-    TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
-    TResult Function()? saved,
-    required TResult orElse(),
-  }) {
-    if (levelInceased != null) {
-      return levelInceased(points);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initialized value) initialized,
-    required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_LevelInceased value) levelInceased,
-    required TResult Function(_GameTodosChanged value) gameTodosChanged,
-    required TResult Function(_Saved value) saved,
-  }) {
-    return levelInceased(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initialized value)? initialized,
-    TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_LevelInceased value)? levelInceased,
-    TResult Function(_GameTodosChanged value)? gameTodosChanged,
-    TResult Function(_Saved value)? saved,
-  }) {
-    return levelInceased?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialized value)? initialized,
-    TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_LevelInceased value)? levelInceased,
-    TResult Function(_GameTodosChanged value)? gameTodosChanged,
-    TResult Function(_Saved value)? saved,
-    required TResult orElse(),
-  }) {
-    if (levelInceased != null) {
-      return levelInceased(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LevelInceased implements GameDetailEvent {
-  const factory _LevelInceased(int points) = _$_LevelInceased;
-
-  int get points;
-  @JsonKey(ignore: true)
-  _$LevelInceasedCopyWith<_LevelInceased> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -661,9 +671,9 @@ class _$_GameTodosChanged implements _GameTodosChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Game? game) initialized,
+    required TResult Function(GamifierUserPrimitive currentUser) currentUser,
+    required TResult Function(GamePrimitive? game) initialized,
     required TResult Function(String gameName) nameChanged,
-    required TResult Function(int points) levelInceased,
     required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
     required TResult Function() saved,
   }) {
@@ -673,9 +683,9 @@ class _$_GameTodosChanged implements _GameTodosChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Game? game)? initialized,
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
-    TResult Function(int points)? levelInceased,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
   }) {
@@ -685,9 +695,9 @@ class _$_GameTodosChanged implements _GameTodosChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Game? game)? initialized,
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
-    TResult Function(int points)? levelInceased,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
     required TResult orElse(),
@@ -701,9 +711,9 @@ class _$_GameTodosChanged implements _GameTodosChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_LevelInceased value) levelInceased,
     required TResult Function(_GameTodosChanged value) gameTodosChanged,
     required TResult Function(_Saved value) saved,
   }) {
@@ -713,9 +723,9 @@ class _$_GameTodosChanged implements _GameTodosChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_LevelInceased value)? levelInceased,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
   }) {
@@ -725,9 +735,9 @@ class _$_GameTodosChanged implements _GameTodosChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_LevelInceased value)? levelInceased,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
@@ -787,9 +797,9 @@ class _$_Saved implements _Saved {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Game? game) initialized,
+    required TResult Function(GamifierUserPrimitive currentUser) currentUser,
+    required TResult Function(GamePrimitive? game) initialized,
     required TResult Function(String gameName) nameChanged,
-    required TResult Function(int points) levelInceased,
     required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
     required TResult Function() saved,
   }) {
@@ -799,9 +809,9 @@ class _$_Saved implements _Saved {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Game? game)? initialized,
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
-    TResult Function(int points)? levelInceased,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
   }) {
@@ -811,9 +821,9 @@ class _$_Saved implements _Saved {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Game? game)? initialized,
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
-    TResult Function(int points)? levelInceased,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
     required TResult orElse(),
@@ -827,9 +837,9 @@ class _$_Saved implements _Saved {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_LevelInceased value) levelInceased,
     required TResult Function(_GameTodosChanged value) gameTodosChanged,
     required TResult Function(_Saved value) saved,
   }) {
@@ -839,9 +849,9 @@ class _$_Saved implements _Saved {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_LevelInceased value)? levelInceased,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
   }) {
@@ -851,9 +861,9 @@ class _$_Saved implements _Saved {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_LevelInceased value)? levelInceased,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
@@ -874,13 +884,15 @@ class _$GameDetailStateTearOff {
   const _$GameDetailStateTearOff();
 
   _GameDetailState call(
-      {required Game game,
+      {required GamePrimitive game,
+      required GamifierUserPrimitive currentUser,
       required bool showErrorMessages,
       required bool isEditing,
       required bool isSaving,
       required Option<Either<GameFailure, Unit>> saveFailureOrSuccessOption}) {
     return _GameDetailState(
       game: game,
+      currentUser: currentUser,
       showErrorMessages: showErrorMessages,
       isEditing: isEditing,
       isSaving: isSaving,
@@ -894,7 +906,8 @@ const $GameDetailState = _$GameDetailStateTearOff();
 
 /// @nodoc
 mixin _$GameDetailState {
-  Game get game => throw _privateConstructorUsedError;
+  GamePrimitive get game => throw _privateConstructorUsedError;
+  GamifierUserPrimitive get currentUser => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
   bool get isSaving => throw _privateConstructorUsedError;
@@ -912,13 +925,15 @@ abstract class $GameDetailStateCopyWith<$Res> {
           GameDetailState value, $Res Function(GameDetailState) then) =
       _$GameDetailStateCopyWithImpl<$Res>;
   $Res call(
-      {Game game,
+      {GamePrimitive game,
+      GamifierUserPrimitive currentUser,
       bool showErrorMessages,
       bool isEditing,
       bool isSaving,
       Option<Either<GameFailure, Unit>> saveFailureOrSuccessOption});
 
-  $GameCopyWith<$Res> get game;
+  $GamePrimitiveCopyWith<$Res> get game;
+  $GamifierUserPrimitiveCopyWith<$Res> get currentUser;
 }
 
 /// @nodoc
@@ -933,6 +948,7 @@ class _$GameDetailStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? game = freezed,
+    Object? currentUser = freezed,
     Object? showErrorMessages = freezed,
     Object? isEditing = freezed,
     Object? isSaving = freezed,
@@ -942,7 +958,11 @@ class _$GameDetailStateCopyWithImpl<$Res>
       game: game == freezed
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
-              as Game,
+              as GamePrimitive,
+      currentUser: currentUser == freezed
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as GamifierUserPrimitive,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -963,9 +983,16 @@ class _$GameDetailStateCopyWithImpl<$Res>
   }
 
   @override
-  $GameCopyWith<$Res> get game {
-    return $GameCopyWith<$Res>(_value.game, (value) {
+  $GamePrimitiveCopyWith<$Res> get game {
+    return $GamePrimitiveCopyWith<$Res>(_value.game, (value) {
       return _then(_value.copyWith(game: value));
+    });
+  }
+
+  @override
+  $GamifierUserPrimitiveCopyWith<$Res> get currentUser {
+    return $GamifierUserPrimitiveCopyWith<$Res>(_value.currentUser, (value) {
+      return _then(_value.copyWith(currentUser: value));
     });
   }
 }
@@ -978,14 +1005,17 @@ abstract class _$GameDetailStateCopyWith<$Res>
       __$GameDetailStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Game game,
+      {GamePrimitive game,
+      GamifierUserPrimitive currentUser,
       bool showErrorMessages,
       bool isEditing,
       bool isSaving,
       Option<Either<GameFailure, Unit>> saveFailureOrSuccessOption});
 
   @override
-  $GameCopyWith<$Res> get game;
+  $GamePrimitiveCopyWith<$Res> get game;
+  @override
+  $GamifierUserPrimitiveCopyWith<$Res> get currentUser;
 }
 
 /// @nodoc
@@ -1002,6 +1032,7 @@ class __$GameDetailStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? game = freezed,
+    Object? currentUser = freezed,
     Object? showErrorMessages = freezed,
     Object? isEditing = freezed,
     Object? isSaving = freezed,
@@ -1011,7 +1042,11 @@ class __$GameDetailStateCopyWithImpl<$Res>
       game: game == freezed
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
-              as Game,
+              as GamePrimitive,
+      currentUser: currentUser == freezed
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as GamifierUserPrimitive,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -1037,13 +1072,16 @@ class __$GameDetailStateCopyWithImpl<$Res>
 class _$_GameDetailState implements _GameDetailState {
   const _$_GameDetailState(
       {required this.game,
+      required this.currentUser,
       required this.showErrorMessages,
       required this.isEditing,
       required this.isSaving,
       required this.saveFailureOrSuccessOption});
 
   @override
-  final Game game;
+  final GamePrimitive game;
+  @override
+  final GamifierUserPrimitive currentUser;
   @override
   final bool showErrorMessages;
   @override
@@ -1055,7 +1093,7 @@ class _$_GameDetailState implements _GameDetailState {
 
   @override
   String toString() {
-    return 'GameDetailState(game: $game, showErrorMessages: $showErrorMessages, isEditing: $isEditing, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'GameDetailState(game: $game, currentUser: $currentUser, showErrorMessages: $showErrorMessages, isEditing: $isEditing, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
@@ -1064,6 +1102,8 @@ class _$_GameDetailState implements _GameDetailState {
         (other.runtimeType == runtimeType &&
             other is _GameDetailState &&
             const DeepCollectionEquality().equals(other.game, game) &&
+            const DeepCollectionEquality()
+                .equals(other.currentUser, currentUser) &&
             const DeepCollectionEquality()
                 .equals(other.showErrorMessages, showErrorMessages) &&
             const DeepCollectionEquality().equals(other.isEditing, isEditing) &&
@@ -1076,6 +1116,7 @@ class _$_GameDetailState implements _GameDetailState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(game),
+      const DeepCollectionEquality().hash(currentUser),
       const DeepCollectionEquality().hash(showErrorMessages),
       const DeepCollectionEquality().hash(isEditing),
       const DeepCollectionEquality().hash(isSaving),
@@ -1089,7 +1130,8 @@ class _$_GameDetailState implements _GameDetailState {
 
 abstract class _GameDetailState implements GameDetailState {
   const factory _GameDetailState(
-      {required Game game,
+      {required GamePrimitive game,
+      required GamifierUserPrimitive currentUser,
       required bool showErrorMessages,
       required bool isEditing,
       required bool isSaving,
@@ -1097,7 +1139,9 @@ abstract class _GameDetailState implements GameDetailState {
           saveFailureOrSuccessOption}) = _$_GameDetailState;
 
   @override
-  Game get game;
+  GamePrimitive get game;
+  @override
+  GamifierUserPrimitive get currentUser;
   @override
   bool get showErrorMessages;
   @override

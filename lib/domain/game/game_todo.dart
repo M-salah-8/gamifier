@@ -11,6 +11,6 @@ class GameTodo with _$GameTodo {
     required int points,
     required bool done,
   }) = _GameTodo;
-  factory GameTodo.empty() =>
-      GameTodo(id: UniqueId(), todoName: '', times: 1, points: 10, done: false);
+  factory GameTodo.empty() => GameTodo(
+      id: UniqueId(), todoName: '', times: 0, points: 100, done: false);
 }

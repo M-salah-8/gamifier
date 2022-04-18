@@ -3,14 +3,16 @@ part of 'game_detail_bloc.dart';
 @freezed
 class GameDetailState with _$GameDetailState {
   const factory GameDetailState({
-    required Game game,
+    required GamePrimitive game,
+    required GamifierUserPrimitive currentUser,
     required bool showErrorMessages,
     required bool isEditing,
     required bool isSaving,
     required Option<Either<GameFailure, Unit>> saveFailureOrSuccessOption,
   }) = _GameDetailState;
   factory GameDetailState.initial() => GameDetailState(
-        game: Game.empty(),
+        game: GamePrimitive.fromDomain(Game.empty()),
+        currentUser: GamifierUserPrimitive.empty(),
         showErrorMessages: false,
         isEditing: false,
         isSaving: false,

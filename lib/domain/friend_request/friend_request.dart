@@ -1,27 +1,64 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:gamifier/domain/user/gamifier_user.dart';
 
+part 'friend_request.freezed.dart';
 
-enum RequestStatus {
-  /// sender send the request but not accepted by the receiver.
-  requested,
-  /// receiver accepted the request
-  accepted,
-  /// receiver cancelled the request
-  cancelled,
-}
+// enum RequestStatus {
+//   /// sender send the request but not accepted by the receiver.
+//   requested,
 
+//   /// receiver accepted the request
+//   accepted,
 
-class FriendRequest {
-  final String id;
-  final String senderId;
-  final String recieverId;
-  final RequestStatus status;
+//   /// receiver cancelled the request
+//   cancelled,
+// }
+
+@freezed
+class FriendRequest with _$FriendRequest {
+  const factory FriendRequest({
+    required String id,
+    required GamifierUser sender,
+    required GamifierUser receiver,
+    required String requestStatus,
+  }) = _FriendRequest;
+  // factory FriendRequest.fromJson(Map<String, dynamic> json) =>
+  //     _$FriendRequestFromJson(json);
 }
 
 
 /**
 
+TASK 3:
 
-TASK 1:
+### SEARCH FOR FRIENDS ###
+
+1- CREATE TEXT FIELD TO SEARCH FOR SPECIFIC USER
+2- QUERY FOR THE SELECTED USER
+
+## friend request repository ##
+
+6- getUsersByName (String queryName){
+
+    List<FriendRequest> ==> collection('users').where('name',isStartedWith: queryName).get()
+
+       return right(List<FriendRequest>);
+}
+
+3- DISPLAY THE RESULTS IN THE UI
+
+
+TASK 4:
+
+
+1- UPDATE THE GAME MODEL TO HAS USER-ID
+
+
+*/
+
+/**
+ * Done:
+  TASK 1:
 
 #### friend request repository ####
 
@@ -46,7 +83,8 @@ TASK 1:
 
 // get all the pending requests
 2- getRequests(){ "RELATED UI ==> CREATE SCREEN TO GET ALL THE PENDING REQUESTS"
-List<FriendRequest> => collection('friend_request').where('status',isEqualTo:'requested','recevierId',isEqualTo: user.id)
+List<FriendRequest> => collection('friend_request')
+.where('status',isEqualTo:'requested','recevierId',isEqualTo: user.id)
 }
 
 3- acceptRequest(String requestId){ "RELATED UI ==> ACCEPT BUTTON FROM REQUEST CARD LAYOUT"
@@ -66,10 +104,13 @@ List<FriendRequest> => collection('friend_request').where('status',isEqualTo:'re
 }
 
 5- getFriends(){{ "RELATED UI ==> CREATE SCREEN TO GET ALL OF YOUR FRIENDS"
-  List<FriendRequest> => collection('friend_request').where('status',isEqualTo:'accepted','recevierId',isEqualTo: user.id)
+  List<FriendRequest> => collection('friend_request').
+  where('status',isEqualTo:'accepted','recevierId',isEqualTo: user.id)
 }
 
-TASK 2:
+
+
+ * TASK 2:
 
 save gamifier user docment in firestore !! HOW ? ==>
 
@@ -80,38 +121,12 @@ save gamifier user docment in firestore !! HOW ? ==>
     if(query.size == 0){
         final docRef = collection('users').doc();
         docRef.id = _firebaseAuth.currentUser.id;
-        final userModel = GamifierUser.newUser(
+        final userModel = FriendRequest.newUser(
           id: _firebaseAuth.currentUser.id,
           name: googleUser.name,
           email: googleUser.email,
         )
         await docRef.set(userModel.toJson())
-      }
+      } 
 
-TASK 3:
-
-### SEARCH FOR FRIENDS ###
-
-1- CREATE TEXT FIELD TO SEARCH FOR SPECIFIC USER
-2- QUERY FOR THE SELECTED USER
-
-## friend request repository ##
-
-6- getUsersByName (String queryName){
-
-    List<GamifierUser> ==> collection('users').where('name',isStartedWith: queryName).get()
-
-       return right(List<GamifierUser>);
-}
-
-3- DISPLAY THE RESULTS IN THE UI
-
-
-TASK 4:
-
-
-1- UPDATE THE GAME MODEL TO HAS USER-ID
-
-
-*/
-
+ */

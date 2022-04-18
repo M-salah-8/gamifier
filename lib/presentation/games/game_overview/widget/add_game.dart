@@ -10,7 +10,8 @@ class AddGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: const Card(child: Center(child: Icon(Icons.add))),
+      child: const Card(
+          margin: EdgeInsets.all(20), child: Center(child: Icon(Icons.add))),
       onTap: () {
         _createDialog(context, BlocProvider.of<GameDetailBloc>(context));
       },
@@ -34,11 +35,11 @@ _createDialog(BuildContext context, GameDetailBloc gameDetailBloc) {
           actions: <Widget>[
             TextButton(
                 onPressed: () {
-                  gameDetailBloc.add(const GameDetailEvent.saved());
+                  // gameDetailBloc.add(const GameDetailEvent.saved());
                   context.router.popAndPush(
                       GameDetailRoute(game: gameDetailBloc.state.game));
                 },
-                child: const Text('Create'))
+                child: const Text('Next'))
           ],
         );
       });
