@@ -46,7 +46,11 @@ userDialog(BuildContext context) {
                           ),
                           borderRadius: BorderRadius.circular(8)),
                       margin: const EdgeInsets.all(10),
-                      child: Text(e.gamifierUser.name),
+                      padding: const EdgeInsets.all(2),
+                      child: Text(
+                        e.gamifierUser.name,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   );
                 }, failed: (e) {

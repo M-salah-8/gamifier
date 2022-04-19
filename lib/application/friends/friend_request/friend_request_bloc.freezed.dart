@@ -725,9 +725,9 @@ abstract class _RequestCancelled implements FriendRequestEvent {
 class _$FriendRequestStateTearOff {
   const _$FriendRequestStateTearOff();
 
-  _request call(FriendRequestPrimitive friendRequest) {
-    return _request(
-      friendRequest,
+  _Failure failure(String? failuer) {
+    return _Failure(
+      failuer,
     );
   }
 }
@@ -737,7 +737,39 @@ const $FriendRequestState = _$FriendRequestStateTearOff();
 
 /// @nodoc
 mixin _$FriendRequestState {
-  FriendRequestPrimitive get friendRequest =>
+  String? get failuer => throw _privateConstructorUsedError;
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? failuer) failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? failuer)? failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? failuer)? failure,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Failure value) failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Failure value)? failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -750,9 +782,7 @@ abstract class $FriendRequestStateCopyWith<$Res> {
   factory $FriendRequestStateCopyWith(
           FriendRequestState value, $Res Function(FriendRequestState) then) =
       _$FriendRequestStateCopyWithImpl<$Res>;
-  $Res call({FriendRequestPrimitive friendRequest});
-
-  $FriendRequestPrimitiveCopyWith<$Res> get friendRequest;
+  $Res call({String? failuer});
 }
 
 /// @nodoc
@@ -766,98 +796,143 @@ class _$FriendRequestStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? friendRequest = freezed,
+    Object? failuer = freezed,
   }) {
     return _then(_value.copyWith(
-      friendRequest: friendRequest == freezed
-          ? _value.friendRequest
-          : friendRequest // ignore: cast_nullable_to_non_nullable
-              as FriendRequestPrimitive,
+      failuer: failuer == freezed
+          ? _value.failuer
+          : failuer // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
-
-  @override
-  $FriendRequestPrimitiveCopyWith<$Res> get friendRequest {
-    return $FriendRequestPrimitiveCopyWith<$Res>(_value.friendRequest, (value) {
-      return _then(_value.copyWith(friendRequest: value));
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$requestCopyWith<$Res>
+abstract class _$FailureCopyWith<$Res>
     implements $FriendRequestStateCopyWith<$Res> {
-  factory _$requestCopyWith(_request value, $Res Function(_request) then) =
-      __$requestCopyWithImpl<$Res>;
+  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) then) =
+      __$FailureCopyWithImpl<$Res>;
   @override
-  $Res call({FriendRequestPrimitive friendRequest});
-
-  @override
-  $FriendRequestPrimitiveCopyWith<$Res> get friendRequest;
+  $Res call({String? failuer});
 }
 
 /// @nodoc
-class __$requestCopyWithImpl<$Res>
+class __$FailureCopyWithImpl<$Res>
     extends _$FriendRequestStateCopyWithImpl<$Res>
-    implements _$requestCopyWith<$Res> {
-  __$requestCopyWithImpl(_request _value, $Res Function(_request) _then)
-      : super(_value, (v) => _then(v as _request));
+    implements _$FailureCopyWith<$Res> {
+  __$FailureCopyWithImpl(_Failure _value, $Res Function(_Failure) _then)
+      : super(_value, (v) => _then(v as _Failure));
 
   @override
-  _request get _value => super._value as _request;
+  _Failure get _value => super._value as _Failure;
 
   @override
   $Res call({
-    Object? friendRequest = freezed,
+    Object? failuer = freezed,
   }) {
-    return _then(_request(
-      friendRequest == freezed
-          ? _value.friendRequest
-          : friendRequest // ignore: cast_nullable_to_non_nullable
-              as FriendRequestPrimitive,
+    return _then(_Failure(
+      failuer == freezed
+          ? _value.failuer
+          : failuer // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_request implements _request {
-  const _$_request(this.friendRequest);
+class _$_Failure implements _Failure {
+  const _$_Failure(this.failuer);
 
   @override
-  final FriendRequestPrimitive friendRequest;
+  final String? failuer;
 
   @override
   String toString() {
-    return 'FriendRequestState(friendRequest: $friendRequest)';
+    return 'FriendRequestState.failure(failuer: $failuer)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _request &&
-            const DeepCollectionEquality()
-                .equals(other.friendRequest, friendRequest));
+            other is _Failure &&
+            const DeepCollectionEquality().equals(other.failuer, failuer));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(friendRequest));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failuer));
 
   @JsonKey(ignore: true)
   @override
-  _$requestCopyWith<_request> get copyWith =>
-      __$requestCopyWithImpl<_request>(this, _$identity);
+  _$FailureCopyWith<_Failure> get copyWith =>
+      __$FailureCopyWithImpl<_Failure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? failuer) failure,
+  }) {
+    return failure(failuer);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? failuer)? failure,
+  }) {
+    return failure?.call(failuer);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? failuer)? failure,
+    required TResult orElse(),
+  }) {
+    if (failure != null) {
+      return failure(failuer);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Failure value) failure,
+  }) {
+    return failure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Failure value)? failure,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (failure != null) {
+      return failure(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _request implements FriendRequestState {
-  const factory _request(FriendRequestPrimitive friendRequest) = _$_request;
+abstract class _Failure implements FriendRequestState {
+  const factory _Failure(String? failuer) = _$_Failure;
 
   @override
-  FriendRequestPrimitive get friendRequest;
+  String? get failuer;
   @override
   @JsonKey(ignore: true)
-  _$requestCopyWith<_request> get copyWith =>
+  _$FailureCopyWith<_Failure> get copyWith =>
       throw _privateConstructorUsedError;
 }

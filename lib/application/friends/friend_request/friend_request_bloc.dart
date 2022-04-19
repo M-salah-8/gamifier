@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gamifier/domain/friend_request/i_friend_request_repository.dart';
 import 'package:gamifier/presentation/friends/misc/friends_presentation_class.dart';
@@ -20,8 +21,10 @@ class FriendRequestBloc extends Bloc<FriendRequestEvent, FriendRequestState> {
       await event.map(currentUser: (e) {
         currentUser = e.currentUser;
       }, requestSended: (e) async {
-        await _friendRequestRepository.sendRequest(
+        final requestOrFailure = await _friendRequestRepository.sendRequest(
             currentUser.toDomain(), e.receiver.toDomain());
+        requestOrFailure.fold(
+            (l) => emit(FriendRequestState.failure(l)), (r) => null);
       }, requestAccepted: (e) async {
         await _friendRequestRepository.acceptRequest(e.requestid);
       }, requestCancelled: (e) async {

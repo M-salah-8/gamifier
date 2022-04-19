@@ -18,11 +18,15 @@ class GameTodoList extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO conditon when isEditing is true
     // compain user's score and rigid game todo aspects in one todo list
-    final todos = gameTodos.map((gameTodo) {
-      final userTodo =
-          userTodos?.where((userTodo) => userTodo.id == gameTodo.id).first;
-      return gameTodo.copyWith(times: userTodo!.times);
-    }).toList();
+    late final List<GameTodoPrimitive> todos;
+    userTodos != null
+        ? todos = gameTodos.map((gameTodo) {
+            final userTodo = userTodos
+                ?.where((userTodo) => userTodo.id == gameTodo.id)
+                .first;
+            return gameTodo.copyWith(times: userTodo!.times);
+          }).toList()
+        : todos = gameTodos;
     final size = MediaQuery.of(context).size;
     return GridView.builder(
         // padding: EdgeInsets.fromLTRB(

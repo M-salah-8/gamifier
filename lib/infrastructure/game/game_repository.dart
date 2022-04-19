@@ -74,7 +74,25 @@ class GameRepository implements IGameRepository {
         .collection('user_games_list')
         .doc(gameDTO.id)
         .set(GameKeyTDO(gameId: gameDTO.id, gameName: gameDTO.name).toJson());
-    // #### change
+    // #### change number of users in game and add friend to users id list
+    // final usersList = gameDTO.usersId..add(friendTDO.id);
+    await _firestore.collection('games').doc(gameDTO.id).update(gameDTO
+        .copyWith(
+            noOfUsers: gameDTO.noOfUsers + 1,
+            usersId: gameDTO.usersId..add(friendTDO.id))
+        .toJson());
+    //  #### set scores file to friend
+    // create a file unique id from compining the ids of game and user
+    // to make the search proces easy
+    final gameUser =
+        _firestore.collection('games_users').doc(gameDTO.id + friendTDO.id);
+    await gameUser.set(UserScoreTDO(
+            gameId: gameDTO.id,
+            gamifierUserId: friendTDO.id,
+            userName: friendTDO.name,
+            level: 0,
+            gameTodos: gameDTO.gameTodos)
+        .toJson());
   }
 
   @override
@@ -92,7 +110,6 @@ class GameRepository implements IGameRepository {
           .doc(gameDTO.id)
           .set(gameDTO.toJson());
       // #### adding new game key to the creater
-
       // TODO better way?
       // final userGamesListRef =
       await _firestore
@@ -103,10 +120,11 @@ class GameRepository implements IGameRepository {
           .set(GameKeyTDO(gameId: gameDTO.id, gameName: gameDTO.name).toJson());
 
       // #### add admen as new user(player) to the game to set his scores
-      // create a unique id from compining the ids of game and user to make the
-      // search proces easy
-      final docId = gameDTO.id + admin;
-      final gameUser = _firestore.collection('games_users').doc(docId);
+      // create a file unique id from compining the ids of game and user
+      // to make the search proces easy
+      // final docId = gameDTO.id + admin;
+      final gameUser =
+          _firestore.collection('games_users').doc(gameDTO.id + admin);
       await gameUser.set(UserScoreTDO(
               gameId: gameDTO.id,
               gamifierUserId: admin,
@@ -125,33 +143,28 @@ class GameRepository implements IGameRepository {
   }
 
   @override
-  Future<Either<GameFailure, Unit>> update(Game game) async {
+  Future<Either<GameFailure, Unit>> delete(Game game) async {
     // TODO: implement delete
     try {
       final gameDTO = GameDTO.fromDomain(game);
       final gameId = gameDTO.id;
       // ### delete the game from game collection
       await _firestore.collection('games').doc(gameDTO.id).delete();
-      // ### get the list of users
-      gameDTO.usersId.map((user) async {
-        // delete the game key for every one
+      // ### get the list of users to delete game keys and scores
+      gameDTO.usersId.forEach(((user) async {
+        // delete the game key for every user
         await _firestore
             .collection('users')
             .doc(user)
             .collection('user_games_list')
-            .doc(gameDTO.id)
+            .doc(gameId)
             .delete();
         // delete the scores for all users
         await _firestore
             .collection('games_users')
             .doc(gameDTO.id + user)
             .delete();
-      });
-
-      await _firestore
-          .collection('games')
-          .doc(gameDTO.id)
-          .update(gameDTO.toJson());
+      }));
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
@@ -163,7 +176,7 @@ class GameRepository implements IGameRepository {
   }
 
   @override
-  Future<Either<GameFailure, Unit>> delete(Game game) async {
+  Future<Either<GameFailure, Unit>> update(Game game) async {
     // TODO: implement update
     // TODO: suitable exciptions
     try {

@@ -9,15 +9,17 @@ class UsersScoresList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return ListView.builder(
-      padding: EdgeInsets.fromLTRB(
-          size.width * .01, size.height * .01, size.width * .01, 0),
-      itemCount: scores?.length,
-      itemBuilder: (context, index) {
-        return ScoreCard(
-          score: scores![index],
-        );
-      },
-    );
+    return scores == null
+        ? const Text('')
+        : ListView.builder(
+            padding: EdgeInsets.fromLTRB(
+                size.width * .01, size.height * .01, size.width * .01, 0),
+            itemCount: scores?.length,
+            itemBuilder: (context, index) {
+              return ScoreCard(
+                score: scores![index],
+              );
+            },
+          );
   }
 }

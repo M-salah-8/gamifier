@@ -36,31 +36,29 @@ class GameCard extends StatelessWidget {
           BlocProvider.of<GameGetterBloc>(context)
               .add(GameGetterEvent.getGame(game.gameId));
         },
-        onLongPress: () {
-          // _deleteDialog(context, BlocProvider.of<GameActorBloc>(context), game);
-        },
+        onLongPress: () {},
       ),
     );
   }
 }
 
-_deleteDialog(BuildContext context, GameActorBloc gameActorBloc, Game game) {
-  showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('DELETE:'),
-          content: Text(game.name),
-          actions: <Widget>[
-            TextButton(
-                onPressed: () {
-                  gameActorBloc.add(GameActorEvent.deleted(game));
-                },
-                child: const Text(
-                  'DELETE',
-                  style: TextStyle(color: Colors.red),
-                ))
-          ],
-        );
-      });
-}
+// _deleteDialog(BuildContext context, GameActorBloc gameActorBloc, Game game) {
+//   showDialog(
+//       context: context,
+//       builder: (context) {
+//         return AlertDialog(
+//           title: const Text('DELETE:'),
+//           content: Text(game.name),
+//           actions: <Widget>[
+//             TextButton(
+//                 onPressed: () {
+//                   gameActorBloc.add(GameActorEvent.deleted(game));
+//                 },
+//                 child: const Text(
+//                   'DELETE',
+//                   style: TextStyle(color: Colors.red),
+//                 ))
+//           ],
+//         );
+//       });
+// }

@@ -43,8 +43,8 @@ class Games extends StatelessWidget {
                 child: ListTile(
                   title: const Text('friend request'),
                   onTap: () {
-                    context.router.pop();
                     _showRequestDialog();
+                    // context.router.pop();
                   },
                 ),
               ),

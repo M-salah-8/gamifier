@@ -20,45 +20,40 @@ class GameDetailBloc extends Bloc<GameDetailEvent, GameDetailState> {
   final IGameRepository _gameRepository;
   GameDetailBloc(this._gameRepository) : super(GameDetailState.initial()) {
     on<GameDetailEvent>((event, emit) async {
-      await event.map(
-        currentUser: (e) {
-          currentUser = e.currentUser;
-        },
-        initialized: (e) {
-          e.game == null
-              ? emit(
-                  GameDetailState.initial().copyWith(currentUser: currentUser))
-              : emit(state.copyWith(
-                  game: e.game!, isEditing: true, currentUser: currentUser));
-        },
-        nameChanged: (e) {
-          emit(state.copyWith(
-              game: state.game.copyWith(name: e.gameName),
-              saveFailureOrSuccessOption: none()));
-        },
-        gameTodosChanged: (e) {
-          emit(state.copyWith(
-              game: state.game.copyWith(gameTodos: e.todos.asList()),
-              saveFailureOrSuccessOption: none()));
-        },
-        saved: (_) async {
-          Either<GameFailure, Unit>? failureOrSuccess;
-          emit(state.copyWith(
-              isSaving: true, saveFailureOrSuccessOption: none()));
-          // TODO fix validation from core and then here
-          // if (state.game) {
-          failureOrSuccess = state.isEditing
-              ? await _gameRepository.update(state.game.toDomain())
-              : await _gameRepository.create(
-                  state.game.toDomain(), currentUser.toDomain());
-          // }
-          emit(state.copyWith(
-            isSaving: false,
-            showErrorMessages: true,
-            saveFailureOrSuccessOption: optionOf(failureOrSuccess),
-          ));
-        },
-      );
+      await event.map(currentUser: (e) {
+        currentUser = e.currentUser;
+      }, initialized: (e) {
+        e.game == null
+            ? emit(GameDetailState.initial().copyWith(currentUser: currentUser))
+            : emit(state.copyWith(
+                game: e.game!, isEditing: true, currentUser: currentUser));
+      }, nameChanged: (e) {
+        emit(state.copyWith(
+            game: state.game.copyWith(name: e.gameName),
+            saveFailureOrSuccessOption: none()));
+      }, gameTodosChanged: (e) {
+        emit(state.copyWith(
+            game: state.game.copyWith(gameTodos: e.todos.asList()),
+            saveFailureOrSuccessOption: none()));
+      }, saved: (_) async {
+        Either<GameFailure, Unit>? failureOrSuccess;
+        emit(
+            state.copyWith(isSaving: true, saveFailureOrSuccessOption: none()));
+        // TODO fix validation from core and then here
+        // if (state.game) {
+        failureOrSuccess = state.isEditing
+            ? await _gameRepository.update(state.game.toDomain())
+            : await _gameRepository.create(
+                state.game.toDomain(), currentUser.toDomain());
+        // }
+        emit(state.copyWith(
+          isSaving: false,
+          showErrorMessages: true,
+          saveFailureOrSuccessOption: optionOf(failureOrSuccess),
+        ));
+      }, scoreAdded: (e) {
+        // TODO
+      });
     });
   }
 }

@@ -6,6 +6,8 @@ class GameDetailEvent with _$GameDetailEvent {
       _CurrentUser;
   const factory GameDetailEvent.initialized(GamePrimitive? game) = _Initialized;
   const factory GameDetailEvent.nameChanged(String gameName) = _NameChanged;
+  const factory GameDetailEvent.scoreAdded(String gameId, String todoId) =
+      _ScoreAdded;
   const factory GameDetailEvent.gameTodosChanged(
       KtList<GameTodoPrimitive> todos) = _GameTodosChanged;
   const factory GameDetailEvent.saved() = _Saved;

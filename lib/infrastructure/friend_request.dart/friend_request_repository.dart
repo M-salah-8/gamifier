@@ -111,16 +111,58 @@ class FriendRequestRepository implements IFriendRequestRepository {
   }
 
   @override
-  sendRequest(GamifierUser currentUser, GamifierUser receiver) async {
+  Future<Either<String, Unit>> sendRequest(
+      GamifierUser currentUser, GamifierUser receiver) async {
     // TODO easy way?
     // put new friend request in firestore
-    final docRef = _firestore.collection('friend_request').doc();
-    docRef.set(FriendRequestTDO(
-            id: docRef.id,
-            sender: GamifierUserTDO.fromDomain(currentUser),
-            receiver: GamifierUserTDO.fromDomain(receiver),
-            requestStatus: 'requested')
-        .toJson());
+    final currentUserTDO = GamifierUserTDO.fromDomain(currentUser);
+    final receiverTDO = GamifierUserTDO.fromDomain(receiver);
+    final currentUserId = currentUserTDO.id;
+    final receiverId = receiverTDO.id;
+
+    // ### making id for request file:
+    /**  it's combined from the two users ids which makes it unique sorting
+     *  the ids befor combining to be sure they are in the same order
+     * and that is for when : 
+     * (1) the receiver try to send => send a mesage that the recever allready
+     * made a request
+     * (2) status is accepted => refuse to make new request
+     * (3) if receiver=sender = request won't be sent(you can't send request
+     * to your self)*/
+    //  sort and combine ids
+    final usersIds = [currentUserId, receiverId]..sort();
+    final docRef = usersIds[0] + usersIds[1];
+    // see if user tring to send to himself
+    if (usersIds[0] != usersIds[1]) {
+      // search if user sent a request before
+      final requesQuery = await _firestore
+          .collection('friend_request')
+          .where('sender', isEqualTo: currentUserId)
+          .where('id', isEqualTo: docRef)
+          .get();
+      if (requesQuery.size == 0) {
+        // check if the reciver sent to current user
+        final requesQuery = await _firestore
+            .collection('friend_request')
+            .where('sender', isEqualTo: currentUserId)
+            .where('id', isEqualTo: docRef)
+            .get();
+        if (requesQuery.size == 0) {
+          // set the request
+          await _firestore.collection('friend_request').doc(docRef).set(
+              FriendRequestTDO(
+                      id: docRef,
+                      sender: currentUserTDO,
+                      receiver: receiverTDO,
+                      requestStatus: 'requested')
+                  .toJson());
+          return right(unit);
+        }
+        return left('your friend allready sent a request');
+      }
+      return left('allready sent');
+    }
+    return left('can not send to youself');
   }
 
   @override

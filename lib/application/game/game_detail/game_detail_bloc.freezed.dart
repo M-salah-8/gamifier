@@ -36,6 +36,13 @@ class _$GameDetailEventTearOff {
     );
   }
 
+  _ScoreAdded scoreAdded(String gameId, String todoId) {
+    return _ScoreAdded(
+      gameId,
+      todoId,
+    );
+  }
+
   _GameTodosChanged gameTodosChanged(KtList<GameTodoPrimitive> todos) {
     return _GameTodosChanged(
       todos,
@@ -57,6 +64,7 @@ mixin _$GameDetailEvent {
     required TResult Function(GamifierUserPrimitive currentUser) currentUser,
     required TResult Function(GamePrimitive? game) initialized,
     required TResult Function(String gameName) nameChanged,
+    required TResult Function(String gameId, String todoId) scoreAdded,
     required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
     required TResult Function() saved,
   }) =>
@@ -66,6 +74,7 @@ mixin _$GameDetailEvent {
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
   }) =>
@@ -75,6 +84,7 @@ mixin _$GameDetailEvent {
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
     required TResult orElse(),
@@ -85,6 +95,7 @@ mixin _$GameDetailEvent {
     required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_ScoreAdded value) scoreAdded,
     required TResult Function(_GameTodosChanged value) gameTodosChanged,
     required TResult Function(_Saved value) saved,
   }) =>
@@ -94,6 +105,7 @@ mixin _$GameDetailEvent {
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
   }) =>
@@ -103,6 +115,7 @@ mixin _$GameDetailEvent {
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
@@ -205,6 +218,7 @@ class _$_CurrentUser implements _CurrentUser {
     required TResult Function(GamifierUserPrimitive currentUser) currentUser,
     required TResult Function(GamePrimitive? game) initialized,
     required TResult Function(String gameName) nameChanged,
+    required TResult Function(String gameId, String todoId) scoreAdded,
     required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
     required TResult Function() saved,
   }) {
@@ -217,6 +231,7 @@ class _$_CurrentUser implements _CurrentUser {
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
   }) {
@@ -229,6 +244,7 @@ class _$_CurrentUser implements _CurrentUser {
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
     required TResult orElse(),
@@ -245,6 +261,7 @@ class _$_CurrentUser implements _CurrentUser {
     required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_ScoreAdded value) scoreAdded,
     required TResult Function(_GameTodosChanged value) gameTodosChanged,
     required TResult Function(_Saved value) saved,
   }) {
@@ -257,6 +274,7 @@ class _$_CurrentUser implements _CurrentUser {
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
   }) {
@@ -269,6 +287,7 @@ class _$_CurrentUser implements _CurrentUser {
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
@@ -370,6 +389,7 @@ class _$_Initialized implements _Initialized {
     required TResult Function(GamifierUserPrimitive currentUser) currentUser,
     required TResult Function(GamePrimitive? game) initialized,
     required TResult Function(String gameName) nameChanged,
+    required TResult Function(String gameId, String todoId) scoreAdded,
     required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
     required TResult Function() saved,
   }) {
@@ -382,6 +402,7 @@ class _$_Initialized implements _Initialized {
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
   }) {
@@ -394,6 +415,7 @@ class _$_Initialized implements _Initialized {
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
     required TResult orElse(),
@@ -410,6 +432,7 @@ class _$_Initialized implements _Initialized {
     required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_ScoreAdded value) scoreAdded,
     required TResult Function(_GameTodosChanged value) gameTodosChanged,
     required TResult Function(_Saved value) saved,
   }) {
@@ -422,6 +445,7 @@ class _$_Initialized implements _Initialized {
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
   }) {
@@ -434,6 +458,7 @@ class _$_Initialized implements _Initialized {
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
@@ -522,6 +547,7 @@ class _$_NameChanged implements _NameChanged {
     required TResult Function(GamifierUserPrimitive currentUser) currentUser,
     required TResult Function(GamePrimitive? game) initialized,
     required TResult Function(String gameName) nameChanged,
+    required TResult Function(String gameId, String todoId) scoreAdded,
     required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
     required TResult Function() saved,
   }) {
@@ -534,6 +560,7 @@ class _$_NameChanged implements _NameChanged {
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
   }) {
@@ -546,6 +573,7 @@ class _$_NameChanged implements _NameChanged {
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
     required TResult orElse(),
@@ -562,6 +590,7 @@ class _$_NameChanged implements _NameChanged {
     required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_ScoreAdded value) scoreAdded,
     required TResult Function(_GameTodosChanged value) gameTodosChanged,
     required TResult Function(_Saved value) saved,
   }) {
@@ -574,6 +603,7 @@ class _$_NameChanged implements _NameChanged {
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
   }) {
@@ -586,6 +616,7 @@ class _$_NameChanged implements _NameChanged {
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
@@ -603,6 +634,175 @@ abstract class _NameChanged implements GameDetailEvent {
   String get gameName;
   @JsonKey(ignore: true)
   _$NameChangedCopyWith<_NameChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ScoreAddedCopyWith<$Res> {
+  factory _$ScoreAddedCopyWith(
+          _ScoreAdded value, $Res Function(_ScoreAdded) then) =
+      __$ScoreAddedCopyWithImpl<$Res>;
+  $Res call({String gameId, String todoId});
+}
+
+/// @nodoc
+class __$ScoreAddedCopyWithImpl<$Res>
+    extends _$GameDetailEventCopyWithImpl<$Res>
+    implements _$ScoreAddedCopyWith<$Res> {
+  __$ScoreAddedCopyWithImpl(
+      _ScoreAdded _value, $Res Function(_ScoreAdded) _then)
+      : super(_value, (v) => _then(v as _ScoreAdded));
+
+  @override
+  _ScoreAdded get _value => super._value as _ScoreAdded;
+
+  @override
+  $Res call({
+    Object? gameId = freezed,
+    Object? todoId = freezed,
+  }) {
+    return _then(_ScoreAdded(
+      gameId == freezed
+          ? _value.gameId
+          : gameId // ignore: cast_nullable_to_non_nullable
+              as String,
+      todoId == freezed
+          ? _value.todoId
+          : todoId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ScoreAdded implements _ScoreAdded {
+  const _$_ScoreAdded(this.gameId, this.todoId);
+
+  @override
+  final String gameId;
+  @override
+  final String todoId;
+
+  @override
+  String toString() {
+    return 'GameDetailEvent.scoreAdded(gameId: $gameId, todoId: $todoId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ScoreAdded &&
+            const DeepCollectionEquality().equals(other.gameId, gameId) &&
+            const DeepCollectionEquality().equals(other.todoId, todoId));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(gameId),
+      const DeepCollectionEquality().hash(todoId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$ScoreAddedCopyWith<_ScoreAdded> get copyWith =>
+      __$ScoreAddedCopyWithImpl<_ScoreAdded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GamifierUserPrimitive currentUser) currentUser,
+    required TResult Function(GamePrimitive? game) initialized,
+    required TResult Function(String gameName) nameChanged,
+    required TResult Function(String gameId, String todoId) scoreAdded,
+    required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
+    required TResult Function() saved,
+  }) {
+    return scoreAdded(gameId, todoId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
+    TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
+    TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
+    TResult Function()? saved,
+  }) {
+    return scoreAdded?.call(gameId, todoId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function(GamePrimitive? game)? initialized,
+    TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
+    TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
+    TResult Function()? saved,
+    required TResult orElse(),
+  }) {
+    if (scoreAdded != null) {
+      return scoreAdded(gameId, todoId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentUser value) currentUser,
+    required TResult Function(_Initialized value) initialized,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_ScoreAdded value) scoreAdded,
+    required TResult Function(_GameTodosChanged value) gameTodosChanged,
+    required TResult Function(_Saved value) saved,
+  }) {
+    return scoreAdded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
+    TResult Function(_Initialized value)? initialized,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
+    TResult Function(_GameTodosChanged value)? gameTodosChanged,
+    TResult Function(_Saved value)? saved,
+  }) {
+    return scoreAdded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
+    TResult Function(_Initialized value)? initialized,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
+    TResult Function(_GameTodosChanged value)? gameTodosChanged,
+    TResult Function(_Saved value)? saved,
+    required TResult orElse(),
+  }) {
+    if (scoreAdded != null) {
+      return scoreAdded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ScoreAdded implements GameDetailEvent {
+  const factory _ScoreAdded(String gameId, String todoId) = _$_ScoreAdded;
+
+  String get gameId;
+  String get todoId;
+  @JsonKey(ignore: true)
+  _$ScoreAddedCopyWith<_ScoreAdded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -674,6 +874,7 @@ class _$_GameTodosChanged implements _GameTodosChanged {
     required TResult Function(GamifierUserPrimitive currentUser) currentUser,
     required TResult Function(GamePrimitive? game) initialized,
     required TResult Function(String gameName) nameChanged,
+    required TResult Function(String gameId, String todoId) scoreAdded,
     required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
     required TResult Function() saved,
   }) {
@@ -686,6 +887,7 @@ class _$_GameTodosChanged implements _GameTodosChanged {
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
   }) {
@@ -698,6 +900,7 @@ class _$_GameTodosChanged implements _GameTodosChanged {
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
     required TResult orElse(),
@@ -714,6 +917,7 @@ class _$_GameTodosChanged implements _GameTodosChanged {
     required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_ScoreAdded value) scoreAdded,
     required TResult Function(_GameTodosChanged value) gameTodosChanged,
     required TResult Function(_Saved value) saved,
   }) {
@@ -726,6 +930,7 @@ class _$_GameTodosChanged implements _GameTodosChanged {
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
   }) {
@@ -738,6 +943,7 @@ class _$_GameTodosChanged implements _GameTodosChanged {
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
@@ -800,6 +1006,7 @@ class _$_Saved implements _Saved {
     required TResult Function(GamifierUserPrimitive currentUser) currentUser,
     required TResult Function(GamePrimitive? game) initialized,
     required TResult Function(String gameName) nameChanged,
+    required TResult Function(String gameId, String todoId) scoreAdded,
     required TResult Function(KtList<GameTodoPrimitive> todos) gameTodosChanged,
     required TResult Function() saved,
   }) {
@@ -812,6 +1019,7 @@ class _$_Saved implements _Saved {
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
   }) {
@@ -824,6 +1032,7 @@ class _$_Saved implements _Saved {
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function(GamePrimitive? game)? initialized,
     TResult Function(String gameName)? nameChanged,
+    TResult Function(String gameId, String todoId)? scoreAdded,
     TResult Function(KtList<GameTodoPrimitive> todos)? gameTodosChanged,
     TResult Function()? saved,
     required TResult orElse(),
@@ -840,6 +1049,7 @@ class _$_Saved implements _Saved {
     required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_ScoreAdded value) scoreAdded,
     required TResult Function(_GameTodosChanged value) gameTodosChanged,
     required TResult Function(_Saved value) saved,
   }) {
@@ -852,6 +1062,7 @@ class _$_Saved implements _Saved {
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
   }) {
@@ -864,6 +1075,7 @@ class _$_Saved implements _Saved {
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_Initialized value)? initialized,
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_ScoreAdded value)? scoreAdded,
     TResult Function(_GameTodosChanged value)? gameTodosChanged,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
