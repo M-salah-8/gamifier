@@ -11,7 +11,8 @@ class AddGame extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: const Card(
-          margin: EdgeInsets.all(20), child: Center(child: Icon(Icons.add))),
+          // margin: EdgeInsets.all(20),
+          child: Center(child: Icon(Icons.add))),
       onTap: () {
         _createDialog(context, BlocProvider.of<GameDetailBloc>(context));
       },

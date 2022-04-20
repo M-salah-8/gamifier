@@ -90,7 +90,7 @@ class FriendRequestRepository implements IFriendRequestRepository {
           .toList();
       final acceptedRequestList =
           acceptedRequestListTDO.map((e) => e.toDomain()).toList();
-      return acceptedRequestList.map((e) => e.receiver).toList();
+      return acceptedRequestList.map((e) => e.sender).toList();
     }
 
     final acceptedRequestListTDO = requestWhenSenderQuery.docs
@@ -105,7 +105,7 @@ class FriendRequestRepository implements IFriendRequestRepository {
         .toList();
     final acceptedRequestList2 =
         acceptedRequestList2TDO.map((e) => e.toDomain()).toList();
-    final list2 = acceptedRequestList2.map((e) => e.receiver).toList();
+    final list2 = acceptedRequestList2.map((e) => e.sender).toList();
     list2.addAll(list1);
     return list2;
   }
@@ -117,6 +117,8 @@ class FriendRequestRepository implements IFriendRequestRepository {
     // put new friend request in firestore
     final currentUserTDO = GamifierUserTDO.fromDomain(currentUser);
     final receiverTDO = GamifierUserTDO.fromDomain(receiver);
+    final currentUserFromFirestor = currentUserTDO.toJson();
+    final receiverFromFirestor = receiverTDO.toJson();
     final currentUserId = currentUserTDO.id;
     final receiverId = receiverTDO.id;
 
@@ -134,33 +136,44 @@ class FriendRequestRepository implements IFriendRequestRepository {
     final docRef = usersIds[0] + usersIds[1];
     // see if user tring to send to himself
     if (usersIds[0] != usersIds[1]) {
-      // search if user sent a request before
-      final requesQuery = await _firestore
+      // check if allready friends
+      final alreadyFriendsQuery = await _firestore
           .collection('friend_request')
-          .where('sender', isEqualTo: currentUserId)
+          .where('requestStatus', isEqualTo: 'accepted')
           .where('id', isEqualTo: docRef)
           .get();
-      if (requesQuery.size == 0) {
-        // check if the reciver sent to current user
-        final requesQuery = await _firestore
-            .collection('friend_request')
-            .where('sender', isEqualTo: currentUserId)
-            .where('id', isEqualTo: docRef)
-            .get();
-        if (requesQuery.size == 0) {
-          // set the request
-          await _firestore.collection('friend_request').doc(docRef).set(
-              FriendRequestTDO(
-                      id: docRef,
-                      sender: currentUserTDO,
-                      receiver: receiverTDO,
-                      requestStatus: 'requested')
-                  .toJson());
-          return right(unit);
+      if (alreadyFriendsQuery.size == 0) {
+        {
+          // search if user sent a request before
+          final requesQuery = await _firestore
+              .collection('friend_request')
+              .where('sender', isEqualTo: currentUserFromFirestor)
+              .where('id', isEqualTo: docRef)
+              .get();
+          if (requesQuery.size == 0) {
+            // check if the reciver sent to current user
+            final requesQuery = await _firestore
+                .collection('friend_request')
+                .where('sender', isEqualTo: receiverFromFirestor)
+                .where('id', isEqualTo: docRef)
+                .get();
+            if (requesQuery.size == 0) {
+              // set the request
+              await _firestore.collection('friend_request').doc(docRef).set(
+                  FriendRequestTDO(
+                          id: docRef,
+                          sender: currentUserTDO,
+                          receiver: receiverTDO,
+                          requestStatus: 'requested')
+                      .toJson());
+              return right(unit);
+            }
+            return left('your friend allready sent a request');
+          }
+          return left('allready sent');
         }
-        return left('your friend allready sent a request');
       }
-      return left('allready sent');
+      return left('already friends');
     }
     return left('can not send to youself');
   }

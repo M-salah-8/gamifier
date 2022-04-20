@@ -16,15 +16,19 @@ class FriendRequestBloc extends Bloc<FriendRequestEvent, FriendRequestState> {
   final IFriendRequestRepository _friendRequestRepository;
   FriendRequestBloc(
     this._friendRequestRepository,
-  ) : super(FriendRequestState.initial()) {
+  ) : super(const FriendRequestState.initial()) {
     on<FriendRequestEvent>((event, emit) async {
       await event.map(currentUser: (e) {
         currentUser = e.currentUser;
       }, requestSended: (e) async {
+        emit(const FriendRequestState.loadInProgress());
         final requestOrFailure = await _friendRequestRepository.sendRequest(
             currentUser.toDomain(), e.receiver.toDomain());
         requestOrFailure.fold(
-            (l) => emit(FriendRequestState.failure(l)), (r) => null);
+            (l) => emit(FriendRequestState.failureOrSuccess(l)),
+            (r) => emit(
+                const FriendRequestState.failureOrSuccess('request sent')));
+        emit(const FriendRequestState.initial());
       }, requestAccepted: (e) async {
         await _friendRequestRepository.acceptRequest(e.requestid);
       }, requestCancelled: (e) async {

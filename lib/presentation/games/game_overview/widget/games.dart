@@ -5,6 +5,7 @@ import 'package:gamifier/application/auth/auth_bloc.dart';
 import 'package:gamifier/application/friends/friend_request_watcher/friend_request_watcher_bloc.dart';
 import 'package:gamifier/application/friends/friend_watcher/friend_watcher_bloc.dart';
 import 'package:gamifier/application/game/game_watcher/game_watcher_bloc.dart';
+import 'package:gamifier/presentation/core/app_bar.dart';
 import 'package:gamifier/presentation/friends/widget/friend_requests_dialog.dart';
 import 'package:gamifier/presentation/games/game_overview/widget/add_game.dart';
 import 'package:gamifier/presentation/games/game_overview/widget/game_card.dart';
@@ -24,37 +25,104 @@ class Games extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        leading: PopupMenuButton(
-          child: const Icon(Icons.people),
-          itemBuilder: (context) {
-            return [
-              PopupMenuItem(
-                child: ListTile(
-                  title: const Text('friends'),
-                  onTap: () {
-                    BlocProvider.of<FriendWatcherBloc>(context)
-                        .add(FriendWatcherEvent.watchGamesStarted());
-                    context.router.popAndPush(FriendsRoute(addfriend: false));
-                  },
-                ),
-              ),
-              PopupMenuItem(
-                child: ListTile(
-                  title: const Text('friend request'),
-                  onTap: () {
-                    _showRequestDialog();
-                    // context.router.pop();
-                  },
-                ),
-              ),
-            ];
-          },
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: PopupMenuButton(
+      // ### replaced with a custom appbar
+      // appBar: AppBar(
+      //   leading: PopupMenuButton(
+      //     child: const Icon(Icons.people),
+      //     itemBuilder: (context) {
+      //       return [
+      //         PopupMenuItem(
+      //           child: ListTile(
+      //             title: const Text('friends'),
+      //             onTap: () {
+      //               BlocProvider.of<FriendWatcherBloc>(context)
+      //                   .add(FriendWatcherEvent.watchGamesStarted());
+      //               context.router.popAndPush(FriendsRoute(addfriend: false));
+      //             },
+      //           ),
+      //         ),
+      //         PopupMenuItem(
+      //           child: ListTile(
+      //             title: const Text('friend request'),
+      //             onTap: () {
+      //               _showRequestDialog();
+      //               // context.router.pop();
+      //             },
+      //           ),
+      //         ),
+      //       ];
+      //     },
+      //   ),
+      //   actions: [
+      //     Padding(
+      //       padding: const EdgeInsets.all(10.0),
+      //       child: PopupMenuButton(
+      //         child: const Icon(
+      //           Icons.settings,
+      //         ),
+      //         itemBuilder: (context) {
+      //           return [
+      //             const PopupMenuItem(
+      //               child: ListTile(
+      //                 title: Icon(
+      //                   Icons.brightness_4,
+      //                   color: Colors.black,
+      //                 ),
+      //               ),
+      //             ),
+      //             PopupMenuItem(
+      //               child: ListTile(
+      //                 title: const Icon(
+      //                   Icons.logout,
+      //                   color: Colors.black,
+      //                 ),
+      //                 onTap: () {
+      //                   BlocProvider.of<AuthBloc>(context)
+      //                       .add(AuthEvent.signedOut());
+      //                   context.router.replace(const SplashRoute());
+      //                 },
+      //               ),
+      //             ),
+      //           ];
+      //         },
+      //       ),
+      //     ),
+      //   ],
+      //   centerTitle: true,
+      //   title: Text('Games', style: Theme.of(context).textTheme.headline6),
+      // ),
+      body: Column(
+        children: [
+          CustomAppBar(
+            leading: PopupMenuButton(
+              child: const Icon(Icons.people),
+              itemBuilder: (context) {
+                return [
+                  PopupMenuItem(
+                    child: ListTile(
+                      title: const Text('friends'),
+                      onTap: () {
+                        BlocProvider.of<FriendWatcherBloc>(context)
+                            .add(FriendWatcherEvent.watchGamesStarted());
+                        context.router
+                            .popAndPush(FriendsRoute(addfriend: false));
+                      },
+                    ),
+                  ),
+                  PopupMenuItem(
+                    child: ListTile(
+                      title: const Text('friend request'),
+                      onTap: () {
+                        _showRequestDialog();
+                        // context.router.pop();
+                      },
+                    ),
+                  ),
+                ];
+              },
+            ),
+            title: Text('Games', style: Theme.of(context).textTheme.headline6),
+            action: PopupMenuButton(
               child: const Icon(
                 Icons.settings,
               ),
@@ -85,34 +153,37 @@ class Games extends StatelessWidget {
               },
             ),
           ),
+          BlocBuilder<GameWatcherBloc, GameWatcherState>(
+            builder: (context, state) {
+              return state.map(initial: (_) {
+                return Container(color: Colors.blue);
+              }, loadInProgress: (_) {
+                return Container(color: Colors.blue);
+              }, loadSuccess: (e) {
+                List<GameKeyPrimitive> games = e.gamekeys.asList();
+                return Expanded(
+                  child: SizedBox(
+                    child: GridView.builder(
+                        padding: EdgeInsets.all(size.width * .1),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2),
+                        itemCount: games.length + 1,
+                        itemBuilder: (context, index) {
+                          return index == games.length
+                              ? const AddGame()
+                              : GameCard(
+                                  game: games[index],
+                                );
+                        }),
+                  ),
+                );
+              }, loadFailure: (_) {
+                return Container(color: Colors.yellow);
+              });
+            },
+          ),
         ],
-        centerTitle: true,
-        title: Text('Games', style: Theme.of(context).textTheme.headline6),
-      ),
-      body: BlocBuilder<GameWatcherBloc, GameWatcherState>(
-        builder: (context, state) {
-          return state.map(initial: (_) {
-            return Container(color: Colors.blue);
-          }, loadInProgress: (_) {
-            return Container(color: Colors.blue);
-          }, loadSuccess: (e) {
-            List<GameKeyPrimitive> games = e.gamekeys.asList();
-            return GridView.builder(
-                padding: const EdgeInsets.all(20),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemCount: games.length + 1,
-                itemBuilder: (context, index) {
-                  return index == games.length
-                      ? const AddGame()
-                      : GameCard(
-                          game: games[index],
-                        );
-                });
-          }, loadFailure: (_) {
-            return Container(color: Colors.yellow);
-          });
-        },
       ),
     );
   }

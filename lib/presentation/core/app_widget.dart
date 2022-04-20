@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gamifier/application/friends/friend_request/friend_request_bloc.dart';
 import 'package:gamifier/application/friends/friend_request/friend_search/friend_search_bloc.dart';
@@ -52,7 +53,16 @@ class AppWidget extends StatelessWidget {
       child: MaterialApp.router(
         theme: ThemeData.light().copyWith(
             primaryColor: primary,
-            appBarTheme: AppBarTheme(color: primary, elevation: 0),
+            appBarTheme: AppBarTheme(
+                systemOverlayStyle: SystemUiOverlayStyle.dark,
+                centerTitle: true,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(color: primary, width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                elevation: 0),
+
             // floatingActionButtonTheme: FloatingActionButtonThemeData(
             //   backgroundColor: Colors.green[300],
             // ),

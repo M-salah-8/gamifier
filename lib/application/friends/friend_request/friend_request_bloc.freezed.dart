@@ -725,9 +725,17 @@ abstract class _RequestCancelled implements FriendRequestEvent {
 class _$FriendRequestStateTearOff {
   const _$FriendRequestStateTearOff();
 
-  _Failure failure(String? failuer) {
-    return _Failure(
-      failuer,
+  _initial initial() {
+    return const _initial();
+  }
+
+  _LoadInProgress loadInProgress() {
+    return const _LoadInProgress();
+  }
+
+  _FailureOrSuccess failureOrSuccess(String failuerOrSuccess) {
+    return _FailureOrSuccess(
+      failuerOrSuccess,
     );
   }
 }
@@ -737,43 +745,49 @@ const $FriendRequestState = _$FriendRequestStateTearOff();
 
 /// @nodoc
 mixin _$FriendRequestState {
-  String? get failuer => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? failuer) failure,
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(String failuerOrSuccess) failureOrSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? failuer)? failure,
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(String failuerOrSuccess)? failureOrSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? failuer)? failure,
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(String failuerOrSuccess)? failureOrSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Failure value) failure,
+    required TResult Function(_initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_FailureOrSuccess value) failureOrSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Failure value)? failure,
+    TResult Function(_initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_FailureOrSuccess value)? failureOrSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Failure value)? failure,
+    TResult Function(_initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_FailureOrSuccess value)? failureOrSuccess,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $FriendRequestStateCopyWith<FriendRequestState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -782,7 +796,6 @@ abstract class $FriendRequestStateCopyWith<$Res> {
   factory $FriendRequestStateCopyWith(
           FriendRequestState value, $Res Function(FriendRequestState) then) =
       _$FriendRequestStateCopyWithImpl<$Res>;
-  $Res call({String? failuer});
 }
 
 /// @nodoc
@@ -793,106 +806,74 @@ class _$FriendRequestStateCopyWithImpl<$Res>
   final FriendRequestState _value;
   // ignore: unused_field
   final $Res Function(FriendRequestState) _then;
-
-  @override
-  $Res call({
-    Object? failuer = freezed,
-  }) {
-    return _then(_value.copyWith(
-      failuer: failuer == freezed
-          ? _value.failuer
-          : failuer // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$FailureCopyWith<$Res>
-    implements $FriendRequestStateCopyWith<$Res> {
-  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) then) =
-      __$FailureCopyWithImpl<$Res>;
-  @override
-  $Res call({String? failuer});
+abstract class _$initialCopyWith<$Res> {
+  factory _$initialCopyWith(_initial value, $Res Function(_initial) then) =
+      __$initialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$FailureCopyWithImpl<$Res>
+class __$initialCopyWithImpl<$Res>
     extends _$FriendRequestStateCopyWithImpl<$Res>
-    implements _$FailureCopyWith<$Res> {
-  __$FailureCopyWithImpl(_Failure _value, $Res Function(_Failure) _then)
-      : super(_value, (v) => _then(v as _Failure));
+    implements _$initialCopyWith<$Res> {
+  __$initialCopyWithImpl(_initial _value, $Res Function(_initial) _then)
+      : super(_value, (v) => _then(v as _initial));
 
   @override
-  _Failure get _value => super._value as _Failure;
-
-  @override
-  $Res call({
-    Object? failuer = freezed,
-  }) {
-    return _then(_Failure(
-      failuer == freezed
-          ? _value.failuer
-          : failuer // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+  _initial get _value => super._value as _initial;
 }
 
 /// @nodoc
 
-class _$_Failure implements _Failure {
-  const _$_Failure(this.failuer);
-
-  @override
-  final String? failuer;
+class _$_initial implements _initial {
+  const _$_initial();
 
   @override
   String toString() {
-    return 'FriendRequestState.failure(failuer: $failuer)';
+    return 'FriendRequestState.initial()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Failure &&
-            const DeepCollectionEquality().equals(other.failuer, failuer));
+        (other.runtimeType == runtimeType && other is _initial);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(failuer));
-
-  @JsonKey(ignore: true)
-  @override
-  _$FailureCopyWith<_Failure> get copyWith =>
-      __$FailureCopyWithImpl<_Failure>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? failuer) failure,
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(String failuerOrSuccess) failureOrSuccess,
   }) {
-    return failure(failuer);
+    return initial();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? failuer)? failure,
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(String failuerOrSuccess)? failureOrSuccess,
   }) {
-    return failure?.call(failuer);
+    return initial?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? failuer)? failure,
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(String failuerOrSuccess)? failureOrSuccess,
     required TResult orElse(),
   }) {
-    if (failure != null) {
-      return failure(failuer);
+    if (initial != null) {
+      return initial();
     }
     return orElse();
   }
@@ -900,39 +881,291 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Failure value) failure,
+    required TResult Function(_initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_FailureOrSuccess value) failureOrSuccess,
   }) {
-    return failure(this);
+    return initial(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Failure value)? failure,
+    TResult Function(_initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_FailureOrSuccess value)? failureOrSuccess,
   }) {
-    return failure?.call(this);
+    return initial?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Failure value)? failure,
+    TResult Function(_initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_FailureOrSuccess value)? failureOrSuccess,
     required TResult orElse(),
   }) {
-    if (failure != null) {
-      return failure(this);
+    if (initial != null) {
+      return initial(this);
     }
     return orElse();
   }
 }
 
-abstract class _Failure implements FriendRequestState {
-  const factory _Failure(String? failuer) = _$_Failure;
+abstract class _initial implements FriendRequestState {
+  const factory _initial() = _$_initial;
+}
+
+/// @nodoc
+abstract class _$LoadInProgressCopyWith<$Res> {
+  factory _$LoadInProgressCopyWith(
+          _LoadInProgress value, $Res Function(_LoadInProgress) then) =
+      __$LoadInProgressCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$LoadInProgressCopyWithImpl<$Res>
+    extends _$FriendRequestStateCopyWithImpl<$Res>
+    implements _$LoadInProgressCopyWith<$Res> {
+  __$LoadInProgressCopyWithImpl(
+      _LoadInProgress _value, $Res Function(_LoadInProgress) _then)
+      : super(_value, (v) => _then(v as _LoadInProgress));
 
   @override
-  String? get failuer;
+  _LoadInProgress get _value => super._value as _LoadInProgress;
+}
+
+/// @nodoc
+
+class _$_LoadInProgress implements _LoadInProgress {
+  const _$_LoadInProgress();
+
   @override
+  String toString() {
+    return 'FriendRequestState.loadInProgress()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _LoadInProgress);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(String failuerOrSuccess) failureOrSuccess,
+  }) {
+    return loadInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(String failuerOrSuccess)? failureOrSuccess,
+  }) {
+    return loadInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(String failuerOrSuccess)? failureOrSuccess,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_FailureOrSuccess value) failureOrSuccess,
+  }) {
+    return loadInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_FailureOrSuccess value)? failureOrSuccess,
+  }) {
+    return loadInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_FailureOrSuccess value)? failureOrSuccess,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadInProgress implements FriendRequestState {
+  const factory _LoadInProgress() = _$_LoadInProgress;
+}
+
+/// @nodoc
+abstract class _$FailureOrSuccessCopyWith<$Res> {
+  factory _$FailureOrSuccessCopyWith(
+          _FailureOrSuccess value, $Res Function(_FailureOrSuccess) then) =
+      __$FailureOrSuccessCopyWithImpl<$Res>;
+  $Res call({String failuerOrSuccess});
+}
+
+/// @nodoc
+class __$FailureOrSuccessCopyWithImpl<$Res>
+    extends _$FriendRequestStateCopyWithImpl<$Res>
+    implements _$FailureOrSuccessCopyWith<$Res> {
+  __$FailureOrSuccessCopyWithImpl(
+      _FailureOrSuccess _value, $Res Function(_FailureOrSuccess) _then)
+      : super(_value, (v) => _then(v as _FailureOrSuccess));
+
+  @override
+  _FailureOrSuccess get _value => super._value as _FailureOrSuccess;
+
+  @override
+  $Res call({
+    Object? failuerOrSuccess = freezed,
+  }) {
+    return _then(_FailureOrSuccess(
+      failuerOrSuccess == freezed
+          ? _value.failuerOrSuccess
+          : failuerOrSuccess // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_FailureOrSuccess implements _FailureOrSuccess {
+  const _$_FailureOrSuccess(this.failuerOrSuccess);
+
+  @override
+  final String failuerOrSuccess;
+
+  @override
+  String toString() {
+    return 'FriendRequestState.failureOrSuccess(failuerOrSuccess: $failuerOrSuccess)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _FailureOrSuccess &&
+            const DeepCollectionEquality()
+                .equals(other.failuerOrSuccess, failuerOrSuccess));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failuerOrSuccess));
+
   @JsonKey(ignore: true)
-  _$FailureCopyWith<_Failure> get copyWith =>
+  @override
+  _$FailureOrSuccessCopyWith<_FailureOrSuccess> get copyWith =>
+      __$FailureOrSuccessCopyWithImpl<_FailureOrSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(String failuerOrSuccess) failureOrSuccess,
+  }) {
+    return failureOrSuccess(failuerOrSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(String failuerOrSuccess)? failureOrSuccess,
+  }) {
+    return failureOrSuccess?.call(failuerOrSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(String failuerOrSuccess)? failureOrSuccess,
+    required TResult orElse(),
+  }) {
+    if (failureOrSuccess != null) {
+      return failureOrSuccess(failuerOrSuccess);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_FailureOrSuccess value) failureOrSuccess,
+  }) {
+    return failureOrSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_FailureOrSuccess value)? failureOrSuccess,
+  }) {
+    return failureOrSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_FailureOrSuccess value)? failureOrSuccess,
+    required TResult orElse(),
+  }) {
+    if (failureOrSuccess != null) {
+      return failureOrSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FailureOrSuccess implements FriendRequestState {
+  const factory _FailureOrSuccess(String failuerOrSuccess) =
+      _$_FailureOrSuccess;
+
+  String get failuerOrSuccess;
+  @JsonKey(ignore: true)
+  _$FailureOrSuccessCopyWith<_FailureOrSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }

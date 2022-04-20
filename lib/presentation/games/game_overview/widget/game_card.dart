@@ -28,7 +28,7 @@ class GameCard extends StatelessWidget {
       },
       child: InkWell(
         child: Card(
-            margin: const EdgeInsets.all(20),
+            // margin: const EdgeInsets.all(20),
             child: Center(
                 child: Text(game.gameName,
                     style: Theme.of(context).textTheme.bodyMedium))),
