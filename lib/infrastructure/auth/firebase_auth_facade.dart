@@ -12,21 +12,32 @@ import 'package:injectable/injectable.dart';
 // imlementing the auth facade
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
+  final FirebaseFirestore _firestore;
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
+  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn, this._firestore);
 
   @override
   Future<Either<AuthFailure, Unit>> registerInWithEmailAndPassword(
-      {required EmailAddress emailAddress, required Password password}) async {
+      {required EmailAddress emailAddress,
+      required Password password,
+      required String name}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      final user = await _firebaseAuth.createUserWithEmailAndPassword(
         email: emailAddress.value,
         password: password.value,
       );
+      // create a new gamifire user with the new user info
+      final docRef = _firestore.collection('users').doc(user.user!.uid);
+      final userModelTDO = GamifierUserTDO(
+        id: user.user!.uid,
+        name: name,
+        email: user.user!.email!,
+      );
+      await docRef.set(userModelTDO.toJson());
       return right(unit);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
+      if (e.code == 'email-already-in-use') {
         return left(const AuthFailure.emailAlreadyInUse());
       } else {
         return left(const AuthFailure.serverError());
@@ -44,8 +55,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
       return right(unit);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'ERROR_WRONG_PASSWORD' ||
-          e.code == 'ERROR_USER_NOT_FOUND') {
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         return left(const AuthFailure.invalidEmailAndPasswordCombination());
       } else {
         return left(const AuthFailure.serverError());
@@ -76,8 +86,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       // create new GamifierUser
       if (query.size == 0) {
         final userId = _firebaseAuth.currentUser!.uid;
-        final docRef =
-            FirebaseFirestore.instance.collection('users').doc(userId);
+        final docRef = _firestore.collection('users').doc(userId);
         final userModelTDO = GamifierUserTDO(
           id: userId,
           name: googleUser.displayName!,

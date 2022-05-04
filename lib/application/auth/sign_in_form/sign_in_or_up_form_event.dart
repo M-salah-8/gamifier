@@ -2,11 +2,14 @@ part of 'sign_in_or_up_form_bloc.dart';
 
 @freezed
 class SignInOrUpFormEvent with _$SignInOrUpFormEvent {
-  factory SignInOrUpFormEvent.emailChanged(String email) = EmailChange;
-  factory SignInOrUpFormEvent.passwordChanged(String password) = PasswordChange;
+  factory SignInOrUpFormEvent.emailChanged(String email) = _EmailChange;
+  factory SignInOrUpFormEvent.passwordChanged(String password) =
+      _PasswordChange;
+  factory SignInOrUpFormEvent.userNameChanged(String userName) =
+      _userNameChange;
   factory SignInOrUpFormEvent.signInWithEmailAndPasswordPressed() =
-      SignInWithEmailAndPasswordPressed;
+      _SignInWithEmailAndPasswordPressed;
   factory SignInOrUpFormEvent.registerWithEmailAndPasswordPressed() =
-      RegisterWithEmailAndPasswordPressed;
-  factory SignInOrUpFormEvent.signInGooglePressed() = SignInGooglePressed;
+      _RegisterWithEmailAndPasswordPressed;
+  factory SignInOrUpFormEvent.signInGooglePressed() = _SignInGooglePressed;
 }

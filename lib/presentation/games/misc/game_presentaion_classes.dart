@@ -21,13 +21,14 @@ abstract class GamePrimitive implements _$GamePrimitive {
       required int noOfUsers,
       required List<GameTodoPrimitive> gameTodos}) = _GamePrimitive;
 
-  factory GamePrimitive.empty() => GamePrimitive(
+// TODO delete
+  factory GamePrimitive.empty() => const GamePrimitive(
       id: '',
       admin: '',
       usersId: <String>[],
       noOfUsers: 1,
       name: '',
-      gameTodos: List<GameTodoPrimitive>.empty());
+      gameTodos: <GameTodoPrimitive>[]);
 
   factory GamePrimitive.fromDomain(Game game) => GamePrimitive(
       id: game.id.value,
@@ -42,7 +43,7 @@ abstract class GamePrimitive implements _$GamePrimitive {
   Game toDomain() {
     return Game(
         id: UniqueId.fromUniqueString(id),
-        admin: UniqueId.fromUniqueString(id),
+        admin: UniqueId.fromUniqueString(admin),
         usersId:
             usersId.map((e) => UniqueId.fromUniqueString(e)).toImmutableList(),
         name: name,
@@ -64,6 +65,7 @@ abstract class GameTodoPrimitive implements _$GameTodoPrimitive {
     required bool done,
   }) = _GameTodoPrimitive;
 
+  // TODO delete
   factory GameTodoPrimitive.empty() => const GameTodoPrimitive(
       id: '', todoName: '', times: 0, points: 100, done: false);
 
@@ -92,6 +94,13 @@ abstract class UserScorePrimitive implements _$UserScorePrimitive {
       required String userName,
       required int level,
       required List<GameTodoPrimitive> gameTodos}) = _UserScorePrimitive;
+
+  factory UserScorePrimitive.empty() => const UserScorePrimitive(
+      gameId: '',
+      gamifierUserId: '',
+      userName: '',
+      level: 0,
+      gameTodos: <GameTodoPrimitive>[]);
 
   factory UserScorePrimitive.fromDomain(UserScore score) => UserScorePrimitive(
       gameId: score.gameId.value,

@@ -23,10 +23,44 @@ class GameDetailBloc extends Bloc<GameDetailEvent, GameDetailState> {
       await event.map(currentUser: (e) {
         currentUser = e.currentUser;
       }, initialized: (e) {
-        e.game == null
-            ? emit(GameDetailState.initial().copyWith(currentUser: currentUser))
-            : emit(state.copyWith(
-                game: e.game!, isEditing: true, currentUser: currentUser));
+        // #### when game is getting created
+        if (e.game == null) {
+          emit(GameDetailState.initial().copyWith(currentUser: currentUser));
+        } else if (e.gamescores != null) {
+          // #### game is playing (or editing)
+          /// check if current user is adimn
+          final isAdmin = e.game!.admin == currentUser.id;
+          // find current user and combine his todos with game todos
+          final currentUserScores = e.gamescores!
+              .where((score) => score.gamifierUserId == currentUser.id)
+              .first;
+          // combining
+          final gameTodos = e.game!.gameTodos.map((gameTodo) {
+            final userTodo = currentUserScores.gameTodos
+                .where((userTodo) => userTodo.id == gameTodo.id)
+                .first;
+            return gameTodo.copyWith(times: userTodo.times);
+          }).toList();
+          // get friends scores
+          final friendsScores = e.gamescores!
+            ..sort((b, a) => a.level.compareTo(b.level))
+            ..remove(currentUserScores);
+
+          // set user level and users scores
+          final level = currentUserScores.level;
+
+          // emit new state
+          emit(state.copyWith(
+              game: e.game!.copyWith(gameTodos: gameTodos),
+              currentUser: currentUser,
+              isAdmin: isAdmin,
+              isEditing: true,
+              level: level,
+              friendsScores: friendsScores));
+        } else {
+          // #### retrive old state when editing get canceled
+          emit(state.copyWith(game: e.game!));
+        }
       }, nameChanged: (e) {
         emit(state.copyWith(
             game: state.game.copyWith(name: e.gameName),
@@ -39,20 +73,22 @@ class GameDetailBloc extends Bloc<GameDetailEvent, GameDetailState> {
         Either<GameFailure, Unit>? failureOrSuccess;
         emit(
             state.copyWith(isSaving: true, saveFailureOrSuccessOption: none()));
-        // TODO fix validation from core and then here
-        // if (state.game) {
-        failureOrSuccess = state.isEditing
-            ? await _gameRepository.update(state.game.toDomain())
-            : await _gameRepository.create(
-                state.game.toDomain(), currentUser.toDomain());
-        // }
+        failureOrSuccess = await _gameRepository.create(
+            state.game.toDomain(), currentUser.toDomain());
         emit(state.copyWith(
           isSaving: false,
           showErrorMessages: true,
           saveFailureOrSuccessOption: optionOf(failureOrSuccess),
         ));
-      }, scoreAdded: (e) {
-        // TODO
+      }, levelChanged: (e) {
+        emit(state.copyWith(level: state.level + e.todoPoints));
+      }, friendAdded: (e) {
+        final newUser = UserScorePrimitive.empty()
+            .copyWith(userName: e.friend.name, gamifierUserId: e.friend.id);
+        emit(state.copyWith(
+            friendsScores: state.friendsScores..add(newUser),
+            game: state.game
+                .copyWith(usersId: state.game.usersId..add(e.friend.id))));
       });
     });
   }

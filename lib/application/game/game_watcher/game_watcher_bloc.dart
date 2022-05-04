@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:gamifier/domain/game/game.dart';
 import 'package:gamifier/domain/game/game_failure.dart';
 import 'package:gamifier/domain/game/game_keys.dart';
 import 'package:gamifier/domain/game/i_game_repository.dart';

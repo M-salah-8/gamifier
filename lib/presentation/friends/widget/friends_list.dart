@@ -1,4 +1,3 @@
-import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -6,26 +5,35 @@ import 'package:gamifier/application/friends/friend_request/friend_request_bloc.
 import 'package:gamifier/application/friends/friend_request/friend_search/friend_search_bloc.dart';
 import 'package:gamifier/application/friends/friend_watcher/friend_watcher_bloc.dart';
 import 'package:gamifier/presentation/core/app_bar.dart';
+import 'package:gamifier/presentation/core/flush_bar.dart';
+import 'package:gamifier/presentation/core/loading.dart';
 import 'package:gamifier/presentation/friends/widget/friend_card.dart';
 import 'package:gamifier/presentation/friends/widget/user_dialog.dart';
 import 'package:gamifier/presentation/games/misc/game_presentaion_classes.dart';
 
 class FriendsList extends HookWidget {
-  final bool addFriend;
+  final bool addFriendToGame;
   final GamePrimitive? game;
   const FriendsList({
     Key? key,
-    required this.addFriend,
+    required this.addFriendToGame,
     this.game,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final loading = useState(false);
     return Scaffold(
 
         // to add new friends => open user search dialog
-        floatingActionButton: Padding(
+        floatingActionButton:
+            // IgnorePointer(
+            //   ignoring: addFriendToGame,
+            //   child: Visibility(
+            //     visible: !addFriendToGame,
+            //  child:
+            Padding(
           padding: const EdgeInsets.all(15.0),
           child: FloatingActionButton.extended(
             onPressed: () {
@@ -39,13 +47,14 @@ class FriendsList extends HookWidget {
             ),
           ),
         ),
+        // ),
+        // ),
         body: Column(
           children: [
             CustomAppBar(
               title: Text(
                 'Friends',
-                style:
-                    TextStyle(color: Theme.of(context).scaffoldBackgroundColor),
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
             // see if the request is done or listen to the errors
@@ -57,41 +66,48 @@ class FriendsList extends HookWidget {
                   listener: (context, state) {
                     state.map(
                       initial: (_) {},
-                      // to toggel the hook value so the progress indicator appear
                       loadInProgress: (_) {
+                        // to toggel the hook value so the progress indicator appear
                         loading.value = true;
                       },
                       failureOrSuccess: (e) {
                         // toggle hook again to make the progress disappear
                         loading.value = false;
-                        FlushbarHelper.createError(
-                          message: e.failuerOrSuccess,
-                        ).show(context);
+                        flushBar(
+                            context,
+                            e.failuerOrSuccess,
+                            // TODO do from bloc
+                            e.failuerOrSuccess == 'request sent'
+                                ? SuccessOrError.success
+                                : SuccessOrError.error);
                       },
                     );
                   },
+                  // get friends list
                   child: Stack(
                     children: [
                       BlocBuilder<FriendWatcherBloc, FriendWatcherState>(
                           builder: (context, state) {
                         return state.map(initial: (_) {
                           return const Center(
-                            child: CircularProgressIndicator(),
+                            child: Loading(),
                           );
                         }, loadInProgress: (_) {
                           return const Center(
-                            child: CircularProgressIndicator(),
+                            child: Loading(),
                           );
                         }, loadSuccess: (e) {
                           return ListView.builder(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            shrinkWrap: true,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: size.width * .2),
                             itemCount: e.friends.length,
                             itemBuilder: (context, index) {
                               return e.friends.isEmpty
                                   ? const Center(child: Text('empty'))
                                   : FriendCard(
                                       friend: e.friends[index],
-                                      addFriend: addFriend,
+                                      addFriendToGame: addFriendToGame,
                                       game: game,
                                     );
                             },
@@ -99,16 +115,8 @@ class FriendsList extends HookWidget {
                         });
                       }),
                       if (loading.value) ...[
-                        IgnorePointer(
-                          ignoring: true,
-                          child: Container(
-                            color:
-                                Theme.of(context).primaryColor.withOpacity(.20),
-                            child: const Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                          ),
-                        )
+                        const IgnorePointer(
+                            ignoring: true, child: Center(child: Loading()))
                       ]
                     ],
                   ),

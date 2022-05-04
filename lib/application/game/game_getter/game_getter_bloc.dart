@@ -18,6 +18,7 @@ class GameGetterBloc extends Bloc<GameGetterEvent, GameGetterState> {
       final gameDetails = await _gameRepository.gameDetails(event.gameId);
       emit(GameGetterState.loadSuccess(
           GameDetailsPrimitive.fromDomain(gameDetails)));
+      emit(const GameGetterState.initial());
     });
   }
 }

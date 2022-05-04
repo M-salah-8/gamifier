@@ -17,14 +17,11 @@ class GameAddingFriendBloc
       : super(const GameAddingFriendState.initial()) {
     on<GameAddingFriendEvent>((event, emit) async {
       emit(const GameAddingFriendState.loadInProgress());
-      List<String> newList = event.game.usersId;
-      newList.add(event.friend.id);
-      event.game
-          .copyWith(usersId: newList, noOfUsers: event.game.noOfUsers + 1);
-      event.game.copyWith(noOfUsers: event.game.noOfUsers + 1);
-      await _gameRepository.addFriend(
+      final friendAddedOrFailure = await _gameRepository.addFriend(
           event.game.toDomain(), event.friend.toDomain());
-      emit(const GameAddingFriendState.friendAdded());
+      emit(friendAddedOrFailure.fold(
+          (l) => GameAddingFriendState.friendAddedFailure(l),
+          (r) => GameAddingFriendState.friendAdded(event.friend)));
     });
   }
 }

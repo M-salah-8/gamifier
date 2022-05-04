@@ -5,14 +5,18 @@ class SignInOrUpFormState with _$SignInOrUpFormState {
   factory SignInOrUpFormState({
     required EmailAddress emailAddress,
     required Password password,
+    required String userName,
     required bool isSubmitting,
-    required AutovalidateMode showErrorMessages,
+    required AutovalidateMode showErrorMessagesforSignIn,
+    required AutovalidateMode showErrorMessagesforSignUp,
     required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
   }) = _SignInFormState;
   factory SignInOrUpFormState.initial() => SignInOrUpFormState(
       emailAddress: (EmailAddress('')),
       password: Password(''),
+      userName: '',
       isSubmitting: false,
-      showErrorMessages: AutovalidateMode.disabled,
+      showErrorMessagesforSignIn: AutovalidateMode.disabled,
+      showErrorMessagesforSignUp: AutovalidateMode.disabled,
       authFailureOrSuccessOption: none());
 }

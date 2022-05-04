@@ -13,7 +13,7 @@ class AddFriend extends StatelessWidget {
       child: Card(
           child: Center(
               child: Text('Add Friends',
-                  style: Theme.of(context).textTheme.bodyLarge))),
+                  style: Theme.of(context).textTheme.titleLarge))),
       onTap: () {
         BlocProvider.of<FriendSearchBloc>(context)
             .add(const FriendSearchEvent.initialed());

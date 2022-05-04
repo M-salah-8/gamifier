@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gamifier/domain/friend_request/i_friend_request_repository.dart';
 import 'package:gamifier/presentation/friends/misc/friends_presentation_class.dart';

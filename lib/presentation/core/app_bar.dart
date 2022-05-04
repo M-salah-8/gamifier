@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                 ),
                 borderRadius: BorderRadius.circular(8)),
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.fromLTRB(15, 8, 15, 8),
             margin: const EdgeInsets.all(8),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

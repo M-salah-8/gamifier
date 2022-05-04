@@ -11,7 +11,7 @@ part 'game_actor_state.dart';
 
 @injectable
 class GameActorBloc extends Bloc<GameActorEvent, GameActorState> {
-  IGameRepository _gameRepository;
+  final IGameRepository _gameRepository;
   GameActorBloc(this._gameRepository) : super(const GameActorState.initial()) {
     on<GameActorEvent>((event, emit) async {
       emit(const GameActorState.actionInProgress());

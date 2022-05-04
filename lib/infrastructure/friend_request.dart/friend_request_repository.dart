@@ -55,59 +55,71 @@ class FriendRequestRepository implements IFriendRequestRepository {
 
   @override
   Future<List<GamifierUser>> getFriends(GamifierUser currentUser) async {
-    final user = GamifierUserTDO.fromDomain(currentUser).toJson();
-    // TODO ask about using 2 where() and .get()
-    // TODO fix
-    // for now search 2 times
-    // get friends from friend requests collection in fire store
-    final requestWhenReceverQuery = await _firestore
-        .collection('friend_request')
-        .where('requestStatus', isEqualTo: 'accepted')
-        .where('receiver', isEqualTo: user)
+    final user = GamifierUserTDO.fromDomain(currentUser);
+    final friendsFS = await _firestore
+        .collection('users')
+        .doc(user.id)
+        .collection('friends')
         .get();
-    final requestWhenSenderQuery = await _firestore
-        .collection('friend_request')
-        .where('requestStatus', isEqualTo: 'accepted')
-        .where('sender', isEqualTo: user)
-        .get();
-    // if the no friends were found
-    if (requestWhenSenderQuery.size == 0 && requestWhenReceverQuery.size == 0) {
-      return List<GamifierUser>.empty();
-    }
-
-    if (requestWhenSenderQuery.size == 0) {
-      final acceptedRequestListTDO = requestWhenReceverQuery.docs
-          .map((e) => FriendRequestTDO.fromFirestore(e))
-          .toList();
-      final acceptedRequestList =
-          acceptedRequestListTDO.map((e) => e.toDomain()).toList();
-      return acceptedRequestList.map((e) => e.receiver).toList();
-    }
-
-    if (requestWhenReceverQuery.size == 0) {
-      final acceptedRequestListTDO = requestWhenSenderQuery.docs
-          .map((e) => FriendRequestTDO.fromFirestore(e))
-          .toList();
-      final acceptedRequestList =
-          acceptedRequestListTDO.map((e) => e.toDomain()).toList();
-      return acceptedRequestList.map((e) => e.sender).toList();
-    }
-
-    final acceptedRequestListTDO = requestWhenSenderQuery.docs
-        .map((e) => FriendRequestTDO.fromFirestore(e))
+    final friends = friendsFS.docs
+        .map((friendFS) => GamifierUserTDO.fromFirestore(friendFS).toDomain())
         .toList();
-    final acceptedRequestList =
-        acceptedRequestListTDO.map((e) => e.toDomain()).toList();
-    final list1 = acceptedRequestList.map((e) => e.receiver).toList();
+    return friends;
 
-    final acceptedRequestList2TDO = requestWhenReceverQuery.docs
-        .map((e) => FriendRequestTDO.fromFirestore(e))
-        .toList();
-    final acceptedRequestList2 =
-        acceptedRequestList2TDO.map((e) => e.toDomain()).toList();
-    final list2 = acceptedRequestList2.map((e) => e.sender).toList();
-    list2.addAll(list1);
-    return list2;
+    // ################################# old code
+    // final user = GamifierUserTDO.fromDomain(currentUser).toJson;
+    // // TODO ask about using 2 where() and .get()
+    // // TODO fix
+    // // for now search 2 times
+    // // get friends from friend requests collection in fire store
+    // final requestWhenReceverQuery = await _firestore
+    //     .collection('friend_request')
+    //     .where('requestStatus', isEqualTo: 'accepted')
+    //     .where('receiver', isEqualTo: user)
+    //     .get();
+    // final requestWhenSenderQuery = await _firestore
+    //     .collection('friend_request')
+    //     .where('requestStatus', isEqualTo: 'accepted')
+    //     .where('sender', isEqualTo: user)
+    //     .get();
+    // // if the no friends were found
+    // if (requestWhenSenderQuery.size == 0 && requestWhenReceverQuery.size == 0) {
+    //   return List<GamifierUser>.empty();
+    // }
+
+    // if (requestWhenSenderQuery.size == 0) {
+    //   final acceptedRequestListTDO = requestWhenReceverQuery.docs
+    //       .map((e) => FriendRequestTDO.fromFirestore(e))
+    //       .toList();
+    //   final acceptedRequestList =
+    //       acceptedRequestListTDO.map((e) => e.toDomain()).toList();
+    //   return acceptedRequestList.map((e) => e.sender).toList();
+    // }
+
+    // if (requestWhenReceverQuery.size == 0) {
+    //   final acceptedRequestListTDO = requestWhenSenderQuery.docs
+    //       .map((e) => FriendRequestTDO.fromFirestore(e))
+    //       .toList();
+    //   final acceptedRequestList =
+    //       acceptedRequestListTDO.map((e) => e.toDomain()).toList();
+    //   return acceptedRequestList.map((e) => e.receiver).toList();
+    // }
+
+    // final acceptedRequestListTDO = requestWhenSenderQuery.docs
+    //     .map((e) => FriendRequestTDO.fromFirestore(e))
+    //     .toList();
+    // final acceptedRequestList =
+    //     acceptedRequestListTDO.map((e) => e.toDomain()).toList();
+    // final list1 = acceptedRequestList.map((e) => e.receiver).toList();
+
+    // final acceptedRequestList2TDO = requestWhenReceverQuery.docs
+    //     .map((e) => FriendRequestTDO.fromFirestore(e))
+    //     .toList();
+    // final acceptedRequestList2 =
+    //     acceptedRequestList2TDO.map((e) => e.toDomain()).toList();
+    // final list2 = acceptedRequestList2.map((e) => e.sender).toList();
+    // list2.addAll(list1);
+    // return list2;
   }
 
   @override
@@ -137,12 +149,13 @@ class FriendRequestRepository implements IFriendRequestRepository {
     // see if user tring to send to himself
     if (usersIds[0] != usersIds[1]) {
       // check if allready friends
-      final alreadyFriendsQuery = await _firestore
-          .collection('friend_request')
-          .where('requestStatus', isEqualTo: 'accepted')
-          .where('id', isEqualTo: docRef)
+      final alreadyFriends = await _firestore
+          .collection('users')
+          .doc(currentUserId)
+          .collection('friends')
+          .doc(receiverId)
           .get();
-      if (alreadyFriendsQuery.size == 0) {
+      if (!alreadyFriends.exists) {
         {
           // search if user sent a request before
           final requesQuery = await _firestore
@@ -181,8 +194,24 @@ class FriendRequestRepository implements IFriendRequestRepository {
   @override
   acceptRequest(String requestid) async {
     // search for the request and change it's states
+    // TODO delete the status
     final docRef = _firestore.collection('friend_request').doc(requestid);
-    await docRef.update({'requestStatus': 'accepted'});
+    final friendRequestFS = await docRef.get();
+    final friendRequest = FriendRequestTDO.fromFirestore(friendRequestFS);
+    // set a new friend for the resever and sender
+    final users = [friendRequest.receiver, friendRequest.sender];
+    users.forEach((user) async {
+      final otherUser = users.firstWhere((otheruser) => otheruser != user);
+      await _firestore
+          .collection('users')
+          .doc(user.id)
+          .collection('friends')
+          .doc(otherUser.id)
+          .set(otherUser.toJson());
+    });
+
+    // delete the request
+    await docRef.delete();
   }
 
   @override

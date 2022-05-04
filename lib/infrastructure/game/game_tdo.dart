@@ -36,7 +36,7 @@ abstract class GameDTO implements _$GameDTO {
   Game toDomain() {
     return Game(
         id: UniqueId.fromUniqueString(id),
-        admin: UniqueId.fromUniqueString(id),
+        admin: UniqueId.fromUniqueString(admin),
         usersId:
             usersId.map((e) => UniqueId.fromUniqueString(e)).toImmutableList(),
         name: name,
@@ -49,11 +49,14 @@ abstract class GameDTO implements _$GameDTO {
   factory GameDTO.fromJson(Map<String, dynamic> json) =>
       _$GameDTOFromJson(json);
 
-  // TODO delete if not used
-  factory GameDTO.fromFirestore(DocumentSnapshot doc) {
-    Map<String, dynamic> docMap = doc.data() as Map<String, dynamic>;
-    docMap['id'] = doc.id;
-    return GameDTO.fromJson(docMap);
+  factory GameDTO.fromFirestore(
+      DocumentSnapshot gameMinTodo, List<GameTodoTDO> todos) {
+    // transform todos
+    final todoMapList = todos.map((e) => e.toJson()).toList();
+    // transform game and add todo
+    Map<String, dynamic> game = gameMinTodo.data() as Map<String, dynamic>;
+    game['gameTodos'] = todoMapList;
+    return GameDTO.fromJson(game);
   }
 }
 
@@ -86,6 +89,11 @@ abstract class GameTodoTDO implements _$GameTodoTDO {
 
   factory GameTodoTDO.fromJson(Map<String, dynamic> json) =>
       _$GameTodoTDOFromJson(json);
+
+  factory GameTodoTDO.fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> docMap = doc.data() as Map<String, dynamic>;
+    return GameTodoTDO.fromJson(docMap);
+  }
 }
 
 @freezed
@@ -121,9 +129,13 @@ abstract class UserScoreTDO implements _$UserScoreTDO {
   factory UserScoreTDO.fromJson(Map<String, dynamic> json) =>
       _$UserScoreTDOFromJson(json);
 
-  factory UserScoreTDO.fromFirestore(doc) {
-    Map<String, dynamic> docMap = doc.data() as Map<String, dynamic>;
-    return UserScoreTDO.fromJson(docMap);
+  factory UserScoreTDO.fromFirestore(
+      DocumentSnapshot scoreMinTodo, List<GameTodoTDO> todos) {
+    final todoMapList = todos.map((e) => e.toJson()).toList();
+    // transform game and add todo
+    Map<String, dynamic> score = scoreMinTodo.data() as Map<String, dynamic>;
+    score['gameTodos'] = todoMapList;
+    return UserScoreTDO.fromJson(score);
   }
 }
 

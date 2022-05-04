@@ -7,23 +7,30 @@ class ScoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        // margin:  EdgeInsets.symmetric(horizontal: size.width *.01),
-        child: Container(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: PopupMenuButton(
-          child: Text(score.level.toString(),
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium),
-          itemBuilder: (context) {
-            return [
-              PopupMenuItem(
-                child: Text(score.userName,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium),
-              )
-            ];
-          }),
-    ));
+    return Center(
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(
+              width: 2,
+              color: Theme.of(context).primaryColor,
+            ),
+            borderRadius: BorderRadius.circular(30)),
+        padding: const EdgeInsets.all(5),
+        margin: const EdgeInsets.all(5),
+        child: PopupMenuButton(
+            child: Text(score.level.toString(),
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.displayMedium),
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem(
+                  child: Text(score.userName,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.displayMedium),
+                )
+              ];
+            }),
+      ),
+    );
   }
 }

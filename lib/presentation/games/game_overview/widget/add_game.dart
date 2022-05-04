@@ -9,10 +9,11 @@ class AddGame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return InkWell(
-      child: const Card(
-          // margin: EdgeInsets.all(20),
-          child: Center(child: Icon(Icons.add))),
+      child: Card(
+          margin: EdgeInsets.all(size.width * .05),
+          child: const Center(child: Icon(Icons.add))),
       onTap: () {
         _createDialog(context, BlocProvider.of<GameDetailBloc>(context));
       },
@@ -21,27 +22,37 @@ class AddGame extends StatelessWidget {
 }
 
 _createDialog(BuildContext context, GameDetailBloc gameDetailBloc) {
-  gameDetailBloc.add(const GameDetailEvent.initialized(null));
+  final size = MediaQuery.of(context).size;
+  gameDetailBloc.add(const GameDetailEvent.initialized(null, null));
   showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: const Text('Game Name:'),
-          content: TextField(
-            onChanged: (value) {
-              // BlocProvider.of<GameDetailBloc>(context)
-              gameDetailBloc.add(GameDetailEvent.nameChanged(value));
-            },
+        return SizedBox(
+          height: size.height * .5,
+          width: size.width * .75,
+          child: AlertDialog(
+            title: const Text('Game Name:'),
+            content: TextField(
+              style: Theme.of(context).textTheme.displayMedium,
+              onChanged: (value) {
+                // BlocProvider.of<GameDetailBloc>(context)
+                gameDetailBloc.add(GameDetailEvent.nameChanged(value));
+              },
+            ),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: () {
+                    context.router.popAndPush(const GameDetailRoute());
+                  },
+                  child: Text(
+                    'Next',
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium
+                        ?.copyWith(color: Theme.of(context).primaryColor),
+                  ))
+            ],
           ),
-          actions: <Widget>[
-            TextButton(
-                onPressed: () {
-                  // gameDetailBloc.add(const GameDetailEvent.saved());
-                  context.router.popAndPush(
-                      GameDetailRoute(game: gameDetailBloc.state.game));
-                },
-                child: const Text('Next'))
-          ],
         );
       });
 }

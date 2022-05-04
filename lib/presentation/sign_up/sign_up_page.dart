@@ -12,7 +12,7 @@ class SignUpPage extends StatelessWidget {
     return Scaffold(
         body: BlocProvider(
       create: (context) => getIt<SignInOrUpFormBloc>(),
-      child: SignUpForm(),
+      child: const SignUpForm(),
     ));
   }
 }

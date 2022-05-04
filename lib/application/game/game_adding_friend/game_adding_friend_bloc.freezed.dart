@@ -291,8 +291,16 @@ class _$GameAddingFriendStateTearOff {
     return const _LoadInProgress();
   }
 
-  _FriendAdded friendAdded() {
-    return const _FriendAdded();
+  _FriendAdded friendAdded(GamifierUserPrimitive friendAdded) {
+    return _FriendAdded(
+      friendAdded,
+    );
+  }
+
+  _FriendAddedFailure friendAddedFailure(String friendAddedFailure) {
+    return _FriendAddedFailure(
+      friendAddedFailure,
+    );
   }
 }
 
@@ -305,21 +313,24 @@ mixin _$GameAddingFriendState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function() friendAdded,
+    required TResult Function(GamifierUserPrimitive friendAdded) friendAdded,
+    required TResult Function(String friendAddedFailure) friendAddedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? friendAdded,
+    TResult Function(GamifierUserPrimitive friendAdded)? friendAdded,
+    TResult Function(String friendAddedFailure)? friendAddedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? friendAdded,
+    TResult Function(GamifierUserPrimitive friendAdded)? friendAdded,
+    TResult Function(String friendAddedFailure)? friendAddedFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -328,6 +339,7 @@ mixin _$GameAddingFriendState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loadInProgress,
     required TResult Function(_FriendAdded value) friendAdded,
+    required TResult Function(_FriendAddedFailure value) friendAddedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -335,6 +347,7 @@ mixin _$GameAddingFriendState {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_FriendAdded value)? friendAdded,
+    TResult Function(_FriendAddedFailure value)? friendAddedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -342,6 +355,7 @@ mixin _$GameAddingFriendState {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_FriendAdded value)? friendAdded,
+    TResult Function(_FriendAddedFailure value)? friendAddedFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -405,7 +419,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function() friendAdded,
+    required TResult Function(GamifierUserPrimitive friendAdded) friendAdded,
+    required TResult Function(String friendAddedFailure) friendAddedFailure,
   }) {
     return initial();
   }
@@ -415,7 +430,8 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? friendAdded,
+    TResult Function(GamifierUserPrimitive friendAdded)? friendAdded,
+    TResult Function(String friendAddedFailure)? friendAddedFailure,
   }) {
     return initial?.call();
   }
@@ -425,7 +441,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? friendAdded,
+    TResult Function(GamifierUserPrimitive friendAdded)? friendAdded,
+    TResult Function(String friendAddedFailure)? friendAddedFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -440,6 +457,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loadInProgress,
     required TResult Function(_FriendAdded value) friendAdded,
+    required TResult Function(_FriendAddedFailure value) friendAddedFailure,
   }) {
     return initial(this);
   }
@@ -450,6 +468,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_FriendAdded value)? friendAdded,
+    TResult Function(_FriendAddedFailure value)? friendAddedFailure,
   }) {
     return initial?.call(this);
   }
@@ -460,6 +479,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_FriendAdded value)? friendAdded,
+    TResult Function(_FriendAddedFailure value)? friendAddedFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -516,7 +536,8 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function() friendAdded,
+    required TResult Function(GamifierUserPrimitive friendAdded) friendAdded,
+    required TResult Function(String friendAddedFailure) friendAddedFailure,
   }) {
     return loadInProgress();
   }
@@ -526,7 +547,8 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? friendAdded,
+    TResult Function(GamifierUserPrimitive friendAdded)? friendAdded,
+    TResult Function(String friendAddedFailure)? friendAddedFailure,
   }) {
     return loadInProgress?.call();
   }
@@ -536,7 +558,8 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? friendAdded,
+    TResult Function(GamifierUserPrimitive friendAdded)? friendAdded,
+    TResult Function(String friendAddedFailure)? friendAddedFailure,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -551,6 +574,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loadInProgress,
     required TResult Function(_FriendAdded value) friendAdded,
+    required TResult Function(_FriendAddedFailure value) friendAddedFailure,
   }) {
     return loadInProgress(this);
   }
@@ -561,6 +585,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_FriendAdded value)? friendAdded,
+    TResult Function(_FriendAddedFailure value)? friendAddedFailure,
   }) {
     return loadInProgress?.call(this);
   }
@@ -571,6 +596,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_FriendAdded value)? friendAdded,
+    TResult Function(_FriendAddedFailure value)? friendAddedFailure,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -589,6 +615,9 @@ abstract class _$FriendAddedCopyWith<$Res> {
   factory _$FriendAddedCopyWith(
           _FriendAdded value, $Res Function(_FriendAdded) then) =
       __$FriendAddedCopyWithImpl<$Res>;
+  $Res call({GamifierUserPrimitive friendAdded});
+
+  $GamifierUserPrimitiveCopyWith<$Res> get friendAdded;
 }
 
 /// @nodoc
@@ -601,35 +630,67 @@ class __$FriendAddedCopyWithImpl<$Res>
 
   @override
   _FriendAdded get _value => super._value as _FriendAdded;
+
+  @override
+  $Res call({
+    Object? friendAdded = freezed,
+  }) {
+    return _then(_FriendAdded(
+      friendAdded == freezed
+          ? _value.friendAdded
+          : friendAdded // ignore: cast_nullable_to_non_nullable
+              as GamifierUserPrimitive,
+    ));
+  }
+
+  @override
+  $GamifierUserPrimitiveCopyWith<$Res> get friendAdded {
+    return $GamifierUserPrimitiveCopyWith<$Res>(_value.friendAdded, (value) {
+      return _then(_value.copyWith(friendAdded: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_FriendAdded implements _FriendAdded {
-  const _$_FriendAdded();
+  const _$_FriendAdded(this.friendAdded);
+
+  @override
+  final GamifierUserPrimitive friendAdded;
 
   @override
   String toString() {
-    return 'GameAddingFriendState.friendAdded()';
+    return 'GameAddingFriendState.friendAdded(friendAdded: $friendAdded)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _FriendAdded);
+        (other.runtimeType == runtimeType &&
+            other is _FriendAdded &&
+            const DeepCollectionEquality()
+                .equals(other.friendAdded, friendAdded));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(friendAdded));
+
+  @JsonKey(ignore: true)
+  @override
+  _$FriendAddedCopyWith<_FriendAdded> get copyWith =>
+      __$FriendAddedCopyWithImpl<_FriendAdded>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function() friendAdded,
+    required TResult Function(GamifierUserPrimitive friendAdded) friendAdded,
+    required TResult Function(String friendAddedFailure) friendAddedFailure,
   }) {
-    return friendAdded();
+    return friendAdded(this.friendAdded);
   }
 
   @override
@@ -637,9 +698,10 @@ class _$_FriendAdded implements _FriendAdded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? friendAdded,
+    TResult Function(GamifierUserPrimitive friendAdded)? friendAdded,
+    TResult Function(String friendAddedFailure)? friendAddedFailure,
   }) {
-    return friendAdded?.call();
+    return friendAdded?.call(this.friendAdded);
   }
 
   @override
@@ -647,11 +709,12 @@ class _$_FriendAdded implements _FriendAdded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? friendAdded,
+    TResult Function(GamifierUserPrimitive friendAdded)? friendAdded,
+    TResult Function(String friendAddedFailure)? friendAddedFailure,
     required TResult orElse(),
   }) {
     if (friendAdded != null) {
-      return friendAdded();
+      return friendAdded(this.friendAdded);
     }
     return orElse();
   }
@@ -662,6 +725,7 @@ class _$_FriendAdded implements _FriendAdded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loadInProgress,
     required TResult Function(_FriendAdded value) friendAdded,
+    required TResult Function(_FriendAddedFailure value) friendAddedFailure,
   }) {
     return friendAdded(this);
   }
@@ -672,6 +736,7 @@ class _$_FriendAdded implements _FriendAdded {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_FriendAdded value)? friendAdded,
+    TResult Function(_FriendAddedFailure value)? friendAddedFailure,
   }) {
     return friendAdded?.call(this);
   }
@@ -682,6 +747,7 @@ class _$_FriendAdded implements _FriendAdded {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_FriendAdded value)? friendAdded,
+    TResult Function(_FriendAddedFailure value)? friendAddedFailure,
     required TResult orElse(),
   }) {
     if (friendAdded != null) {
@@ -692,5 +758,159 @@ class _$_FriendAdded implements _FriendAdded {
 }
 
 abstract class _FriendAdded implements GameAddingFriendState {
-  const factory _FriendAdded() = _$_FriendAdded;
+  const factory _FriendAdded(GamifierUserPrimitive friendAdded) =
+      _$_FriendAdded;
+
+  GamifierUserPrimitive get friendAdded;
+  @JsonKey(ignore: true)
+  _$FriendAddedCopyWith<_FriendAdded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$FriendAddedFailureCopyWith<$Res> {
+  factory _$FriendAddedFailureCopyWith(
+          _FriendAddedFailure value, $Res Function(_FriendAddedFailure) then) =
+      __$FriendAddedFailureCopyWithImpl<$Res>;
+  $Res call({String friendAddedFailure});
+}
+
+/// @nodoc
+class __$FriendAddedFailureCopyWithImpl<$Res>
+    extends _$GameAddingFriendStateCopyWithImpl<$Res>
+    implements _$FriendAddedFailureCopyWith<$Res> {
+  __$FriendAddedFailureCopyWithImpl(
+      _FriendAddedFailure _value, $Res Function(_FriendAddedFailure) _then)
+      : super(_value, (v) => _then(v as _FriendAddedFailure));
+
+  @override
+  _FriendAddedFailure get _value => super._value as _FriendAddedFailure;
+
+  @override
+  $Res call({
+    Object? friendAddedFailure = freezed,
+  }) {
+    return _then(_FriendAddedFailure(
+      friendAddedFailure == freezed
+          ? _value.friendAddedFailure
+          : friendAddedFailure // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_FriendAddedFailure implements _FriendAddedFailure {
+  const _$_FriendAddedFailure(this.friendAddedFailure);
+
+  @override
+  final String friendAddedFailure;
+
+  @override
+  String toString() {
+    return 'GameAddingFriendState.friendAddedFailure(friendAddedFailure: $friendAddedFailure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _FriendAddedFailure &&
+            const DeepCollectionEquality()
+                .equals(other.friendAddedFailure, friendAddedFailure));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(friendAddedFailure));
+
+  @JsonKey(ignore: true)
+  @override
+  _$FriendAddedFailureCopyWith<_FriendAddedFailure> get copyWith =>
+      __$FriendAddedFailureCopyWithImpl<_FriendAddedFailure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(GamifierUserPrimitive friendAdded) friendAdded,
+    required TResult Function(String friendAddedFailure) friendAddedFailure,
+  }) {
+    return friendAddedFailure(this.friendAddedFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(GamifierUserPrimitive friendAdded)? friendAdded,
+    TResult Function(String friendAddedFailure)? friendAddedFailure,
+  }) {
+    return friendAddedFailure?.call(this.friendAddedFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(GamifierUserPrimitive friendAdded)? friendAdded,
+    TResult Function(String friendAddedFailure)? friendAddedFailure,
+    required TResult orElse(),
+  }) {
+    if (friendAddedFailure != null) {
+      return friendAddedFailure(this.friendAddedFailure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_FriendAdded value) friendAdded,
+    required TResult Function(_FriendAddedFailure value) friendAddedFailure,
+  }) {
+    return friendAddedFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_FriendAdded value)? friendAdded,
+    TResult Function(_FriendAddedFailure value)? friendAddedFailure,
+  }) {
+    return friendAddedFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_FriendAdded value)? friendAdded,
+    TResult Function(_FriendAddedFailure value)? friendAddedFailure,
+    required TResult orElse(),
+  }) {
+    if (friendAddedFailure != null) {
+      return friendAddedFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FriendAddedFailure implements GameAddingFriendState {
+  const factory _FriendAddedFailure(String friendAddedFailure) =
+      _$_FriendAddedFailure;
+
+  String get friendAddedFailure;
+  @JsonKey(ignore: true)
+  _$FriendAddedFailureCopyWith<_FriendAddedFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

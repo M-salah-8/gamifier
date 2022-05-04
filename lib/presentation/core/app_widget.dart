@@ -8,7 +8,9 @@ import 'package:gamifier/application/friends/friend_watcher/friend_watcher_bloc.
 import 'package:gamifier/application/game/game_actor/game_actor_bloc.dart';
 import 'package:gamifier/application/game/game_adding_friend/game_adding_friend_bloc.dart';
 import 'package:gamifier/application/game/game_detail/game_detail_bloc.dart';
+import 'package:gamifier/application/game/game_editing/game_editing_bloc.dart';
 import 'package:gamifier/application/game/game_getter/game_getter_bloc.dart';
+import 'package:gamifier/application/game/game_score/game_score_bloc.dart';
 import 'package:gamifier/application/game/game_watcher/game_watcher_bloc.dart';
 import 'package:gamifier/injection.dart';
 import 'package:gamifier/presentation/core/colors.dart';
@@ -49,8 +51,11 @@ class AppWidget extends StatelessWidget {
         BlocProvider(create: (context) => getIt<GameWatcherBloc>()),
         BlocProvider(create: (context) => getIt<GameGetterBloc>()),
         BlocProvider(create: (context) => getIt<GameAddingFriendBloc>()),
+        BlocProvider(create: (context) => getIt<GameEditingBloc>()),
+        BlocProvider(create: (context) => getIt<GameScoreBloc>()),
       ],
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
             primaryColor: primary,
             appBarTheme: AppBarTheme(
@@ -75,15 +80,30 @@ class AppWidget extends StatelessWidget {
               ),
             ),
             dialogTheme: DialogTheme(
+                titleTextStyle:
+                    const TextStyle(fontSize: 20, color: Colors.black),
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   side: BorderSide(color: primary, width: 2),
                   borderRadius: BorderRadius.circular(30),
                 )),
             inputDecorationTheme: InputDecorationTheme(
+              hintStyle: const TextStyle(fontSize: 15, color: Colors.black),
+              labelStyle: const TextStyle(fontSize: 15, color: Colors.black),
+              suffixStyle: const TextStyle(fontSize: 15, color: Colors.black),
+              hoverColor: primary,
+              fillColor: primary,
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 3, color: primary),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: primary),
+                borderRadius: BorderRadius.circular(30),
+              ),
               border: OutlineInputBorder(
                 borderSide: BorderSide(color: primary),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(30),
               ),
             ),
             popupMenuTheme: PopupMenuThemeData(
@@ -92,24 +112,25 @@ class AppWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
             )),
             floatingActionButtonTheme: FloatingActionButtonThemeData(
-              extendedTextStyle: TextStyle(color: primary),
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               elevation: 0,
               shape: RoundedRectangleBorder(
                 side: BorderSide(color: primary, width: 2),
                 borderRadius: BorderRadius.circular(8),
               ),
-            )
-            // textTheme: TextTheme(
-            //     bodyMedium: const TextStyle(
-            //         fontSize: 20,
-            //         letterSpacing: 1.5,
-            //         color: Color.fromARGB(255, 92, 219, 98)),
-            //     headline6: const TextStyle(
-            //         fontSize: 40,
-            //         letterSpacing: 1.5,
-            //         color: Color.fromARGB(255, 92, 219, 98)))
             ),
+            textTheme: const TextTheme(
+                displayMedium: TextStyle(fontSize: 15, color: Colors.black),
+                displayLarge: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+                titleSmall: TextStyle(
+                    fontSize: 20, letterSpacing: 1.5, color: Colors.black),
+                titleMedium: TextStyle(
+                    fontSize: 30, letterSpacing: 1.5, color: Colors.black),
+                titleLarge: TextStyle(
+                    fontSize: 40, letterSpacing: 1.5, color: Colors.black))),
         routeInformationParser: _appRouter.defaultRouteParser(),
         routerDelegate: _appRouter.delegate(),
         title: 'Gamifier',
