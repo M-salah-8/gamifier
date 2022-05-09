@@ -1,7 +1,7 @@
 # Gamifier App
 An app for transforming life events into games.
-choose any event in life and break it down into small tasks. Assign suitable points to each task. Each time a task is done its points get added to the game's level.
-To make life more fun playing it with friends is possible by adding friends to games. The app can connect users by friend requests and then connect users to games by adding friends to games.
+choose any event in life and break it down into small tasks. Assign suitable points to each task. Each time a task is done its points get added to the game's level.\
+To make life more fun playing it with friends is possible by adding friends to games. The app can connect users by friend requests and then connect users to games by adding friends to games.\
 Flutter was used to build the application's frontend, with firebase for the backend.
 ## Main Features
 * BLoC patterns and Flutter Hooks for state management.
