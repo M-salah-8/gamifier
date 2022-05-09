@@ -20,7 +20,7 @@ flutter pub get.\
 Then run build_runner command for code generation.\
 flutter pub run build_runner build.\
 
-* Author: Mohammed Salah Ali
+* Author:M-salah-8
 * if you like this please star it and follow me.
 * Contact me at mohammedalmak98@gmail.com.
 * currently searching for a job
@@ -68,7 +68,7 @@ editing:
 
 * friends page:
 
-
+![friends](https://user-images.githubusercontent.com/84665319/167488461-44bf7c9b-311b-454a-a559-d9666c821f07.png)
 
 * adding a friend to a game:
 
