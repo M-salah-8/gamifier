@@ -14,21 +14,22 @@ Flutter was used to build the application's frontend, with firebase for the back
 * freezed for data classes and union cases.
 * firestore for local and remote storage database.
 ## What is left to implement?
-value validators for different text fields
+Value validators for different text fields.\
+Remove friends from friends list and games.\
+Connect google account with email.
 ## Install Packages
 flutter pub get.\
 Then run build_runner command for code generation.\
-flutter pub run build_runner build.\
+flutter pub run build_runner build.
 
 * Author:M-salah-8
 * if you like this please star it and follow me.
 * Contact me at mohammedalmak98@gmail.com.
-* currently searching for a job
+* currently searching for a job.
 
 ## A video about how the app works:
-I recommend watching the video more than looking at the screenshots.
-
-
+I recommend watching the video more than looking at the screenshots.\
+ https://youtu.be/ctFBZ32yWd8
 
 ## Screenshots from the App:
 * sing in\up:
