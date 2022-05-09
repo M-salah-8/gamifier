@@ -32,15 +32,15 @@ I recommend watching the video more than looking at the screenshots.
 
 ## Screenshots from the App:
 * sing in\up:
-* 
-![1](https://user-images.githubusercontent.com/84665319/167463527-eae629b6-b6ed-491f-b916-944b17ff5918.png)
-![2](https://user-images.githubusercontent.com/84665319/167463565-cb24c040-2738-4f79-9530-b46841ee8a7f.png)
+
+![sign in](https://user-images.githubusercontent.com/84665319/167463527-eae629b6-b6ed-491f-b916-944b17ff5918.png)
+![sign up](https://user-images.githubusercontent.com/84665319/167463565-cb24c040-2738-4f79-9530-b46841ee8a7f.png)
 
 * Main overview page:
 
 ![overview](https://user-images.githubusercontent.com/84665319/167463708-51ca7236-bbbd-4248-89d0-95c4545d0b4a.png)
 
-* Game page When admin:
+* Game page When the player is the admin:
 
 creating:
 
@@ -54,13 +54,13 @@ editing:
 
 ![edit](https://user-images.githubusercontent.com/84665319/167463645-ea53ef55-9072-4370-8174-982e0dea326b.png)
 
-* Game page when regular player:
+* Game page when the player is not the admin:
 
 ![non admin](https://user-images.githubusercontent.com/84665319/167463681-dd34f499-f08c-4745-80e8-8c16b1b333a6.png)
 
 * Send request:
 
-![send request](https://user-images.githubusercontent.com/84665319/167463820-2f83bde7-f9e6-4f4b-9c7a-b3f388a1b8c5.png)
+![send request](https://user-images.githubusercontent.com/84665319/167478686-7d0e2921-3c77-4b62-a2b8-dff3a8c111a0.png)
 
 * Friend requests:
 
