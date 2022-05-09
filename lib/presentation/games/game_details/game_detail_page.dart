@@ -49,7 +49,7 @@ class GameDetailPage extends HookWidget {
                 // end loading
                 loading.value = false;
                 // show success message
-                flushBar(context, 'friend addes', SuccessOrError.success);
+                flushBar(context, 'friend added', SuccessOrError.success);
               },
               friendAddedFailure: (e) {
                 loading.value = false;

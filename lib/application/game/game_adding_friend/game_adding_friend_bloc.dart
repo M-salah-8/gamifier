@@ -16,9 +16,13 @@ class GameAddingFriendBloc
   GameAddingFriendBloc(this._gameRepository)
       : super(const GameAddingFriendState.initial()) {
     on<GameAddingFriendEvent>((event, emit) async {
+      // make todos' times 0 for the new player
+      final newGame = event.game.copyWith(
+          gameTodos:
+              event.game.gameTodos.map((e) => e.copyWith(times: 0)).toList());
       emit(const GameAddingFriendState.loadInProgress());
       final friendAddedOrFailure = await _gameRepository.addFriend(
-          event.game.toDomain(), event.friend.toDomain());
+          newGame.toDomain(), event.friend.toDomain());
       emit(friendAddedOrFailure.fold(
           (l) => GameAddingFriendState.friendAddedFailure(l),
           (r) => GameAddingFriendState.friendAdded(event.friend)));

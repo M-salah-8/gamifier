@@ -34,12 +34,7 @@ userDialog(BuildContext context) {
                         style: Theme.of(context).textTheme.displayMedium,
                         decoration: const InputDecoration(
                             suffixIcon: SearchButton(),
-                            // IconButton(
-                            //   icon: Icon(Icons.search),
-                            //   onPressed: null,
-                            // ),
                             hintText: 'search by email',
-                            // label: Text('search by email'),
                             counterText: ''),
                         onChanged: (value) {
                           email = value;
@@ -89,6 +84,7 @@ userDialog(BuildContext context) {
                   }, failed: (e) {
                     return Text(
                       e.failer,
+                      textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.displayMedium,
                     );
                   });

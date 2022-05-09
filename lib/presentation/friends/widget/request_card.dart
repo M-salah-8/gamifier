@@ -15,45 +15,49 @@ class RequestCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomCard(
-      widget: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(6), topLeft: Radius.circular(6)),
-            child: Container(
-                color: Colors.red,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: CustomCard(
+        widget: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(6), topLeft: Radius.circular(6)),
+              child: Container(
+                  color: Colors.red,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.cancel_outlined,
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                    ),
+                    onPressed: () {
+                      BlocProvider.of<FriendRequestBloc>(context)
+                          .add(FriendRequestEvent.requestCancelled(request.id));
+                      context.router
+                          .popUntilRouteWithName(GameOverviewRoute.name);
+                    },
+                  )),
+            ),
+            Text(request.sender.name,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.displayMedium),
+            Container(
+                color: Theme.of(context).primaryColor,
                 child: IconButton(
                   icon: Icon(
-                    Icons.cancel_outlined,
+                    Icons.check,
                     color: Theme.of(context).scaffoldBackgroundColor,
                   ),
                   onPressed: () {
                     BlocProvider.of<FriendRequestBloc>(context)
-                        .add(FriendRequestEvent.requestCancelled(request.id));
+                        .add(FriendRequestEvent.requestAccepted(request.id));
                     context.router
                         .popUntilRouteWithName(GameOverviewRoute.name);
                   },
                 )),
-          ),
-          Text(request.sender.name,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.displayMedium),
-          Container(
-              color: Theme.of(context).primaryColor,
-              child: IconButton(
-                icon: Icon(
-                  Icons.check,
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                ),
-                onPressed: () {
-                  BlocProvider.of<FriendRequestBloc>(context)
-                      .add(FriendRequestEvent.requestAccepted(request.id));
-                  context.router.popUntilRouteWithName(GameOverviewRoute.name);
-                },
-              )),
-        ],
+          ],
+        ),
       ),
     );
   }
