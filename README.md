@@ -16,9 +16,9 @@ Flutter was used to build the application's frontend, with firebase for the back
 ## What is left to implement?
 value validators for different text fields
 ## Install Packages
-flutter pub get
-Then run build_runner command for code generation
-flutter pub run build_runner build
+flutter pub get.\
+Then run build_runner command for code generation.\
+flutter pub run build_runner build.\
 
 * Author: Mohammed Salah Ali
 * if you like this please star it and follow me.
