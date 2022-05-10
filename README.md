@@ -19,8 +19,7 @@ Remove friends from friends list and games.\
 Connect google account with email.
 ## Install Packages
 flutter pub get.\
-Then run build_runner command for code generation.\
-flutter pub run build_runner build.
+Then run build_runner command for code generation: flutter pub run build_runner build.
 
 * Author:M-salah-8
 * if you like this please star it and follow me.
