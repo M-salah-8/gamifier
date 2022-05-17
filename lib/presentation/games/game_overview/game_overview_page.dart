@@ -59,6 +59,7 @@ class GameOverviewPage extends HookWidget {
                     _showRequestDialog();
                     BlocProvider.of<AuthBloc>(context)
                         .add(AuthEvent.signedOut());
+
                     context.router.replace(const SplashRoute());
                   },
                 ),

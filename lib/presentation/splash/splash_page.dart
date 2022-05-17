@@ -37,8 +37,8 @@ class SplashPage extends StatelessWidget {
                   .add(GameDetailEvent.currentUser(e.currentUser));
               BlocProvider.of<GameScoreBloc>(context)
                   .add(GameScoreEvent.currentUser(e.currentUser));
+              // initiate game keys
               BlocProvider.of<GameWatcherBloc>(context)
-                  // initiate game keys
                   .add(GameWatcherEvent.watchGamesStarted());
               context.router.replace(const GameOverviewRoute());
             },
