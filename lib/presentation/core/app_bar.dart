@@ -12,10 +12,11 @@ class CustomAppBar extends StatelessWidget {
     return SafeArea(
         child: Container(
             decoration: BoxDecoration(
-                border: Border.all(
-                  width: 2,
-                  color: Theme.of(context).primaryColor,
-                ),
+                // color: Colors.white,
+                // border: Border.all(
+                //   width: 2,
+                //   color: Theme.of(context).primaryColor,
+                // ),
                 borderRadius: BorderRadius.circular(8)),
             padding: const EdgeInsets.fromLTRB(15, 8, 15, 8),
             margin: const EdgeInsets.all(8),

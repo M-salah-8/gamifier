@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gamifier/application/game/game_detail/game_detail_bloc.dart';
 import 'package:gamifier/application/game/game_editing/game_editing_bloc.dart';
+import 'package:gamifier/presentation/core/alert_dialog_title.dart';
+import 'package:gamifier/presentation/core/custom_button.dart';
 import 'package:gamifier/presentation/games/misc/game_presentaion_classes.dart';
 import 'package:kt_dart/kt.dart';
 
@@ -25,7 +27,8 @@ todoDialog(BuildContext context, final GameTodoPrimitive gameTodo, String title,
           height: size.height * .5,
           width: size.width * .75,
           child: AlertDialog(
-            title: Text(title),
+            titlePadding: const EdgeInsets.all(0),
+            title: AlertDialogTitle(title: title),
             content: ListView(
               shrinkWrap: true,
               children: [
@@ -45,25 +48,24 @@ todoDialog(BuildContext context, final GameTodoPrimitive gameTodo, String title,
                 ),
                 Row(
                   children: [
+                    // Expanded(
+                    //   child:
+                    //       // times form field:
+                    //       TextFormField(
+                    //     enabled: false,
+                    //     style: Theme.of(context).textTheme.displayMedium,
+                    //     controller: times,
+                    //     decoration: const InputDecoration(
+                    //         label: Text('times'), counterText: ''),
+                    //     maxLines: null,
+                    //     onChanged: (value) {
+                    //       timesNameValue = value;
+                    //     },
+                    //   ),
+                    // ),
+                    const Expanded(flex: 1, child: SizedBox()),
                     Expanded(
-                      child:
-                          // times form field:
-                          TextFormField(
-                        enabled: false,
-                        style: Theme.of(context).textTheme.displayMedium,
-                        controller: times,
-                        decoration: const InputDecoration(
-                            label: Text('times'), counterText: ''),
-                        maxLines: null,
-                        onChanged: (value) {
-                          timesNameValue = value;
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
+                      flex: 2,
                       child:
                           // points form field:
                           TextFormField(
@@ -76,47 +78,55 @@ todoDialog(BuildContext context, final GameTodoPrimitive gameTodo, String title,
                           pointsNameValue = value;
                         },
                       ),
-                    )
+                    ),
+                    const Expanded(
+                      flex: 1,
+                      child: SizedBox(),
+                    ),
                   ],
                 ),
               ],
             ),
             actions: <Widget>[
               // save button:
-              TextButton(
-                  onPressed: () {
-                    // add new list => same as old list from bloc
-                    // but with our one gameTodo modified
-                    BlocProvider.of<GameDetailBloc>(context).add(
-                        GameDetailEvent.gameTodosChanged(
-                            // getting old list
-                            BlocProvider.of<GameDetailBloc>(context)
-                                .state
-                                .game
-                                .gameTodos
-                                .toImmutableList()
-                                // searching for our todo to modify it
-                                .map((todo) => todo.id == gameTodo.id
-                                    ? todo.copyWith(
-                                        todoName: todoNameValue,
-                                        times: int.parse(timesNameValue),
-                                        points: int.parse(pointsNameValue))
-                                    : todo)));
-                    // save new list
-                    if (isEditing) {
-                      BlocProvider.of<GameEditingBloc>(context).add(
-                          GameEditingEvent.todoEditied(gameTodo.copyWith(
-                              todoName: todoNameValue,
-                              times: int.parse(timesNameValue),
-                              points: int.parse(pointsNameValue))));
-                    }
-                    context.router.pop();
-                  },
-                  child: Text('Save',
-                      style: Theme.of(context)
-                          .textTheme
-                          .displayMedium
-                          ?.copyWith(color: Theme.of(context).primaryColor)))
+              Padding(
+                padding: EdgeInsets.fromLTRB(
+                    size.width * 0.02, 0, size.width * 0.02, size.width * 0.02),
+                child: CustomButton(
+                    function: () {
+                      // add new list => same as old list from bloc
+                      // but with our one gameTodo modified
+                      BlocProvider.of<GameDetailBloc>(context).add(
+                          GameDetailEvent.gameTodosChanged(
+                              // getting old list
+                              BlocProvider.of<GameDetailBloc>(context)
+                                  .state
+                                  .game
+                                  .gameTodos
+                                  .toImmutableList()
+                                  // searching for our todo to modify it
+                                  .map((todo) => todo.id == gameTodo.id
+                                      ? todo.copyWith(
+                                          todoName: todoNameValue,
+                                          times: int.parse(timesNameValue),
+                                          points: int.parse(pointsNameValue))
+                                      : todo)));
+                      // save new list
+                      if (isEditing) {
+                        BlocProvider.of<GameEditingBloc>(context).add(
+                            GameEditingEvent.todoEditied(gameTodo.copyWith(
+                                todoName: todoNameValue,
+                                times: int.parse(timesNameValue),
+                                points: int.parse(pointsNameValue))));
+                      }
+                      context.router.pop();
+                    },
+                    child: Text('Save',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge
+                            ?.copyWith(color: Theme.of(context).primaryColor))),
+              )
             ],
           ),
         );

@@ -25,7 +25,8 @@ class GameDetailBloc extends Bloc<GameDetailEvent, GameDetailState> {
       }, initialized: (e) {
         // #### when game is getting created
         if (e.game == null) {
-          emit(GameDetailState.initial().copyWith(currentUser: currentUser));
+          emit(GameDetailState.initial()
+              .copyWith(currentUser: currentUser, isAdmin: true));
         } else if (e.gamescores != null) {
           // #### game is playing (or editing)
           /// check if current user is adimn

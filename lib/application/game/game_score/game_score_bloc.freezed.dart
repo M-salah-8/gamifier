@@ -448,8 +448,10 @@ abstract class _TodoChecked implements GameScoreEvent {
 class _$GameScoreStateTearOff {
   const _$GameScoreStateTearOff();
 
-  _GameScoreState call() {
-    return _GameScoreState();
+  _GameScoreState call(int todoPoints) {
+    return _GameScoreState(
+      todoPoints,
+    );
   }
 }
 
@@ -457,13 +459,20 @@ class _$GameScoreStateTearOff {
 const $GameScoreState = _$GameScoreStateTearOff();
 
 /// @nodoc
-mixin _$GameScoreState {}
+mixin _$GameScoreState {
+  int get todoPoints => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $GameScoreStateCopyWith<GameScoreState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $GameScoreStateCopyWith<$Res> {
   factory $GameScoreStateCopyWith(
           GameScoreState value, $Res Function(GameScoreState) then) =
       _$GameScoreStateCopyWithImpl<$Res>;
+  $Res call({int todoPoints});
 }
 
 /// @nodoc
@@ -474,13 +483,28 @@ class _$GameScoreStateCopyWithImpl<$Res>
   final GameScoreState _value;
   // ignore: unused_field
   final $Res Function(GameScoreState) _then;
+
+  @override
+  $Res call({
+    Object? todoPoints = freezed,
+  }) {
+    return _then(_value.copyWith(
+      todoPoints: todoPoints == freezed
+          ? _value.todoPoints
+          : todoPoints // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$GameScoreStateCopyWith<$Res> {
+abstract class _$GameScoreStateCopyWith<$Res>
+    implements $GameScoreStateCopyWith<$Res> {
   factory _$GameScoreStateCopyWith(
           _GameScoreState value, $Res Function(_GameScoreState) then) =
       __$GameScoreStateCopyWithImpl<$Res>;
+  @override
+  $Res call({int todoPoints});
 }
 
 /// @nodoc
@@ -493,28 +517,59 @@ class __$GameScoreStateCopyWithImpl<$Res>
 
   @override
   _GameScoreState get _value => super._value as _GameScoreState;
+
+  @override
+  $Res call({
+    Object? todoPoints = freezed,
+  }) {
+    return _then(_GameScoreState(
+      todoPoints == freezed
+          ? _value.todoPoints
+          : todoPoints // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_GameScoreState implements _GameScoreState {
-  _$_GameScoreState();
+  _$_GameScoreState(this.todoPoints);
+
+  @override
+  final int todoPoints;
 
   @override
   String toString() {
-    return 'GameScoreState()';
+    return 'GameScoreState(todoPoints: $todoPoints)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _GameScoreState);
+        (other.runtimeType == runtimeType &&
+            other is _GameScoreState &&
+            const DeepCollectionEquality()
+                .equals(other.todoPoints, todoPoints));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(todoPoints));
+
+  @JsonKey(ignore: true)
+  @override
+  _$GameScoreStateCopyWith<_GameScoreState> get copyWith =>
+      __$GameScoreStateCopyWithImpl<_GameScoreState>(this, _$identity);
 }
 
 abstract class _GameScoreState implements GameScoreState {
-  factory _GameScoreState() = _$_GameScoreState;
+  factory _GameScoreState(int todoPoints) = _$_GameScoreState;
+
+  @override
+  int get todoPoints;
+  @override
+  @JsonKey(ignore: true)
+  _$GameScoreStateCopyWith<_GameScoreState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

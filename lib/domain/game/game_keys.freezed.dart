@@ -18,10 +18,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$GameKeyTearOff {
   const _$GameKeyTearOff();
 
-  _GameKey call({required UniqueId gameId, required String gameName}) {
+  _GameKey call(
+      {required UniqueId gameId,
+      required String gameName,
+      required String creater,
+      required String createrId}) {
     return _GameKey(
       gameId: gameId,
       gameName: gameName,
+      creater: creater,
+      createrId: createrId,
     );
   }
 }
@@ -33,6 +39,8 @@ const $GameKey = _$GameKeyTearOff();
 mixin _$GameKey {
   UniqueId get gameId => throw _privateConstructorUsedError;
   String get gameName => throw _privateConstructorUsedError;
+  String get creater => throw _privateConstructorUsedError;
+  String get createrId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GameKeyCopyWith<GameKey> get copyWith => throw _privateConstructorUsedError;
@@ -42,7 +50,8 @@ mixin _$GameKey {
 abstract class $GameKeyCopyWith<$Res> {
   factory $GameKeyCopyWith(GameKey value, $Res Function(GameKey) then) =
       _$GameKeyCopyWithImpl<$Res>;
-  $Res call({UniqueId gameId, String gameName});
+  $Res call(
+      {UniqueId gameId, String gameName, String creater, String createrId});
 }
 
 /// @nodoc
@@ -57,6 +66,8 @@ class _$GameKeyCopyWithImpl<$Res> implements $GameKeyCopyWith<$Res> {
   $Res call({
     Object? gameId = freezed,
     Object? gameName = freezed,
+    Object? creater = freezed,
+    Object? createrId = freezed,
   }) {
     return _then(_value.copyWith(
       gameId: gameId == freezed
@@ -67,6 +78,14 @@ class _$GameKeyCopyWithImpl<$Res> implements $GameKeyCopyWith<$Res> {
           ? _value.gameName
           : gameName // ignore: cast_nullable_to_non_nullable
               as String,
+      creater: creater == freezed
+          ? _value.creater
+          : creater // ignore: cast_nullable_to_non_nullable
+              as String,
+      createrId: createrId == freezed
+          ? _value.createrId
+          : createrId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -76,7 +95,8 @@ abstract class _$GameKeyCopyWith<$Res> implements $GameKeyCopyWith<$Res> {
   factory _$GameKeyCopyWith(_GameKey value, $Res Function(_GameKey) then) =
       __$GameKeyCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId gameId, String gameName});
+  $Res call(
+      {UniqueId gameId, String gameName, String creater, String createrId});
 }
 
 /// @nodoc
@@ -92,6 +112,8 @@ class __$GameKeyCopyWithImpl<$Res> extends _$GameKeyCopyWithImpl<$Res>
   $Res call({
     Object? gameId = freezed,
     Object? gameName = freezed,
+    Object? creater = freezed,
+    Object? createrId = freezed,
   }) {
     return _then(_GameKey(
       gameId: gameId == freezed
@@ -102,6 +124,14 @@ class __$GameKeyCopyWithImpl<$Res> extends _$GameKeyCopyWithImpl<$Res>
           ? _value.gameName
           : gameName // ignore: cast_nullable_to_non_nullable
               as String,
+      creater: creater == freezed
+          ? _value.creater
+          : creater // ignore: cast_nullable_to_non_nullable
+              as String,
+      createrId: createrId == freezed
+          ? _value.createrId
+          : createrId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -109,16 +139,24 @@ class __$GameKeyCopyWithImpl<$Res> extends _$GameKeyCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_GameKey implements _GameKey {
-  const _$_GameKey({required this.gameId, required this.gameName});
+  const _$_GameKey(
+      {required this.gameId,
+      required this.gameName,
+      required this.creater,
+      required this.createrId});
 
   @override
   final UniqueId gameId;
   @override
   final String gameName;
+  @override
+  final String creater;
+  @override
+  final String createrId;
 
   @override
   String toString() {
-    return 'GameKey(gameId: $gameId, gameName: $gameName)';
+    return 'GameKey(gameId: $gameId, gameName: $gameName, creater: $creater, createrId: $createrId)';
   }
 
   @override
@@ -127,14 +165,18 @@ class _$_GameKey implements _GameKey {
         (other.runtimeType == runtimeType &&
             other is _GameKey &&
             const DeepCollectionEquality().equals(other.gameId, gameId) &&
-            const DeepCollectionEquality().equals(other.gameName, gameName));
+            const DeepCollectionEquality().equals(other.gameName, gameName) &&
+            const DeepCollectionEquality().equals(other.creater, creater) &&
+            const DeepCollectionEquality().equals(other.createrId, createrId));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(gameId),
-      const DeepCollectionEquality().hash(gameName));
+      const DeepCollectionEquality().hash(gameName),
+      const DeepCollectionEquality().hash(creater),
+      const DeepCollectionEquality().hash(createrId));
 
   @JsonKey(ignore: true)
   @override
@@ -143,13 +185,20 @@ class _$_GameKey implements _GameKey {
 }
 
 abstract class _GameKey implements GameKey {
-  const factory _GameKey({required UniqueId gameId, required String gameName}) =
-      _$_GameKey;
+  const factory _GameKey(
+      {required UniqueId gameId,
+      required String gameName,
+      required String creater,
+      required String createrId}) = _$_GameKey;
 
   @override
   UniqueId get gameId;
   @override
   String get gameName;
+  @override
+  String get creater;
+  @override
+  String get createrId;
   @override
   @JsonKey(ignore: true)
   _$GameKeyCopyWith<_GameKey> get copyWith =>

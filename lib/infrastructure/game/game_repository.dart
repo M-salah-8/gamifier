@@ -87,7 +87,8 @@ class GameRepository implements IGameRepository {
   }
 
   @override
-  Future<Either<String, Unit>> addFriend(Game game, GamifierUser friend) async {
+  Future<Either<String, Unit>> addFriend(
+      Game game, GamifierUser friend, String adminName) async {
     final friendTDO = GamifierUserTDO.fromDomain(friend);
     final gameDTO = GameDTO.fromDomain(game);
     // #### check if friend is allready playing
@@ -102,7 +103,12 @@ class GameRepository implements IGameRepository {
           .doc(friendTDO.id)
           .collection('user_games_list')
           .doc(gameDTO.id)
-          .set(GameKeyTDO(gameId: gameDTO.id, gameName: gameDTO.name).toJson());
+          .set(GameKeyTDO(
+                  gameId: gameDTO.id,
+                  gameName: gameDTO.name,
+                  creater: adminName,
+                  createrId: gameDTO.admin)
+              .toJson());
       // #### change number of users in game and add friend to users id list
       final usersList = gameDTO.usersId..add(friendTDO.id);
       await _firestore.collection('games').doc(gameDTO.id).update(gameDTO
@@ -142,9 +148,9 @@ class GameRepository implements IGameRepository {
     // TODO: implement create
     try {
       // #### add current user as admin and to the list of users id
-      final admin = GamifierUserTDO.fromDomain(currentUser).id;
-      final GameDTO gameDTO =
-          GameDTO.fromDomain(game).copyWith(admin: admin, usersId: [admin]);
+      final admin = GamifierUserTDO.fromDomain(currentUser);
+      final GameDTO gameDTO = GameDTO.fromDomain(game).copyWith(
+          admin: admin.id, adminName: admin.name, usersId: [admin.id]);
       // #### creating a new game doc with the id from new game
       // add the game without the todos then add the todos in saperate
       // collection
@@ -163,10 +169,15 @@ class GameRepository implements IGameRepository {
       // #### adding new game key to the creater
       await _firestore
           .collection('users')
-          .doc(admin)
+          .doc(admin.id)
           .collection('user_games_list')
           .doc(gameDTO.id)
-          .set(GameKeyTDO(gameId: gameDTO.id, gameName: gameDTO.name).toJson());
+          .set(GameKeyTDO(
+                  gameId: gameDTO.id,
+                  gameName: gameDTO.name,
+                  creater: admin.name,
+                  createrId: admin.id)
+              .toJson());
 
       // #### add admen as new user(player) to the game to set his scores
       // put the todos in saperate collection
@@ -174,11 +185,11 @@ class GameRepository implements IGameRepository {
           .collection('games')
           .doc(gameDTO.id)
           .collection('scores')
-          .doc(admin);
+          .doc(admin.id);
       // first the score without the todos
       final userScoresTDO = UserScoreTDO(
           gameId: gameDTO.id,
-          gamifierUserId: admin,
+          gamifierUserId: admin.id,
           userName: currentUser.name,
           level: 0,
           gameTodos: gameDTO.gameTodos);

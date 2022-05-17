@@ -5,6 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gamifier/application/auth/auth_bloc.dart';
 import 'package:gamifier/application/auth/sign_in_form/sign_in_or_up_form_bloc.dart';
 import 'package:gamifier/domain/core/value_validators.dart';
+import 'package:gamifier/presentation/core/custom_button.dart';
 import 'package:gamifier/presentation/core/flush_bar.dart';
 import 'package:gamifier/presentation/core/loading.dart';
 import 'package:gamifier/presentation/routes/router.gr.dart';
@@ -117,8 +118,8 @@ class SignUpForm extends StatelessWidget {
                   ),
                   // sign up button
                   Center(
-                    child: TextButton(
-                      onPressed: () {
+                    child: CustomButton(
+                      function: () {
                         state.copyWith(
                             showErrorMessagesforSignUp:
                                 AutovalidateMode.always);
@@ -132,13 +133,6 @@ class SignUpForm extends StatelessWidget {
                               .displayMedium
                               ?.copyWith(
                                   color: Theme.of(context).primaryColor)),
-                      style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                              color: Theme.of(context).primaryColor, width: 2),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
                     ),
                   )
                 ],

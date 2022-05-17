@@ -16,6 +16,7 @@ abstract class GamePrimitive implements _$GamePrimitive {
   const factory GamePrimitive(
       {required String id,
       required String admin,
+      required String adminName,
       required List<String> usersId,
       required String name,
       required int noOfUsers,
@@ -25,6 +26,7 @@ abstract class GamePrimitive implements _$GamePrimitive {
   factory GamePrimitive.empty() => const GamePrimitive(
       id: '',
       admin: '',
+      adminName: '',
       usersId: <String>[],
       noOfUsers: 1,
       name: '',
@@ -33,6 +35,7 @@ abstract class GamePrimitive implements _$GamePrimitive {
   factory GamePrimitive.fromDomain(Game game) => GamePrimitive(
       id: game.id.value,
       admin: game.admin.value,
+      adminName: game.adminName,
       usersId: game.usersId.map((e) => e.value).asList(),
       name: game.name,
       noOfUsers: game.noOfUsers,
@@ -47,6 +50,7 @@ abstract class GamePrimitive implements _$GamePrimitive {
         usersId:
             usersId.map((e) => UniqueId.fromUniqueString(e)).toImmutableList(),
         name: name,
+        adminName: adminName,
         noOfUsers: noOfUsers,
         gameTodos: gameTodos
             .map((gameTodosDTO) => gameTodosDTO.toDomain())
@@ -146,13 +150,22 @@ abstract class UserGamesListPrimitive implements _$UserGamesListPrimitive {
 abstract class GameKeyPrimitive implements _$GameKeyPrimitive {
   const GameKeyPrimitive._();
   const factory GameKeyPrimitive(
-      {required String gameId, required String gameName}) = _GameKeyPrimitive;
+      {required String gameId,
+      required String gameName,
+      required String creater,
+      required String createrId}) = _GameKeyPrimitive;
 
   factory GameKeyPrimitive.fromDomain(GameKey gameKey) => GameKeyPrimitive(
-      gameId: gameKey.gameId.value, gameName: gameKey.gameName);
+      gameId: gameKey.gameId.value,
+      gameName: gameKey.gameName,
+      creater: gameKey.creater,
+      createrId: gameKey.createrId);
 
-  GameKey toDomain() =>
-      GameKey(gameId: UniqueId.fromUniqueString(gameId), gameName: gameName);
+  GameKey toDomain() => GameKey(
+      gameId: UniqueId.fromUniqueString(gameId),
+      gameName: gameName,
+      creater: creater,
+      createrId: createrId);
 }
 
 @freezed

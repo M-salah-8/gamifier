@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gamifier/application/friends/friend_request/friend_request_bloc.dart';
 import 'package:gamifier/application/friends/friend_request/friend_search/friend_search_bloc.dart';
+import 'package:gamifier/presentation/core/alert_dialog_title.dart';
+import 'package:gamifier/presentation/core/circle_button.dart';
+import 'package:gamifier/presentation/core/custom_button.dart';
 import 'package:gamifier/presentation/core/loading.dart';
-import 'package:gamifier/presentation/core/custom_card.dart';
 import 'package:gamifier/presentation/routes/router.gr.dart';
 
 String email = 'empty';
@@ -20,9 +22,8 @@ userDialog(BuildContext context) {
       context: context,
       builder: (context) {
         return AlertDialog(
-            title: const Text(
-              'send request:',
-            ),
+            titlePadding: const EdgeInsets.all(0),
+            title: const AlertDialogTitle(title: 'Send Request'),
             content: SizedBox(
               height: size.height * .1,
               width: size.width * .75,
@@ -45,32 +46,29 @@ userDialog(BuildContext context) {
                     return const SizedBox.square(
                         dimension: 50, child: Center(child: Loading()));
                   }, received: (e) {
-                    return CustomCard(
-                        widget: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Text(e.gamifierUser.name,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.displayMedium),
+                        Expanded(
+                          flex: 6,
+                          child: CustomButton(
+                            function: null,
+                            child: Text(e.gamifierUser.name,
+                                textAlign: TextAlign.center,
+                                style:
+                                    Theme.of(context).textTheme.displayMedium),
+                          ),
                         ),
-                        Container(
-                          color: Theme.of(context).primaryColor,
-                          child: TextButton(
-                            child: Text(
-                              'send',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displayLarge
-                                  ?.copyWith(
-                                    color: Theme.of(context)
-                                        .scaffoldBackgroundColor,
-                                  ),
+                        const Expanded(flex: 1, child: SizedBox()),
+                        Expanded(
+                          flex: 3,
+                          child: CircleButton(
+                            button: Icon(
+                              Icons.send,
+                              color: Theme.of(context).primaryColor,
                             ),
-                            onPressed: () {
+                            function: () {
                               BlocProvider.of<FriendRequestBloc>(context).add(
                                   FriendRequestEvent.requestSended(
                                       e.gamifierUser));
@@ -80,7 +78,7 @@ userDialog(BuildContext context) {
                           ),
                         )
                       ],
-                    ));
+                    );
                   }, failed: (e) {
                     return Text(
                       e.failer,

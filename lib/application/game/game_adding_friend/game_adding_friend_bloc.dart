@@ -22,7 +22,7 @@ class GameAddingFriendBloc
               event.game.gameTodos.map((e) => e.copyWith(times: 0)).toList());
       emit(const GameAddingFriendState.loadInProgress());
       final friendAddedOrFailure = await _gameRepository.addFriend(
-          newGame.toDomain(), event.friend.toDomain());
+          newGame.toDomain(), event.friend.toDomain(), event.game.adminName);
       emit(friendAddedOrFailure.fold(
           (l) => GameAddingFriendState.friendAddedFailure(l),
           (r) => GameAddingFriendState.friendAdded(event.friend)));

@@ -23,21 +23,38 @@ class GameWatcherBloc extends Bloc<GameWatcherEvent, GameWatcherState> {
   final IGameRepository _gameRepository;
   StreamSubscription<Either<GameFailure, KtList<GameKey>>>?
       _gameStreamSubscription;
+  KtList<GameKeyPrimitive>? allgames;
   GameWatcherBloc(this._gameRepository)
       : super(const GameWatcherState.initial()) {
     on<GameWatcherEvent>((event, emit) async {
       await event.map(currentUser: (e) {
         currentUser = e.currentUser;
       },
-          // tring to get the games:
+          // get all the games then divide them later
           watchGamesStarted: (e) async {
         emit(const GameWatcherState.loadInProgress());
         await _gameStreamSubscription?.cancel();
         _gameStreamSubscription =
             _gameRepository.watchGames(currentUser.toDomain()).listen(
-                  (failureOrGames) =>
-                      add(GameWatcherEvent.gamesReceived(failureOrGames)),
-                );
+          (failureOrGames) {
+            failureOrGames.fold(
+                (l) => add(GameWatcherEvent.gamesReceived(failureOrGames)),
+                (r) {
+              allgames = r.map((e) => GameKeyPrimitive.fromDomain(e));
+              add(GameWatcherEvent.gamesReceived(failureOrGames));
+            });
+          },
+        );
+      },
+          // tring to get the games:
+          watchUserGamesStarted: (e) {
+        final userGames =
+            allgames!.filter((gamekey) => gamekey.createrId == currentUser.id);
+        emit(GameWatcherState.loadSuccess(userGames, true));
+      }, watchFriendsGamesStarted: (e) async {
+        final friendGames =
+            allgames!.filter((gamekey) => gamekey.createrId != currentUser.id);
+        emit(GameWatcherState.loadSuccess(friendGames, false));
       },
           // result after watching the game:
           gamesReceived: (e) async {
@@ -45,7 +62,11 @@ class GameWatcherBloc extends Bloc<GameWatcherEvent, GameWatcherState> {
           emit(GameWatcherState.loadFailure(l));
         }, (r) {
           final gameKeysList = r.map((e) => GameKeyPrimitive.fromDomain(e));
-          emit(GameWatcherState.loadSuccess((gameKeysList)));
+          // first only user games appear
+          emit(GameWatcherState.loadSuccess(
+              (gameKeysList
+                  .filter((gamekey) => gamekey.createrId == currentUser.id)),
+              true));
         });
       });
     });

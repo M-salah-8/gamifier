@@ -5,9 +5,11 @@ import 'package:gamifier/application/auth/auth_bloc.dart';
 import 'package:gamifier/application/auth/sign_in_form/sign_in_or_up_form_bloc.dart';
 import 'package:gamifier/domain/core/value_validators.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:gamifier/presentation/core/custom_button.dart';
 import 'package:gamifier/presentation/core/flush_bar.dart';
 import 'package:gamifier/presentation/core/loading.dart';
 import 'package:gamifier/presentation/routes/router.gr.dart';
+import 'package:gamifier/presentation/sign_in/widget/google_button.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -101,22 +103,13 @@ class SignInForm extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   // google, sign in, and up buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      TextButton(
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  color: Theme.of(context).primaryColor,
-                                  width: 2),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
-                          onPressed: () {
+                      CustomButton(
+                          function: () {
                             state.copyWith(
                                 showErrorMessagesforSignIn:
                                     AutovalidateMode.always);
@@ -129,12 +122,13 @@ class SignInForm extends StatelessWidget {
                                   .textTheme
                                   .displayMedium
                                   ?.copyWith(
+                                      fontWeight: FontWeight.bold,
                                       color: Theme.of(context).primaryColor))),
                       SizedBox(
                         width: size.width * .1,
                       ),
-                      TextButton(
-                          onPressed: () {
+                      CustomButton(
+                          function: () {
                             // reset auto validation
                             state.copyWith(
                                 showErrorMessagesforSignIn:
@@ -146,24 +140,32 @@ class SignInForm extends StatelessWidget {
                                   .textTheme
                                   .displayMedium
                                   ?.copyWith(
-                                      color: Theme.of(context).primaryColor))),
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blue))),
                     ],
                   ),
                   SizedBox(
-                    height: size.width * .05,
+                    height: size.width * .15,
                   ),
-                  TextButton(
-                      onPressed: () {
-                        BlocProvider.of<SignInOrUpFormBloc>(context)
-                            .add(SignInOrUpFormEvent.signInGooglePressed());
-                      },
-                      child: const Text('or sign in with google'))
+                  Center(
+                    child: GoogleButton(
+                        function: () {
+                          BlocProvider.of<SignInOrUpFormBloc>(context)
+                              .add(SignInOrUpFormEvent.signInGooglePressed());
+                        },
+                        child: Text('or sign in with google',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayMedium
+                                ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).primaryColor))),
+                  )
                 ],
               ),
             ),
-            if (state.isSubmitting) ...[
-              const Center(child: Loading()),
-            ]
+            if (state.isSubmitting) const Center(child: Loading()),
           ],
         );
       },

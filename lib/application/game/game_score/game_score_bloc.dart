@@ -14,7 +14,7 @@ part 'game_score_state.dart';
 class GameScoreBloc extends Bloc<GameScoreEvent, GameScoreState> {
   late GamifierUserPrimitive currentUser;
   final IGameRepository _gameRepository;
-  GameScoreBloc(this._gameRepository) : super(GameScoreState()) {
+  GameScoreBloc(this._gameRepository) : super(GameScoreState(0)) {
     on<GameScoreEvent>((event, emit) async {
       await event.map(currentUser: (e) {
         currentUser = e.currentUser;
@@ -23,6 +23,7 @@ class GameScoreBloc extends Bloc<GameScoreEvent, GameScoreState> {
         final newTodo = e.todo.copyWith(times: e.todo.times + 1);
         // display to user
         // save to repository
+        emit(GameScoreState(e.todo.points));
         await _gameRepository.todoChecked(UniqueId.fromUniqueString(e.gameId),
             UniqueId.fromUniqueString(e.userId), newTodo.toDomain(), newLevel);
       });
