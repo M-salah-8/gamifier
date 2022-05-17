@@ -33,43 +33,55 @@ I recommend watching the video more than looking at the screenshots.\
 ## Screenshots from the App:
 * sing in\up:
 
-![sign in](https://user-images.githubusercontent.com/84665319/167463527-eae629b6-b6ed-491f-b916-944b17ff5918.png)
-![sign up](https://user-images.githubusercontent.com/84665319/167463565-cb24c040-2738-4f79-9530-b46841ee8a7f.png)
+![signin](https://user-images.githubusercontent.com/84665319/168915554-05d1ff2f-b3b6-4c64-b038-4d03954485d6.png)
+![signup](https://user-images.githubusercontent.com/84665319/168915561-4f857cc3-7b09-4050-b53e-e09bcab4eff2.png)
 
 * Main overview page:
 
-![overview](https://user-images.githubusercontent.com/84665319/167463708-51ca7236-bbbd-4248-89d0-95c4545d0b4a.png)
+![yourgamesoverveiw](https://user-images.githubusercontent.com/84665319/168915577-7ab2b280-5b9a-49e7-a3f9-f7d29a024243.png)
+
+* Friends Games overview page:
+
+![friendsgamesoverview](https://user-images.githubusercontent.com/84665319/168915449-234d8557-fbe7-429d-99fc-ec1246af2e0e.png)
 
 * Game page When the player is the admin:
 
 creating:
 
-![create](https://user-images.githubusercontent.com/84665319/167463615-976ab544-eebb-4b62-ad72-be4a90002b12.png)
+![create](https://user-images.githubusercontent.com/84665319/168915176-c092364f-4526-4aeb-8a6d-32070441886b.png)
 
 playing:
 
-![playing](https://user-images.githubusercontent.com/84665319/167463748-a724bf55-1b2f-4f40-a62c-a6bfd3891eff.png)
+![adminveiw](https://user-images.githubusercontent.com/84665319/168915140-0be66407-c477-499d-9480-9853bf132a25.png)
 
 editing:
 
-![edit](https://user-images.githubusercontent.com/84665319/167463645-ea53ef55-9072-4370-8174-982e0dea326b.png)
+![edit](https://user-images.githubusercontent.com/84665319/168915243-66ee94e8-5410-4e65-be66-ef134181ed2b.png)
+
+add or edit todo:
+![addtodo](https://user-images.githubusercontent.com/84665319/168915092-a585a9d4-8731-4950-b275-717d7851c64b.png)
+![edittodo](https://user-images.githubusercontent.com/84665319/168915293-90a92140-3d50-43c8-b947-d087de21ca11.png)
 
 * Game page when the player is not the admin:
 
-![non admin](https://user-images.githubusercontent.com/84665319/167463681-dd34f499-f08c-4745-80e8-8c16b1b333a6.png)
+![nonadminview](https://user-images.githubusercontent.com/84665319/168915535-27779214-6281-4001-a9b6-7c44355b7270.png)
+
+* Friends scores:
+
+![friendsscores](https://user-images.githubusercontent.com/84665319/168915498-66db564c-de98-492f-82ac-35ec4cce9f0a.png)
 
 * Send request:
 
-![send request](https://user-images.githubusercontent.com/84665319/167478686-7d0e2921-3c77-4b62-a2b8-dff3a8c111a0.png)
+![friendsearch](https://user-images.githubusercontent.com/84665319/168915419-860b9762-3bfb-40d4-bee6-080bfdbd1561.png)
 
 * Friend requests:
 
-![requests](https://user-images.githubusercontent.com/84665319/167463786-ad6f1dad-f2eb-4985-bfd1-d4c3f98c15c9.png)
+![friendrequests](https://user-images.githubusercontent.com/84665319/168915343-4506676e-767d-4be0-b817-9654a3168c73.png)
 
 * friends page:
 
-![friends](https://user-images.githubusercontent.com/84665319/167488461-44bf7c9b-311b-454a-a559-d9666c821f07.png)
+![friendslist](https://user-images.githubusercontent.com/84665319/168915477-5405e3df-fdad-45bb-90a6-a3f88c69fccf.png)
 
 * adding a friend to a game:
 
-![add friend to game](https://user-images.githubusercontent.com/84665319/167463595-808430a9-fe9b-43a9-9a85-4c2cc865cb5d.png)
+![addfriendtogame](https://user-images.githubusercontent.com/84665319/168915043-50b39de1-8764-48af-abc3-96fc87159fdf.png)
