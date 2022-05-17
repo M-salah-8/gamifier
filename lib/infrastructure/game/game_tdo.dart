@@ -18,6 +18,7 @@ abstract class GameDTO implements _$GameDTO {
   const factory GameDTO(
       {required String id,
       required String admin,
+      required String adminName,
       required List<String> usersId,
       required String name,
       required int noOfUsers,
@@ -26,6 +27,7 @@ abstract class GameDTO implements _$GameDTO {
   factory GameDTO.fromDomain(Game game) => GameDTO(
       id: game.id.value,
       admin: game.admin.value,
+      adminName: game.adminName,
       usersId: game.usersId.map((e) => e.value).asList(),
       name: game.name,
       noOfUsers: game.noOfUsers,
@@ -40,6 +42,7 @@ abstract class GameDTO implements _$GameDTO {
         usersId:
             usersId.map((e) => UniqueId.fromUniqueString(e)).toImmutableList(),
         name: name,
+        adminName: adminName,
         noOfUsers: noOfUsers,
         gameTodos: gameTodos
             .map((gameTodosDTO) => gameTodosDTO.toDomain())
@@ -200,14 +203,24 @@ abstract class UserGamesListTDO implements _$UserGamesListTDO {
 @freezed
 abstract class GameKeyTDO implements _$GameKeyTDO {
   const GameKeyTDO._();
-  const factory GameKeyTDO({required String gameId, required String gameName}) =
-      _GameKeyTDO;
+  const factory GameKeyTDO({
+    required String gameId,
+    required String gameName,
+    required String creater,
+    required String createrId,
+  }) = _GameKeyTDO;
 
-  factory GameKeyTDO.fromDomain(GameKey gameKey) =>
-      GameKeyTDO(gameId: gameKey.gameId.value, gameName: gameKey.gameName);
+  factory GameKeyTDO.fromDomain(GameKey gameKey) => GameKeyTDO(
+      gameId: gameKey.gameId.value,
+      gameName: gameKey.gameName,
+      creater: gameKey.creater,
+      createrId: gameKey.createrId);
 
-  GameKey toDomain() =>
-      GameKey(gameId: UniqueId.fromUniqueString(gameId), gameName: gameName);
+  GameKey toDomain() => GameKey(
+      gameId: UniqueId.fromUniqueString(gameId),
+      gameName: gameName,
+      creater: creater,
+      createrId: createrId);
 
   factory GameKeyTDO.fromJson(Map<String, dynamic> json) =>
       _$GameKeyTDOFromJson(json);

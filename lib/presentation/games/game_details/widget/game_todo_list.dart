@@ -4,13 +4,6 @@ import 'package:gamifier/presentation/games/game_details/widget/todo_card.dart';
 import 'package:gamifier/presentation/games/misc/game_presentaion_classes.dart';
 
 class GameTodoList extends StatelessWidget {
-  final String gameId;
-  final int level;
-  final String currentUserId;
-  final bool editingMood;
-  final bool isEditing;
-
-  final List<GameTodoPrimitive> gameTodos;
   const GameTodoList(
       {Key? key,
       required this.gameTodos,
@@ -20,6 +13,13 @@ class GameTodoList extends StatelessWidget {
       required this.editingMood,
       required this.currentUserId})
       : super(key: key);
+
+  final String gameId;
+  final int level;
+  final String currentUserId;
+  final bool editingMood;
+  final bool isEditing;
+  final List<GameTodoPrimitive> gameTodos;
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +35,16 @@ class GameTodoList extends StatelessWidget {
                     isEditing: isEditing,
                     editingMood: editingMood,
                   )
-                : TodoCard(
-                    gameId: gameId,
-                    level: level,
-                    currentUserId: currentUserId,
-                    todo: gameTodos[index],
-                    editingMood: editingMood,
-                    isEditing: isEditing,
+                : Padding(
+                    padding: EdgeInsets.all(size.height * .01),
+                    child: TodoCard(
+                      gameId: gameId,
+                      level: level,
+                      currentUserId: currentUserId,
+                      todo: gameTodos[index],
+                      editingMood: editingMood,
+                      isEditing: isEditing,
+                    ),
                   );
           }),
     );

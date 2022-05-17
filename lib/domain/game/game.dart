@@ -10,6 +10,7 @@ class Game with _$Game {
   const factory Game(
       {required UniqueId id,
       required UniqueId admin,
+      required String adminName,
       required String name,
       required KtList<UniqueId> usersId,
       required int noOfUsers,
@@ -21,5 +22,6 @@ class Game with _$Game {
       usersId: emptyList<UniqueId>(),
       noOfUsers: 1,
       name: '',
+      adminName: '',
       gameTodos: const KtList<GameTodo>.empty());
 }

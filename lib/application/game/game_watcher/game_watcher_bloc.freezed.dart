@@ -28,6 +28,14 @@ class _$GameWatcherEventTearOff {
     return _WatchGamesStarted();
   }
 
+  _WatchUserGamesStarted watchUserGamesStarted() {
+    return _WatchUserGamesStarted();
+  }
+
+  _WatchFriendsGamesStarted watchFriendsGamesStarted() {
+    return _WatchFriendsGamesStarted();
+  }
+
   _GamesReceived gamesReceived(
       Either<GameFailure, KtList<GameKey>> failureOrGames) {
     return _GamesReceived(
@@ -45,6 +53,8 @@ mixin _$GameWatcherEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(GamifierUserPrimitive currentUser) currentUser,
     required TResult Function() watchGamesStarted,
+    required TResult Function() watchUserGamesStarted,
+    required TResult Function() watchFriendsGamesStarted,
     required TResult Function(
             Either<GameFailure, KtList<GameKey>> failureOrGames)
         gamesReceived,
@@ -54,6 +64,8 @@ mixin _$GameWatcherEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function()? watchGamesStarted,
+    TResult Function()? watchUserGamesStarted,
+    TResult Function()? watchFriendsGamesStarted,
     TResult Function(Either<GameFailure, KtList<GameKey>> failureOrGames)?
         gamesReceived,
   }) =>
@@ -62,6 +74,8 @@ mixin _$GameWatcherEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function()? watchGamesStarted,
+    TResult Function()? watchUserGamesStarted,
+    TResult Function()? watchFriendsGamesStarted,
     TResult Function(Either<GameFailure, KtList<GameKey>> failureOrGames)?
         gamesReceived,
     required TResult orElse(),
@@ -71,6 +85,10 @@ mixin _$GameWatcherEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_WatchGamesStarted value) watchGamesStarted,
+    required TResult Function(_WatchUserGamesStarted value)
+        watchUserGamesStarted,
+    required TResult Function(_WatchFriendsGamesStarted value)
+        watchFriendsGamesStarted,
     required TResult Function(_GamesReceived value) gamesReceived,
   }) =>
       throw _privateConstructorUsedError;
@@ -78,6 +96,8 @@ mixin _$GameWatcherEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_WatchUserGamesStarted value)? watchUserGamesStarted,
+    TResult Function(_WatchFriendsGamesStarted value)? watchFriendsGamesStarted,
     TResult Function(_GamesReceived value)? gamesReceived,
   }) =>
       throw _privateConstructorUsedError;
@@ -85,6 +105,8 @@ mixin _$GameWatcherEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_WatchUserGamesStarted value)? watchUserGamesStarted,
+    TResult Function(_WatchFriendsGamesStarted value)? watchFriendsGamesStarted,
     TResult Function(_GamesReceived value)? gamesReceived,
     required TResult orElse(),
   }) =>
@@ -185,6 +207,8 @@ class _$_CurrentUser implements _CurrentUser {
   TResult when<TResult extends Object?>({
     required TResult Function(GamifierUserPrimitive currentUser) currentUser,
     required TResult Function() watchGamesStarted,
+    required TResult Function() watchUserGamesStarted,
+    required TResult Function() watchFriendsGamesStarted,
     required TResult Function(
             Either<GameFailure, KtList<GameKey>> failureOrGames)
         gamesReceived,
@@ -197,6 +221,8 @@ class _$_CurrentUser implements _CurrentUser {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function()? watchGamesStarted,
+    TResult Function()? watchUserGamesStarted,
+    TResult Function()? watchFriendsGamesStarted,
     TResult Function(Either<GameFailure, KtList<GameKey>> failureOrGames)?
         gamesReceived,
   }) {
@@ -208,6 +234,8 @@ class _$_CurrentUser implements _CurrentUser {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function()? watchGamesStarted,
+    TResult Function()? watchUserGamesStarted,
+    TResult Function()? watchFriendsGamesStarted,
     TResult Function(Either<GameFailure, KtList<GameKey>> failureOrGames)?
         gamesReceived,
     required TResult orElse(),
@@ -223,6 +251,10 @@ class _$_CurrentUser implements _CurrentUser {
   TResult map<TResult extends Object?>({
     required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_WatchGamesStarted value) watchGamesStarted,
+    required TResult Function(_WatchUserGamesStarted value)
+        watchUserGamesStarted,
+    required TResult Function(_WatchFriendsGamesStarted value)
+        watchFriendsGamesStarted,
     required TResult Function(_GamesReceived value) gamesReceived,
   }) {
     return currentUser(this);
@@ -233,6 +265,8 @@ class _$_CurrentUser implements _CurrentUser {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_WatchUserGamesStarted value)? watchUserGamesStarted,
+    TResult Function(_WatchFriendsGamesStarted value)? watchFriendsGamesStarted,
     TResult Function(_GamesReceived value)? gamesReceived,
   }) {
     return currentUser?.call(this);
@@ -243,6 +277,8 @@ class _$_CurrentUser implements _CurrentUser {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_WatchUserGamesStarted value)? watchUserGamesStarted,
+    TResult Function(_WatchFriendsGamesStarted value)? watchFriendsGamesStarted,
     TResult Function(_GamesReceived value)? gamesReceived,
     required TResult orElse(),
   }) {
@@ -305,6 +341,8 @@ class _$_WatchGamesStarted implements _WatchGamesStarted {
   TResult when<TResult extends Object?>({
     required TResult Function(GamifierUserPrimitive currentUser) currentUser,
     required TResult Function() watchGamesStarted,
+    required TResult Function() watchUserGamesStarted,
+    required TResult Function() watchFriendsGamesStarted,
     required TResult Function(
             Either<GameFailure, KtList<GameKey>> failureOrGames)
         gamesReceived,
@@ -317,6 +355,8 @@ class _$_WatchGamesStarted implements _WatchGamesStarted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function()? watchGamesStarted,
+    TResult Function()? watchUserGamesStarted,
+    TResult Function()? watchFriendsGamesStarted,
     TResult Function(Either<GameFailure, KtList<GameKey>> failureOrGames)?
         gamesReceived,
   }) {
@@ -328,6 +368,8 @@ class _$_WatchGamesStarted implements _WatchGamesStarted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function()? watchGamesStarted,
+    TResult Function()? watchUserGamesStarted,
+    TResult Function()? watchFriendsGamesStarted,
     TResult Function(Either<GameFailure, KtList<GameKey>> failureOrGames)?
         gamesReceived,
     required TResult orElse(),
@@ -343,6 +385,10 @@ class _$_WatchGamesStarted implements _WatchGamesStarted {
   TResult map<TResult extends Object?>({
     required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_WatchGamesStarted value) watchGamesStarted,
+    required TResult Function(_WatchUserGamesStarted value)
+        watchUserGamesStarted,
+    required TResult Function(_WatchFriendsGamesStarted value)
+        watchFriendsGamesStarted,
     required TResult Function(_GamesReceived value) gamesReceived,
   }) {
     return watchGamesStarted(this);
@@ -353,6 +399,8 @@ class _$_WatchGamesStarted implements _WatchGamesStarted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_WatchUserGamesStarted value)? watchUserGamesStarted,
+    TResult Function(_WatchFriendsGamesStarted value)? watchFriendsGamesStarted,
     TResult Function(_GamesReceived value)? gamesReceived,
   }) {
     return watchGamesStarted?.call(this);
@@ -363,6 +411,8 @@ class _$_WatchGamesStarted implements _WatchGamesStarted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_WatchUserGamesStarted value)? watchUserGamesStarted,
+    TResult Function(_WatchFriendsGamesStarted value)? watchFriendsGamesStarted,
     TResult Function(_GamesReceived value)? gamesReceived,
     required TResult orElse(),
   }) {
@@ -375,6 +425,266 @@ class _$_WatchGamesStarted implements _WatchGamesStarted {
 
 abstract class _WatchGamesStarted implements GameWatcherEvent {
   factory _WatchGamesStarted() = _$_WatchGamesStarted;
+}
+
+/// @nodoc
+abstract class _$WatchUserGamesStartedCopyWith<$Res> {
+  factory _$WatchUserGamesStartedCopyWith(_WatchUserGamesStarted value,
+          $Res Function(_WatchUserGamesStarted) then) =
+      __$WatchUserGamesStartedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$WatchUserGamesStartedCopyWithImpl<$Res>
+    extends _$GameWatcherEventCopyWithImpl<$Res>
+    implements _$WatchUserGamesStartedCopyWith<$Res> {
+  __$WatchUserGamesStartedCopyWithImpl(_WatchUserGamesStarted _value,
+      $Res Function(_WatchUserGamesStarted) _then)
+      : super(_value, (v) => _then(v as _WatchUserGamesStarted));
+
+  @override
+  _WatchUserGamesStarted get _value => super._value as _WatchUserGamesStarted;
+}
+
+/// @nodoc
+
+class _$_WatchUserGamesStarted implements _WatchUserGamesStarted {
+  _$_WatchUserGamesStarted();
+
+  @override
+  String toString() {
+    return 'GameWatcherEvent.watchUserGamesStarted()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _WatchUserGamesStarted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GamifierUserPrimitive currentUser) currentUser,
+    required TResult Function() watchGamesStarted,
+    required TResult Function() watchUserGamesStarted,
+    required TResult Function() watchFriendsGamesStarted,
+    required TResult Function(
+            Either<GameFailure, KtList<GameKey>> failureOrGames)
+        gamesReceived,
+  }) {
+    return watchUserGamesStarted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function()? watchGamesStarted,
+    TResult Function()? watchUserGamesStarted,
+    TResult Function()? watchFriendsGamesStarted,
+    TResult Function(Either<GameFailure, KtList<GameKey>> failureOrGames)?
+        gamesReceived,
+  }) {
+    return watchUserGamesStarted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function()? watchGamesStarted,
+    TResult Function()? watchUserGamesStarted,
+    TResult Function()? watchFriendsGamesStarted,
+    TResult Function(Either<GameFailure, KtList<GameKey>> failureOrGames)?
+        gamesReceived,
+    required TResult orElse(),
+  }) {
+    if (watchUserGamesStarted != null) {
+      return watchUserGamesStarted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentUser value) currentUser,
+    required TResult Function(_WatchGamesStarted value) watchGamesStarted,
+    required TResult Function(_WatchUserGamesStarted value)
+        watchUserGamesStarted,
+    required TResult Function(_WatchFriendsGamesStarted value)
+        watchFriendsGamesStarted,
+    required TResult Function(_GamesReceived value) gamesReceived,
+  }) {
+    return watchUserGamesStarted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
+    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_WatchUserGamesStarted value)? watchUserGamesStarted,
+    TResult Function(_WatchFriendsGamesStarted value)? watchFriendsGamesStarted,
+    TResult Function(_GamesReceived value)? gamesReceived,
+  }) {
+    return watchUserGamesStarted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
+    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_WatchUserGamesStarted value)? watchUserGamesStarted,
+    TResult Function(_WatchFriendsGamesStarted value)? watchFriendsGamesStarted,
+    TResult Function(_GamesReceived value)? gamesReceived,
+    required TResult orElse(),
+  }) {
+    if (watchUserGamesStarted != null) {
+      return watchUserGamesStarted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _WatchUserGamesStarted implements GameWatcherEvent {
+  factory _WatchUserGamesStarted() = _$_WatchUserGamesStarted;
+}
+
+/// @nodoc
+abstract class _$WatchFriendsGamesStartedCopyWith<$Res> {
+  factory _$WatchFriendsGamesStartedCopyWith(_WatchFriendsGamesStarted value,
+          $Res Function(_WatchFriendsGamesStarted) then) =
+      __$WatchFriendsGamesStartedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$WatchFriendsGamesStartedCopyWithImpl<$Res>
+    extends _$GameWatcherEventCopyWithImpl<$Res>
+    implements _$WatchFriendsGamesStartedCopyWith<$Res> {
+  __$WatchFriendsGamesStartedCopyWithImpl(_WatchFriendsGamesStarted _value,
+      $Res Function(_WatchFriendsGamesStarted) _then)
+      : super(_value, (v) => _then(v as _WatchFriendsGamesStarted));
+
+  @override
+  _WatchFriendsGamesStarted get _value =>
+      super._value as _WatchFriendsGamesStarted;
+}
+
+/// @nodoc
+
+class _$_WatchFriendsGamesStarted implements _WatchFriendsGamesStarted {
+  _$_WatchFriendsGamesStarted();
+
+  @override
+  String toString() {
+    return 'GameWatcherEvent.watchFriendsGamesStarted()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _WatchFriendsGamesStarted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GamifierUserPrimitive currentUser) currentUser,
+    required TResult Function() watchGamesStarted,
+    required TResult Function() watchUserGamesStarted,
+    required TResult Function() watchFriendsGamesStarted,
+    required TResult Function(
+            Either<GameFailure, KtList<GameKey>> failureOrGames)
+        gamesReceived,
+  }) {
+    return watchFriendsGamesStarted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function()? watchGamesStarted,
+    TResult Function()? watchUserGamesStarted,
+    TResult Function()? watchFriendsGamesStarted,
+    TResult Function(Either<GameFailure, KtList<GameKey>> failureOrGames)?
+        gamesReceived,
+  }) {
+    return watchFriendsGamesStarted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GamifierUserPrimitive currentUser)? currentUser,
+    TResult Function()? watchGamesStarted,
+    TResult Function()? watchUserGamesStarted,
+    TResult Function()? watchFriendsGamesStarted,
+    TResult Function(Either<GameFailure, KtList<GameKey>> failureOrGames)?
+        gamesReceived,
+    required TResult orElse(),
+  }) {
+    if (watchFriendsGamesStarted != null) {
+      return watchFriendsGamesStarted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentUser value) currentUser,
+    required TResult Function(_WatchGamesStarted value) watchGamesStarted,
+    required TResult Function(_WatchUserGamesStarted value)
+        watchUserGamesStarted,
+    required TResult Function(_WatchFriendsGamesStarted value)
+        watchFriendsGamesStarted,
+    required TResult Function(_GamesReceived value) gamesReceived,
+  }) {
+    return watchFriendsGamesStarted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
+    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_WatchUserGamesStarted value)? watchUserGamesStarted,
+    TResult Function(_WatchFriendsGamesStarted value)? watchFriendsGamesStarted,
+    TResult Function(_GamesReceived value)? gamesReceived,
+  }) {
+    return watchFriendsGamesStarted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentUser value)? currentUser,
+    TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_WatchUserGamesStarted value)? watchUserGamesStarted,
+    TResult Function(_WatchFriendsGamesStarted value)? watchFriendsGamesStarted,
+    TResult Function(_GamesReceived value)? gamesReceived,
+    required TResult orElse(),
+  }) {
+    if (watchFriendsGamesStarted != null) {
+      return watchFriendsGamesStarted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _WatchFriendsGamesStarted implements GameWatcherEvent {
+  factory _WatchFriendsGamesStarted() = _$_WatchFriendsGamesStarted;
 }
 
 /// @nodoc
@@ -445,6 +755,8 @@ class _$_GamesReceived implements _GamesReceived {
   TResult when<TResult extends Object?>({
     required TResult Function(GamifierUserPrimitive currentUser) currentUser,
     required TResult Function() watchGamesStarted,
+    required TResult Function() watchUserGamesStarted,
+    required TResult Function() watchFriendsGamesStarted,
     required TResult Function(
             Either<GameFailure, KtList<GameKey>> failureOrGames)
         gamesReceived,
@@ -457,6 +769,8 @@ class _$_GamesReceived implements _GamesReceived {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function()? watchGamesStarted,
+    TResult Function()? watchUserGamesStarted,
+    TResult Function()? watchFriendsGamesStarted,
     TResult Function(Either<GameFailure, KtList<GameKey>> failureOrGames)?
         gamesReceived,
   }) {
@@ -468,6 +782,8 @@ class _$_GamesReceived implements _GamesReceived {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GamifierUserPrimitive currentUser)? currentUser,
     TResult Function()? watchGamesStarted,
+    TResult Function()? watchUserGamesStarted,
+    TResult Function()? watchFriendsGamesStarted,
     TResult Function(Either<GameFailure, KtList<GameKey>> failureOrGames)?
         gamesReceived,
     required TResult orElse(),
@@ -483,6 +799,10 @@ class _$_GamesReceived implements _GamesReceived {
   TResult map<TResult extends Object?>({
     required TResult Function(_CurrentUser value) currentUser,
     required TResult Function(_WatchGamesStarted value) watchGamesStarted,
+    required TResult Function(_WatchUserGamesStarted value)
+        watchUserGamesStarted,
+    required TResult Function(_WatchFriendsGamesStarted value)
+        watchFriendsGamesStarted,
     required TResult Function(_GamesReceived value) gamesReceived,
   }) {
     return gamesReceived(this);
@@ -493,6 +813,8 @@ class _$_GamesReceived implements _GamesReceived {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_WatchUserGamesStarted value)? watchUserGamesStarted,
+    TResult Function(_WatchFriendsGamesStarted value)? watchFriendsGamesStarted,
     TResult Function(_GamesReceived value)? gamesReceived,
   }) {
     return gamesReceived?.call(this);
@@ -503,6 +825,8 @@ class _$_GamesReceived implements _GamesReceived {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CurrentUser value)? currentUser,
     TResult Function(_WatchGamesStarted value)? watchGamesStarted,
+    TResult Function(_WatchUserGamesStarted value)? watchUserGamesStarted,
+    TResult Function(_WatchFriendsGamesStarted value)? watchFriendsGamesStarted,
     TResult Function(_GamesReceived value)? gamesReceived,
     required TResult orElse(),
   }) {
@@ -535,9 +859,10 @@ class _$GameWatcherStateTearOff {
     return const _LoadInProgress();
   }
 
-  _LoadSuccess loadSuccess(KtList<GameKeyPrimitive> gamekeys) {
+  _LoadSuccess loadSuccess(KtList<GameKeyPrimitive> gamekeys, bool isUser) {
     return _LoadSuccess(
       gamekeys,
+      isUser,
     );
   }
 
@@ -557,7 +882,8 @@ mixin _$GameWatcherState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(KtList<GameKeyPrimitive> gamekeys) loadSuccess,
+    required TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)
+        loadSuccess,
     required TResult Function(GameFailure gameFailure) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -565,7 +891,8 @@ mixin _$GameWatcherState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<GameKeyPrimitive> gamekeys)? loadSuccess,
+    TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)?
+        loadSuccess,
     TResult Function(GameFailure gameFailure)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -573,7 +900,8 @@ mixin _$GameWatcherState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<GameKeyPrimitive> gamekeys)? loadSuccess,
+    TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)?
+        loadSuccess,
     TResult Function(GameFailure gameFailure)? loadFailure,
     required TResult orElse(),
   }) =>
@@ -662,7 +990,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(KtList<GameKeyPrimitive> gamekeys) loadSuccess,
+    required TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)
+        loadSuccess,
     required TResult Function(GameFailure gameFailure) loadFailure,
   }) {
     return initial();
@@ -673,7 +1002,8 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<GameKeyPrimitive> gamekeys)? loadSuccess,
+    TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)?
+        loadSuccess,
     TResult Function(GameFailure gameFailure)? loadFailure,
   }) {
     return initial?.call();
@@ -684,7 +1014,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<GameKeyPrimitive> gamekeys)? loadSuccess,
+    TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)?
+        loadSuccess,
     TResult Function(GameFailure gameFailure)? loadFailure,
     required TResult orElse(),
   }) {
@@ -779,7 +1110,8 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(KtList<GameKeyPrimitive> gamekeys) loadSuccess,
+    required TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)
+        loadSuccess,
     required TResult Function(GameFailure gameFailure) loadFailure,
   }) {
     return loadInProgress();
@@ -790,7 +1122,8 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<GameKeyPrimitive> gamekeys)? loadSuccess,
+    TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)?
+        loadSuccess,
     TResult Function(GameFailure gameFailure)? loadFailure,
   }) {
     return loadInProgress?.call();
@@ -801,7 +1134,8 @@ class _$_LoadInProgress implements _LoadInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<GameKeyPrimitive> gamekeys)? loadSuccess,
+    TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)?
+        loadSuccess,
     TResult Function(GameFailure gameFailure)? loadFailure,
     required TResult orElse(),
   }) {
@@ -858,7 +1192,7 @@ abstract class _$LoadSuccessCopyWith<$Res> {
   factory _$LoadSuccessCopyWith(
           _LoadSuccess value, $Res Function(_LoadSuccess) then) =
       __$LoadSuccessCopyWithImpl<$Res>;
-  $Res call({KtList<GameKeyPrimitive> gamekeys});
+  $Res call({KtList<GameKeyPrimitive> gamekeys, bool isUser});
 }
 
 /// @nodoc
@@ -875,12 +1209,17 @@ class __$LoadSuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object? gamekeys = freezed,
+    Object? isUser = freezed,
   }) {
     return _then(_LoadSuccess(
       gamekeys == freezed
           ? _value.gamekeys
           : gamekeys // ignore: cast_nullable_to_non_nullable
               as KtList<GameKeyPrimitive>,
+      isUser == freezed
+          ? _value.isUser
+          : isUser // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -888,14 +1227,16 @@ class __$LoadSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadSuccess implements _LoadSuccess {
-  const _$_LoadSuccess(this.gamekeys);
+  const _$_LoadSuccess(this.gamekeys, this.isUser);
 
   @override
   final KtList<GameKeyPrimitive> gamekeys;
+  @override
+  final bool isUser;
 
   @override
   String toString() {
-    return 'GameWatcherState.loadSuccess(gamekeys: $gamekeys)';
+    return 'GameWatcherState.loadSuccess(gamekeys: $gamekeys, isUser: $isUser)';
   }
 
   @override
@@ -903,12 +1244,15 @@ class _$_LoadSuccess implements _LoadSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LoadSuccess &&
-            const DeepCollectionEquality().equals(other.gamekeys, gamekeys));
+            const DeepCollectionEquality().equals(other.gamekeys, gamekeys) &&
+            const DeepCollectionEquality().equals(other.isUser, isUser));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(gamekeys));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(gamekeys),
+      const DeepCollectionEquality().hash(isUser));
 
   @JsonKey(ignore: true)
   @override
@@ -920,10 +1264,11 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(KtList<GameKeyPrimitive> gamekeys) loadSuccess,
+    required TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)
+        loadSuccess,
     required TResult Function(GameFailure gameFailure) loadFailure,
   }) {
-    return loadSuccess(gamekeys);
+    return loadSuccess(gamekeys, isUser);
   }
 
   @override
@@ -931,10 +1276,11 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<GameKeyPrimitive> gamekeys)? loadSuccess,
+    TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)?
+        loadSuccess,
     TResult Function(GameFailure gameFailure)? loadFailure,
   }) {
-    return loadSuccess?.call(gamekeys);
+    return loadSuccess?.call(gamekeys, isUser);
   }
 
   @override
@@ -942,12 +1288,13 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<GameKeyPrimitive> gamekeys)? loadSuccess,
+    TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)?
+        loadSuccess,
     TResult Function(GameFailure gameFailure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
-      return loadSuccess(gamekeys);
+      return loadSuccess(gamekeys, isUser);
     }
     return orElse();
   }
@@ -991,10 +1338,11 @@ class _$_LoadSuccess implements _LoadSuccess {
 }
 
 abstract class _LoadSuccess implements GameWatcherState {
-  const factory _LoadSuccess(KtList<GameKeyPrimitive> gamekeys) =
+  const factory _LoadSuccess(KtList<GameKeyPrimitive> gamekeys, bool isUser) =
       _$_LoadSuccess;
 
   KtList<GameKeyPrimitive> get gamekeys;
+  bool get isUser;
   @JsonKey(ignore: true)
   _$LoadSuccessCopyWith<_LoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1077,7 +1425,8 @@ class _$_LoadFailure implements _LoadFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(KtList<GameKeyPrimitive> gamekeys) loadSuccess,
+    required TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)
+        loadSuccess,
     required TResult Function(GameFailure gameFailure) loadFailure,
   }) {
     return loadFailure(gameFailure);
@@ -1088,7 +1437,8 @@ class _$_LoadFailure implements _LoadFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<GameKeyPrimitive> gamekeys)? loadSuccess,
+    TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)?
+        loadSuccess,
     TResult Function(GameFailure gameFailure)? loadFailure,
   }) {
     return loadFailure?.call(gameFailure);
@@ -1099,7 +1449,8 @@ class _$_LoadFailure implements _LoadFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(KtList<GameKeyPrimitive> gamekeys)? loadSuccess,
+    TResult Function(KtList<GameKeyPrimitive> gamekeys, bool isUser)?
+        loadSuccess,
     TResult Function(GameFailure gameFailure)? loadFailure,
     required TResult orElse(),
   }) {

@@ -7,10 +7,9 @@ import 'package:gamifier/application/friends/friend_watcher/friend_watcher_bloc.
 import 'package:gamifier/application/game/game_detail/game_detail_bloc.dart';
 import 'package:gamifier/application/game/game_score/game_score_bloc.dart';
 import 'package:gamifier/application/game/game_watcher/game_watcher_bloc.dart';
+import 'package:gamifier/presentation/core/gradient_background.dart';
 import 'package:gamifier/presentation/core/loading.dart';
 import 'package:gamifier/presentation/routes/router.gr.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-
 import '../../application/auth/auth_bloc.dart';
 
 class SplashPage extends StatelessWidget {
@@ -38,14 +37,18 @@ class SplashPage extends StatelessWidget {
                   .add(GameDetailEvent.currentUser(e.currentUser));
               BlocProvider.of<GameScoreBloc>(context)
                   .add(GameScoreEvent.currentUser(e.currentUser));
-
+              BlocProvider.of<GameWatcherBloc>(context)
+                  // initiate game keys
+                  .add(GameWatcherEvent.watchGamesStarted());
               context.router.replace(const GameOverviewRoute());
             },
             unAuthenticated: (_) =>
                 context.router.replace(const SignInRoute()));
       },
-      child: const Scaffold(
-        body: Center(child: Loading()),
+      child: const GradientBackground(
+        scaffold: Scaffold(
+          body: Center(child: Loading()),
+        ),
       ),
     );
   }

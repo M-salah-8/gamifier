@@ -9,6 +9,7 @@ part of 'game_tdo.dart';
 _$_GameDTO _$$_GameDTOFromJson(Map<String, dynamic> json) => _$_GameDTO(
       id: json['id'] as String,
       admin: json['admin'] as String,
+      adminName: json['adminName'] as String,
       usersId:
           (json['usersId'] as List<dynamic>).map((e) => e as String).toList(),
       name: json['name'] as String,
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$_GameDTOToJson(_$_GameDTO instance) =>
     <String, dynamic>{
       'id': instance.id,
       'admin': instance.admin,
+      'adminName': instance.adminName,
       'usersId': instance.usersId,
       'name': instance.name,
       'noOfUsers': instance.noOfUsers,
@@ -98,10 +100,14 @@ _$_GameKeyTDO _$$_GameKeyTDOFromJson(Map<String, dynamic> json) =>
     _$_GameKeyTDO(
       gameId: json['gameId'] as String,
       gameName: json['gameName'] as String,
+      creater: json['creater'] as String,
+      createrId: json['createrId'] as String,
     );
 
 Map<String, dynamic> _$$_GameKeyTDOToJson(_$_GameKeyTDO instance) =>
     <String, dynamic>{
       'gameId': instance.gameId,
       'gameName': instance.gameName,
+      'creater': instance.creater,
+      'createrId': instance.createrId,
     };

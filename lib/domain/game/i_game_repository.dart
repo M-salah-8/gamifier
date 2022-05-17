@@ -12,7 +12,8 @@ abstract class IGameRepository {
   Stream<Either<GameFailure, KtList<GameKey>>> watchGames(
       GamifierUser currentUser);
   Future<GameDetails> gameDetails(String gameid);
-  Future<Either<String, Unit>> addFriend(Game game, GamifierUser friend);
+  Future<Either<String, Unit>> addFriend(
+      Game game, GamifierUser friend, String adminName);
   Future<Either<GameFailure, Unit>> create(Game game, GamifierUser admin);
   Future<Either<GameFailure, Unit>> update(Game game);
   Future<Either<GameFailure, Unit>> delete(Game game);

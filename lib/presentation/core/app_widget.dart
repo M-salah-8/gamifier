@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gamifier/application/friends/friend_request/friend_request_bloc.dart';
 import 'package:gamifier/application/friends/friend_request/friend_search/friend_search_bloc.dart';
 import 'package:gamifier/application/friends/friend_request_watcher/friend_request_watcher_bloc.dart';
 import 'package:gamifier/application/friends/friend_watcher/friend_watcher_bloc.dart';
+import 'package:gamifier/application/game/flying_score/flying_score_bloc.dart';
 import 'package:gamifier/application/game/game_actor/game_actor_bloc.dart';
 import 'package:gamifier/application/game/game_adding_friend/game_adding_friend_bloc.dart';
 import 'package:gamifier/application/game/game_detail/game_detail_bloc.dart';
@@ -13,7 +13,6 @@ import 'package:gamifier/application/game/game_getter/game_getter_bloc.dart';
 import 'package:gamifier/application/game/game_score/game_score_bloc.dart';
 import 'package:gamifier/application/game/game_watcher/game_watcher_bloc.dart';
 import 'package:gamifier/injection.dart';
-import 'package:gamifier/presentation/core/colors.dart';
 import 'package:gamifier/presentation/routes/router.gr.dart';
 
 import '../../application/auth/auth_bloc.dart';
@@ -53,84 +52,86 @@ class AppWidget extends StatelessWidget {
         BlocProvider(create: (context) => getIt<GameAddingFriendBloc>()),
         BlocProvider(create: (context) => getIt<GameEditingBloc>()),
         BlocProvider(create: (context) => getIt<GameScoreBloc>()),
+        BlocProvider(create: (context) => getIt<FlyingScoreBloc>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
-            primaryColor: primary,
-            appBarTheme: AppBarTheme(
-                systemOverlayStyle: SystemUiOverlayStyle.dark,
+            primaryColor: const Color.fromARGB(255, 9, 153, 17),
+            scaffoldBackgroundColor: Colors.transparent,
+            appBarTheme: const AppBarTheme(
                 centerTitle: true,
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(color: primary, width: 2),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                backgroundColor: Colors.transparent,
                 elevation: 0),
-
-            // floatingActionButtonTheme: FloatingActionButtonThemeData(
-            //   backgroundColor: Colors.green[300],
-            // ),
+            floatingActionButtonTheme: const FloatingActionButtonThemeData(
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                extendedPadding: EdgeInsets.all(0)),
             cardTheme: CardTheme(
               elevation: 0,
               // color: const Color.fromARGB(255, 100, 12, 116),
               shape: RoundedRectangleBorder(
-                side: BorderSide(color: primary, width: 2),
+                side: const BorderSide(
+                    color: Color.fromARGB(255, 9, 153, 17), width: 2),
                 borderRadius: BorderRadius.circular(30),
               ),
             ),
             dialogTheme: DialogTheme(
-                titleTextStyle:
-                    const TextStyle(fontSize: 20, color: Colors.black),
+                titleTextStyle: const TextStyle(
+                    fontSize: 20, color: Color.fromARGB(255, 9, 153, 17)),
                 elevation: 0,
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(color: primary, width: 2),
+                  side: const BorderSide(
+                      color: Color.fromARGB(255, 9, 153, 17), width: 2),
                   borderRadius: BorderRadius.circular(30),
                 )),
             inputDecorationTheme: InputDecorationTheme(
-              hintStyle: const TextStyle(fontSize: 15, color: Colors.black),
+              hintStyle: const TextStyle(fontSize: 15, color: Colors.grey),
               labelStyle: const TextStyle(fontSize: 15, color: Colors.black),
               suffixStyle: const TextStyle(fontSize: 15, color: Colors.black),
-              hoverColor: primary,
-              fillColor: primary,
+              hoverColor: const Color.fromARGB(255, 9, 153, 17),
+              fillColor: const Color.fromARGB(255, 9, 153, 17),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 3, color: primary),
+                borderSide: const BorderSide(
+                    width: 3, color: Color.fromARGB(255, 9, 153, 17)),
                 borderRadius: BorderRadius.circular(30),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: primary),
+                borderSide:
+                    const BorderSide(color: Color.fromARGB(255, 9, 153, 17)),
                 borderRadius: BorderRadius.circular(30),
               ),
               border: OutlineInputBorder(
-                borderSide: BorderSide(color: primary),
+                borderSide:
+                    const BorderSide(color: Color.fromARGB(255, 9, 153, 17)),
                 borderRadius: BorderRadius.circular(30),
               ),
             ),
             popupMenuTheme: PopupMenuThemeData(
                 shape: RoundedRectangleBorder(
-              side: BorderSide(color: primary, width: 2),
+              side: const BorderSide(
+                  color: Color.fromARGB(255, 9, 153, 17), width: 2),
               borderRadius: BorderRadius.circular(30),
             )),
-            floatingActionButtonTheme: FloatingActionButtonThemeData(
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                side: BorderSide(color: primary, width: 2),
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
             textTheme: const TextTheme(
+                displaySmall: TextStyle(fontSize: 10, color: Colors.black),
                 displayMedium: TextStyle(fontSize: 15, color: Colors.black),
                 displayLarge: TextStyle(
                     fontSize: 20,
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 9, 153, 17),
                     fontWeight: FontWeight.bold),
                 titleSmall: TextStyle(
                     fontSize: 20, letterSpacing: 1.5, color: Colors.black),
                 titleMedium: TextStyle(
-                    fontSize: 30, letterSpacing: 1.5, color: Colors.black),
+                    fontSize: 30,
+                    letterSpacing: 1.5,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 9, 153, 17)),
                 titleLarge: TextStyle(
-                    fontSize: 40, letterSpacing: 1.5, color: Colors.black))),
+                  fontSize: 40,
+                  letterSpacing: 1.5,
+                  color: Color.fromARGB(255, 9, 153, 17),
+                ))),
         routeInformationParser: _appRouter.defaultRouteParser(),
         routerDelegate: _appRouter.delegate(),
         title: 'Gamifier',
