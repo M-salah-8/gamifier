@@ -28,7 +28,7 @@ Then run build_runner command for code generation: flutter pub run build_runner 
 
 ## A video about how the app works:
 I recommend watching the video more than looking at the screenshots.\
- https://youtu.be/ctFBZ32yWd8
+ https://youtu.be/0ZnEbVVPcwU
 
 ## Screenshots from the App:
 * sing in\up:
